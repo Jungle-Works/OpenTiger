@@ -1,0 +1,7 @@
+<% button_title = Maybe(form_data['button_title']).or_else("") %>
+
+<div class="form-group">
+    <label for="">Button Title</label>
+    <%= render partial: "layouts/info_text", locals: { text: "Set the title of button for this section" } %>
+    <input name="<%= label%>" id="<%= label%>" value="<%= button_title%>" type="text">
+</div>

@@ -1,0 +1,122 @@
+.custom-domain-container{
+  section{
+    box-shadow: rgba(69,65,78,.08) 0 1px 15px 1px;
+    background-color: #fcfcfc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+}
+
+.container-heading{
+    margin-bottom: 20px;
+}
+
+
+
+.setup-instruction{
+    // font-family: ProximaNova-Regular;
+    .instruction-heading{
+      font-size: 16px;
+    }
+    .instruction-subheading{
+      font-size: 16px;
+      margin-bottom: 5px !important;
+    }
+    .setup-instruction-sub-list{
+      list-style-type: circle;
+      margin-bottom: 1rem;
+      padding-left: 45px;
+      .setup-instruction-sub-list-item{
+        font-size: 14px;
+      }
+    }
+  
+    .setup-instruction-list{
+      padding-left: 10px;
+      list-style-type: none;
+      margin-bottom: 1rem;
+      &.one {
+        counter-reset: my-awesome-counter;
+        margin-bottom: 1rem;
+      }
+      .setup-instruction-list-item{
+        counter-increment: my-awesome-counter;
+        font-size: 14px;
+        &::before{
+          content: counter(my-awesome-counter) ". ";
+          // font-family: ProximaNova-Semi-Bold;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+.fill-domain{
+    position: relative;
+    display: flex!important;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    input[type=text]{
+      background: #fff;
+      border: 1px solid #ddd;
+      outline: 0;
+      width: 100%;
+      border-radius: 4px;
+      font-size: 14px;
+      padding: 9px;
+      line-height: normal;
+      color: #474747;
+      // font-family: ProximaNova-Regular;
+      letter-spacing: .9px;
+      position: relative;
+      }
+}
+.protocol{
+    top: 7px;
+    left: 20px;
+    position: absolute;
+    z-index: 9;
+}
+.domain-field{
+    position: relative;
+    padding-left: 55px !important;
+}
+.cname-record-instructuion{
+    text-transform: none !important;
+    b{
+      // font-family: ProximaNova-Semi-Bold;
+      font-size: 16px;
+      color: #333;
+    }
+  }
+
+  .save-cancel-btn{
+    justify-content: flex-end;
+      .change-domain-button{
+          margin-right: 5px;
+          border: solid 2px #e2e4e6;
+          border-radius: 7px;
+          font-size: 14px;
+          min-width: 100px;
+          &:hover {
+            background-color: #fcfcfc;
+          }
+          &:focus {outline:none}
+      }
+      .cancel-domain-button{
+        background-color: #e2e4e6;
+        color: #293038;
+        border-radius: 7px;
+        font-size: 14px;
+        min-width: 100px;
+        &:hover {
+          border: solid 2px #e2e4e6;
+          background-color: #fcfcfc;
+        }
+        &:focus {outline:none}
+    }
+  }

@@ -1,0 +1,41 @@
+- content_for :javascript do
+  initialize_user_feedback_form("#{I18n.locale}",#{FeatureFlagHelper.feature_enabled?(:google_recaptcha)});
+
+- if FeatureFlagHelper.feature_enabled?(:google_recaptcha)
+  :javascript
+    function googleRecaptchaCallback(response){
+      if(response.length){
+        $(".recaptcha-error").removeClass("has-error");
+      }
+      else{
+        $(".recaptcha-error").addClass("has-error");
+      }
+    }
+
+
+- content_for :title_header do
+  %h1= t("layouts.no_tribe.feedback")
+
+
+- if has_admin_rights
+  %p= render :partial => "layouts/info_text", :locals => { :text => t("layouts.application.dont_use_to_contact_support") }
+
+.new-feedback-form.centered-section
+  = form_for feedback_form, :url => user_feedbacks_path do |form|
+    - unless email_present
+      = form.label :email, t("layouts.application.your_email_address")
+      = form.text_field :email
+    = form.label :title, "You should not see this field, if CSS is working.", :class => "unwanted_text_field"
+    = form.text_field :title, :class => "unwanted_text_field", :id => "error_feedback_unwanted_title"
+    = form.label :content, t("layouts.application.feedback")
+    = form.text_area :content
+    - if FeatureFlagHelper.feature_enabled?(:google_recaptcha)
+      %div.recaptcha-error
+        %div{class: "g-recaptcha" ,data: { sitekey: @current_community.google_recaptcha_key, callback: "googleRecaptchaCallback"}}
+        %span="Please verify that you are not a robot"
+    = form.hidden_field :url, :value => request.headers["HTTP_REFERER"] || request.original_url
+    = form.button t("layouts.application.send_feedback_to_admin")
+
+
+
+    

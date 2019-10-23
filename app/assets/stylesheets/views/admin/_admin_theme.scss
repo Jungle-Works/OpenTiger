@@ -1,0 +1,415 @@
+@import "mixins/all";
+
+.theme-card {
+
+    cursor: pointer;
+
+    .selected-tag {
+        position: absolute;
+        background-color: rgb(58, 60, 65);
+        color: white;
+        top: 5px;
+        border-color: rgb(30, 32, 35) transparent;
+        left: -8px;
+        z-index: 10;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 2px 6px 3px;
+        font-size: 13px;
+
+        &:before {
+            position: absolute;
+            bottom: -9px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: inherit;
+            left: 0;
+            border-width: 9px 0 0 9px;
+        }
+    }
+
+    .thumbnail {
+        position: relative;
+        height: 300px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 25px 20px -21px rgba(0, 0, 0, 0.57);
+        border-radius: 8px 8px;
+        object-fit: cover;
+    }
+
+    .theme-overlay {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        border-radius: 8px 8px;
+
+
+    }
+
+
+    .action-buttons {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all .5s ease;
+        opacity: 1;
+
+        .preview-button {
+            border-radius: 50%;
+            background-color: white;
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+                color: black;
+            }
+        }
+
+        .select-button {
+            width: 145px;
+            max-width: 100%;
+            line-height: 17px;
+        }
+    }
+
+    &:hover {
+        .theme-overlay {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.75);
+        }
+
+        .action-buttons {
+            opacity: 1
+        }
+    }
+
+
+    @include media(tablet) {
+        .thumbnail {
+            height: 200px;
+        }
+
+        width: 280px;
+    }
+
+    @media screen and (min-width: em(1100)) {
+        .thumbnail {
+
+            height: 200px;
+        }
+
+        .theme-overlay {
+            opacity: 0;
+
+        }
+
+        .action-buttons {
+            opacity: 0;
+        }
+
+        width: 250px;
+    }
+}
+
+
+.themes-wrapper {
+    @include media(tablet) {
+
+        .col-4 {
+            width: 50%;
+            padding-left: 0.75em;
+        }
+    }
+
+
+    @include media(desktop) {
+
+        .col-4 {
+
+            width: 33.33333%;
+        }
+    }
+}
+
+.close-carousel-btn {
+    background: transparent;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+
+    &:hover {
+        background-color: transparent;
+        color: #4a4a4a;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.theme-info {
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .name {
+        font-size: 20px;
+    }
+
+    .price {
+        font-size: 16px;
+        font-weight: 100;
+    }
+}
+
+
+#theme-carousel-wrapper {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(1, 1, 1, .92);
+    left: 0;
+    width: 100%;
+    z-index: 100;
+
+    &.show {
+        display: block;
+    }
+
+    .listing-image-parent {
+        position: relative;
+        height: 100%;
+        padding: 100px 10vw;
+    }
+
+    .listing-image-carousel {
+        height: 100%;
+        padding: 0px;
+
+        #listing-image-frame {
+            position: relative;
+            height: 100%;
+
+            .listing-image-frame {
+                // position: static;
+                height: 100%;
+                background-color: transparent;
+                padding: 0px;
+
+                .listing-image-vertical-centering {
+                    height: 100%;
+                }
+            }
+
+            img {
+                object-fit: contain;
+                height: 100%;
+            }
+
+        }
+    }
+
+    // .flex-carousel-1{
+    //   width: 100vw;
+    //   height: 100vh;
+    //   background-color: rgba(1,1,1,.92);
+    //   .flex-carousel-2{
+    //     width: 100%;
+    //     height: 100%;
+    //     button{
+    //       color: #b2b2b2;
+    //       -webkit-transition: .1s ease-in-out;
+    //       -o-transition: ease-in-out .1s;
+    //       transition: .1s ease-in-out;
+    //       background-color: transparent;
+    //       position: absolute;
+    //       z-index: 1;
+
+    //       &:hover{
+    //         color: #fff;
+    //       }
+    //       &:focus{
+    //         outline: none;
+    //       }
+    //     }
+    //     .flex-carousel-3{
+    //   padding: 100px 10vw;
+    //   position: relative;
+    //   width: 100%;
+    //   height: 100%;
+    //   .listing-image-carousel{
+    //     position: relative;
+    //     display: flex;
+    //     -ms-flex-direction: row;
+    //     flex-direction: row;
+    //     width: 100%;
+    //     height: 100%;
+    //     .listing-image-frame{
+    //     background-color: transparent;
+    //     height: 100%;
+    //     .listing-image-vertical-centering{
+    //         vertical-align: middle;
+    //     }
+    //     img{
+    //       object-fit: contain;
+    //     }
+    //   }
+    //   }
+    // }
+    //   }
+    // }
+
+}
+
+
+.choose-theme-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    height: 100vh;
+
+    .confirm-content {
+
+        max-width: 400px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        padding: 16px 0 20px;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+
+        .footer {
+            padding: 7px 25px 0;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #d8d8d8;
+
+            button {
+                font-size: 15px;
+            }
+
+            .cancel-btn {
+                background-color: grey;
+                margin-right: 10px;
+            }
+        }
+
+        .body {
+            margin: 25px;
+            text-align: center;
+            // padding: 20px 0px 25px 0px;
+
+        }
+    }
+}
+
+
+
+.themes-popup {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    background: rgba(0, 0, 0, 0.6);
+    height: 100vh;
+    overflow: auto;
+
+    .content {
+      
+
+        .title{
+            font-size: em(20);
+            text-align: center;
+            margin-bottom: 20px;
+            .underline {
+                width: 60px;
+                height: 1px;
+                border: solid 2px #1394ff;
+                margin: 6px auto 0px auto
+            }
+            position: relative;
+            .close-btn{
+                position: absolute;
+                cursor: pointer;
+                right: 25px ;
+                top: -7px;
+            }
+        }
+
+        max-width: 1100px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 25px 0 20px;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+
+        @include media(tablet){
+            .theme-card{
+                margin: 0 auto;
+            }
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+        }
+
+        .footer {
+            padding: 7px 25px 0;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #d8d8d8;
+
+            button {
+                font-size: 15px;
+            }
+
+            .cancel-btn {
+                background-color: grey;
+                margin-right: 10px;
+            }
+        }
+
+        .body {
+            margin: 25px;
+            text-align: center;
+            // padding: 20px 0px 25p 0px;
+        }
+    }
+}

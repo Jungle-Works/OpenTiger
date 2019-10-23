@@ -1,0 +1,15 @@
+.googlemap
+  -# - maps_key = MarketplaceHelper.google_maps_key(@current_community.id)
+  -# - key_param = maps_key ? "?key=#{maps_key}" : "?channel=yelo_rental&client=gme-socomotechnologies"
+  -# .embed-container
+  %div{id: "listing_map_view"}
+    -# %iframe{width: "600", height: "450", frameborder: "0",
+    -#   src: "https://www.google.com/maps/embed/v1/place#{key_param}&q=#{listing.location.latitude},#{listing.location.longitude}&language=#{I18n.locale}"}
+  .map-link
+    %a.icon-with-text-container{href: "//maps.google.com/?q=#{listing.location.latitude},#{listing.location.longitude}", target: "_blank"}
+      = icon_tag("external_link", ["icon-part"])
+      .text-part= t("listings.map.open_in_google_maps")
+
+- content_for :extra_javascript do
+  :javascript
+    product_listing_map(#{listing.location.latitude},#{listing.location.longitude});

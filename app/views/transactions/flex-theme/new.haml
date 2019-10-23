@@ -1,0 +1,81 @@
+= render :partial=> 'transactions/flex-theme/flex_checkout_new_design' , locals: MarketplaceHelper.style_customizations_map(@current_community)
+- content_for :extra_javascript do
+  :javascript
+    ST.transaction.initializeFreeTransactionForm('#{I18n.locale}','#{raw @current_community.id}',#{raw APP_CONFIG.delivery_address_option_ids});
+
+- content_for :title_header do
+  %h1
+    = action_button_label
+    = link_to(listing[:title], listing_path(listing[:id]))
+
+#new_message_form.flex-checkout-container
+
+  - author_link = link_to(author[:display_name], person_path(username: author[:username]))
+  
+  .flex-checkout-form
+    .listing-and-host-name
+      %h1.checkout-listing-heading
+        %span 
+          = t(@listing.action_button_tr_key)
+          %span
+            = @listing.title
+      .hosted-by{style: "display:flex"}
+        %span
+          = t("transactions.new.hosted_by")
+        %span.hostname-text
+          = PersonViewUtils.person_display_name(@listing.author, @current_community)
+
+    = form_tag(form_action, method: :post, id: "transaction-form") do |form|
+      - m_price_break_down.each do |price_break_down|
+        = render :partial => "transactions/additional_information", :locals => { :form => form, :image_s3_options => image_s3_options }
+      - if params["unit_type"] == 'unit' && APP_CONFIG.delivery_address_option_ids.include?(@current_community.id)
+        = render :partial => "transactions/delivery_address", :locals => { :form => form }
+
+      = hidden_field_tag(:start_on, booking_start)
+      = hidden_field_tag(:end_on, booking_end)
+
+
+      .preauthorize-section
+        %h2{class: "transaction-field-heading"}
+          = t("conversations.new.send_message_to_user", person: author_link).html_safe
+        .row
+          .col-12
+            = text_area_tag(:message, nil, :class => "text_area", placeholder: "Type a message")
+
+        - if quantity
+          = hidden_field_tag(:quantity, quantity)
+
+        .row
+          .col-12
+            = button_tag (@current_community.checkout_flow == 1 ? t("conversations.new.place_order") : t("conversations.new.send_message")), :class => "send_button", :id=>"booking-btn"
+  .flex-listing-checkout-details
+    .flex-checkout-listing-image
+      - if has_images?(@listing)
+        %img{:src => "#{@listing.listing_images.first.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}"}
+      -else
+        = image_tag "default-img.png", :class => "fluid-thumbnail-grid-image-image"
+    .flex-checkout-host-avatar
+      .flex-checkout-host-avatar-image
+        = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
+    .flex-checkout-price-breakdown-details
+      .preauthorize-section
+        -# %h2.preauthorize-details-title
+        -#   = t("listing_conversations.preauthorize.details")
+
+        -# %ul.no-bullets
+        -#   %li
+        -#     %div
+        -#       = t("listing_conversations.preauthorize.by", listing: link_to("#{listing[:title]}", listing_path(listing[:id])), author: author_link).html_safe
+        .check-listing-and-host-name
+          %h2.checkout-listing-heading
+            = link_to @listing.title, listing_path(listing)
+          .hosted-by{style: "display:flex"}
+            %span.listed-by  
+              = t("transactions.new.listed_by")
+            %span.hostname-text
+              = PersonViewUtils.person_display_name(@listing.author, @current_community)
+          
+          .price-breakdown-details
+            - m_price_break_down.each do |price_break_down|
+              %div
+                = render partial: "transactions/price_break_down", locals: price_break_down.merge(is_author: false, show_delivery_address: false, show_delivery_charge: false)

@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-12">
+    <div>
+      <h3>Edit Location Section</h3>
+    </div>
+    <div class="row hero-form">
+      <form id="lp-form">
+
+        <%=  render partial:"admin/manage_landing_page/forms/title", locals: {form_data: form_data, label: "title"} %>
+
+        <%=  render partial:"admin/manage_landing_page/forms/section_button",  locals: {form_data: form_data, column_id: "location"} %>
+
+        <%=  render partial:"admin/manage_landing_page/forms/description",  locals: {form_data: form_data, label: "paragraph"} %>
+
+        <div id="locations" class="location-info-section">
+          <script type="text/template" class="template" id="new-column-tmpl">
+
+           <div class="col-6 location-image-wrapper">
+               <div class="row">
+                <div class="col-10">
+                    <%=  render partial:"admin/manage_landing_page/forms/title" ,  locals: {form_data: getLocationTemplate, label: "lp-column-${id}-title"}%>             
+
+                    <%=  render partial:"admin/manage_landing_page/forms/input_text" ,  locals: {input_value: "",label: "lp-column-${id}-location" , input_name: "Url"}%>             
+
+                    <%= render partial: "admin/manage_landing_page/forms/images", locals:{form_data: getLocationTemplate, id: "lp-fileupload-${id}"}%>
+                </div>
+                <div class="col-2">
+                 <a id="${id}" href="#" class="location-field-option-remove ">
+                    <%= icon_tag("cross", ["icon-fix"]) %>
+                    </a>
+
+                </div>
+              </div>
+           </div>
+          </script>
+          
+          <div id="location-container" class=" row">
+
+
+            <% form_data["locations"].each_with_index do |column_data,index|%>
+
+            <div class="col-6 location-image-wrapper">
+              <div class="row">
+                <div class="col-10">
+                  <%=  render partial:"admin/manage_landing_page/forms/title" ,  locals: {form_data:  column_data, label: "lp-column-#{index}-title"}%>
+    
+                    <% location = column_data['location'] ? column_data['location'] : "" %>
+                    <%=  render partial:"admin/manage_landing_page/forms/input_text" ,  locals:   {input_value: location,label: "lp-column-#{index}-location" , input_name: "Url"}%>
+    
+                    <%= render partial: "admin/manage_landing_page/forms/images", locals:{form_data:  column_data, id: "lp-fileupload-column-#{index}"}%>
+                </div>
+                <div class="col-2">
+                    <a id="<%= "column-"+ index.to_s %>" href="#" class="location-field-option-remove ">
+                    <%= icon_tag("cross", ["icon-fix"]) %>
+                    </a>
+
+                </div>
+               </div>
+              
+            </div>
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+        <a href="#" id="location-add-button">Add Column</a>
+
+        <!-- input for hover color -->
+            <% location_color_hover = form_data['location_color_hover'] ? convertRGBToHex(form_data['location_color_hover']["value"])  : "" %>
+             <%=  render partial:"admin/manage_landing_page/forms/color_input",  locals: {form_data: form_data, label: "location_color_hover", input_value: location_color_hover , input_name: "Location Hover Color"} %>
+
+        <%=  render partial:"admin/manage_landing_page/forms/buttons", locals: {form_data: form_data}  %>
+
+      </form>
+    </div>
+  </div>
+</div>

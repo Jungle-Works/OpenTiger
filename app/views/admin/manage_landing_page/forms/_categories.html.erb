@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12">
+        <div>
+            <h3>Edit Category Section</h3>
+        </div>
+        <div class="row hero-form">
+            <form id="lp-form">
+             
+            <%=  render partial:"admin/manage_landing_page/forms/title", locals: {form_data: form_data, label: "title"} %>
+
+             <%=  render partial:"admin/manage_landing_page/forms/section_button",  locals: {form_data: form_data, column_id: "category"} %>
+             <%=  render partial:"admin/manage_landing_page/forms/description",  locals: {form_data: form_data, label: "description"} %>
+
+             <div id="categories" class="category-info-section">
+              <script type="text/template" class="template" id="new-column-tmpl">
+                <%=  render partial:"admin/manage_landing_page/forms/category_selection" ,  locals: {form_data: getCategoryTemplate,column_id: "${id}" }%>
+              </script>
+              <div id="category-container" class=" row">
+  
+                  <% form_data["categories"].each_with_index do |column_data,index|%>
+                  <%=  render partial:"admin/manage_landing_page/forms/category_selection" ,  locals: {form_data: column_data, column_id: "column-#{index}"}%>             
+                  <% end %>
+  
+              </div>
+            
+            </div>
+
+            <a href="#" id="category-add-button">Add Column</a>
+
+            <!-- input for price -->
+            <% category_color_hover = form_data['category_color_hover'] ? convertRGBToHex(form_data['category_color_hover']["value"])  : "" %>
+             <%=  render partial:"admin/manage_landing_page/forms/color_input",  locals: {form_data: form_data, label: "category_color_hover", input_value: category_color_hover , input_name: "Category Color Hover"} %>
+
+
+             <%=  render partial:"admin/manage_landing_page/forms/buttons", locals: {form_data: form_data}  %>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

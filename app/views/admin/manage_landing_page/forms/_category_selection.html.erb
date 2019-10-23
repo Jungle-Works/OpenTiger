@@ -1,0 +1,26 @@
+<div class="col-6 category-image-wrapper">
+<div class="row">
+    <div class="col-10">
+
+            <% category = form_data["category"] ? form_data["category"]["id"] : ""%>
+        <div class="form-group">
+            <label>Select Categories</label>
+            <select id="category-selection-<%=column_id %>">
+                <% @categories.each_with_index do |category,index|%>
+                <option value="<%= category["id"]%>"><%= category["title"]%> <option>
+                <% end %>
+            </select>
+        </div>
+
+        <%= render partial: "admin/manage_landing_page/forms/images", locals:{form_data: form_data, id: "lp-fileupload-#{column_id}"}%>
+
+    </div>
+
+    <div class="col-2">
+         <a id="<%= column_id %>" href="#" class="category-field-option-remove ">
+            <%= icon_tag("cross", ["icon-fix"]) %>
+        </a>
+    </div>
+</div>
+
+</div>

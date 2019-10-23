@@ -1,0 +1,237 @@
+:scss
+  .flex-checkout-container{
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding: 0 48px;
+    margin: 40px 0 24px;
+    
+    .flex-checkout-form{
+      display: flex;
+      -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+      flex-grow: 0;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-preferred-size: 519px;
+      flex-basis: 519px;
+      margin-right: 132px;
+      h2{
+        margin: 0;
+        color: #4a4a4a;
+      }
+      .listing-and-host-name{
+        margin-top: 0;
+        margin-bottom: 45px;
+        padding: 0;
+
+        .checkout-listing-heading{
+        
+        font-size: 48px !important;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 5px;
+        line-height: 56px;
+        letter-spacing: -1px;
+        color: #4a4a4a;
+        width: 100%;
+        @media screen and (max-width: 768px){
+          font-size: 30px !important;
+        }
+          
+        }
+        .hostname-text{
+            margin-left: 5px;
+          }
+      }
+      
+      .text_area{
+        border-radius: 0;
+        border-width: 0px 0px 2px 0px;
+        border-bottom-color: ##{ color1 };
+        background-color: #fff;
+        padding: 15px 0 0 0 ;
+        min-height: 120px;
+        &:focus{
+          outline: none;
+        }
+      }
+      input{
+        padding: 0;
+        border: none;
+        border-radius: 0px;
+        border-bottom: 2px solid ##{ color1 };
+        transition: border-bottom-color .2s ease-in;
+        &:hover, &:focus {
+          outline: none;
+        }
+      }
+      input[type=file]{
+        border: none;
+      }
+      
+      button{
+        border: solid 2px #e2e4e6;
+        border-radius: 7px;
+        &:hover{
+          background-color: #fcfcfc;
+          color:  ##{ color1 };
+           border: solid 2px ##{ color1 };;
+        }
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+    .flex-listing-checkout-details{
+      position: sticky;
+      top: calc(80px + 15px);
+      -ms-flex-negative: 0;
+      display: block;
+      width: 409px;
+      background-color: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: 2px;
+      .flex-checkout-listing-image{
+        position: relative;
+        background-color: #e7e7e7;
+        img{
+          position: relative;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          vertical-align: middle;
+        }
+      }
+      .flex-checkout-host-avatar{
+          margin-left: 40px;
+          margin-top: -31px;
+          position: absolute;
+          display: block;
+          height: 60px;
+          width: 60px;
+        .flex-checkout-host-avatar-image{
+          display: flex;
+          -webkit-box-align: center;
+          color: #fff;
+          background-repeat: no-repeat;
+          img{
+            border-radius: 50%;
+          }
+          
+        }
+      }
+      .checkout-listing-heading{
+        a{
+          color: #4a4a4a;
+        }
+      }
+      .flex-checkout-price-breakdown-details{
+        width: 95%;
+        margin: 40px auto;
+        .check-listing-and-host-name{
+        display: flex;
+        flex-direction: column;
+          h2{
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: -.3px;
+            margin: 0;
+            color: #4a4a4a;
+          }
+          .hosted-by{
+            font-weight: 400;
+            font-size: 14px;
+            color: #b2b2b2;
+            .hostname-text{
+              margin-left: 5px;
+            }
+          }
+          .price-breakdown-details{
+            .initiate-transaction-totals{
+              color: #4a4a4a !important;
+              background-color: #fff !important;
+              padding: 0 !important;
+              .initiate-transaction-per-unit-label, .initiate-transaction-booking-label, .initiate-transaction-sum-label{
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0;
+              }
+              .initiate-transaction-total-label{
+                font-weight: 600 !important;
+                font-size: 16px !important;
+                line-height: 24px;
+                letter-spacing: 0;
+                }
+              .initiate-transaction-per-unit-value, .initiate-transaction-booking-value, .additional-price{
+                font-weight: 600;
+                margin: 0 0 0 10px;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0;
+              }
+              .initiate-transaction-total-wrapper{
+                border-top: 1px solid #e7e7e7;
+                padding-top: 10px;
+                margin-top: 5px;
+              }
+              .initiate-transaction-total-value{
+                margin: 2px 0 0 10px;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 32px;
+              }
+              
+            }
+          }
+        } 
+        .booking-breakdown{
+          margin: 30px 0;
+          color: #b2b2b2;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 24px;
+          letter-spacing: -.2px;
+        }
+      }
+      
+    }
+  }
+  @media screen and (max-width: 1024px){
+      .flex-checkout-container{
+        flex-direction: column-reverse;
+        padding: 0;
+      }
+      
+      .flex-listing-checkout-details{
+        position: relative !important;
+        width: 100% !important;
+        padding-bottom: 0 !important;
+        .flex-checkout-price-breakdown-details{
+          width: 95% !important;
+        }
+
+      }
+      .flex-checkout-form{
+        margin-top: 20px !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        padding: 0 10px;
+        flex-basis: auto !important;
+
+      }
+    }

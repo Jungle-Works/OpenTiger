@@ -1,0 +1,51 @@
+<% content_for :title_header do %>
+
+<h1><%= "Edit Landing Page"%></h1>
+
+<% end %>
+
+
+<%= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@current_community)} %>
+
+<div class="left-navi-section">
+    <div class="row">
+        <div class="col-12">
+            <% case query_params["kind"].first%>
+                <% when "hero" %>
+                <%= render partial: "admin/manage_landing_page/forms/hero", locals: {form_data: @section_data}%>
+                <% when "info"%>
+                   <% if query_params["variation"].first == "single_column"%>
+                     <%= render partial: "admin/manage_landing_page/forms/info_single_column", locals: {form_data: @section_data}%>                     
+                   <% else %>
+                     <%= render partial: "admin/manage_landing_page/forms/info_multiple_column", locals: {form_data: @section_data}%>                                         
+                   <% end %>
+                <% when "listings"%>
+                  <%= render partial: "admin/manage_landing_page/forms/listings", locals: {form_data: @section_data}%>                     
+                  
+                <% when "categories"%>
+                  <%= render partial: "admin/manage_landing_page/forms/categories", locals: {form_data: @section_data}%>                     
+                  
+                <% when "locations"%>
+                  <%= render partial: "admin/manage_landing_page/forms/location", locals: {form_data: @section_data}%>                     
+                  
+                <% when "video"%>
+                <%= render partial: "admin/manage_landing_page/forms/video", locals: {form_data: @section_data}%>                     
+                  
+
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<%= render :partial => 'layouts/markdown_help' %>
+<% content_for :javascript do %>
+window.ST.landingPage.initForm(<%= raw @section_data.to_json %>,<%= raw @landing_page_data.to_json%>, "add_form", "<%= admin_manage_landing_page_index_path%>");
+var imageOpts = <%= raw image_s3_options%>;
+window.ST.lpImageUpload.initializeS3Options(imageOpts);
+if("<%= raw @section_data["kind"].to_s%>" == "categories"){
+  window.ST.lpCategorySelection.initCategoryForm(<%= raw @section_data.to_json %>);
+}
+if("<%= raw @section_data["kind"].to_s%>" == "locations"){
+  window.ST.lpLocationSection.initLocationForm(<%= raw @section_data.to_json %>);
+}
+<% end %>

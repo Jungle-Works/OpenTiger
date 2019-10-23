@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-12">
+        <div>
+            <h3>Edit Info Section</h3>
+        </div>
+        <div class="row hero-form">
+            <form id="lp-form">
+             
+            <%=  render partial:"admin/manage_landing_page/forms/title", locals: {form_data: form_data, label: "title"} %>
+
+            <!-- Title Color --> 
+            <% title_color = form_data['title_color'] ? convertRGBToHex(form_data['title_color']["value"])  : "" %>
+             <%=  render partial:"admin/manage_landing_page/forms/color_input",  locals: {form_data: form_data, label: "title-color", input_value: title_color , input_name: "Title Color"} %>
+            
+            
+            <div>
+            <label> Choose Background </label>
+            <input type="text" class="hidden" name="background-type">
+            </div>
+
+            <div class="form-group" id="landing-page-radio-form">
+                <input type="radio" id="bg_img"  name="background_type" class="background_image" value="bg-image"> 
+                <label for="bg_img"> Apply Background Image</label>
+                <input type="radio" id="bg_type" name="background_type" class="background_type" value="bg-color" >
+                <label for="bg_type"> Apply Background Color</label>
+                <input type="radio" id="bg_none" name="background_type" class="background_none" value="bg-none" >
+                <label for="bg_none"> None</label>
+            </div>
+
+
+            <div id="bg-image-section" class="hidden">
+             <%= render partial: "admin/manage_landing_page/forms/images", locals:{form_data: form_data, id: "lp-fileupload-1"}%>
+             <%=  render partial:"admin/manage_landing_page/forms/background_variation", locals: {form_data: form_data} %>
+            </div>
+
+            <div id="bg-color-section">
+            <!-- input for price -->
+            <% background_color = form_data['background_color'] ? convertRGBToHex(form_data['background_color'])  : "" %>
+             <%=  render partial:"admin/manage_landing_page/forms/color_input",  locals: {form_data: form_data, label: "background-color", input_value: background_color , input_name: "Background Color"} %>
+            </div>
+
+             <%=  render partial:"admin/manage_landing_page/forms/section_button",  locals: {form_data: form_data, column_id: "column-0"} %>
+             <%=  render partial:"admin/manage_landing_page/forms/description",  locals: {form_data: form_data, label: "description"} %>
+             
+            <!-- input for description color -->
+             <div >
+            <% paragraph_color = form_data['paragraph_color'] ? convertRGBToHex(form_data['paragraph_color']["value"])  : "" %>
+             <%=  render partial:"admin/manage_landing_page/forms/color_input",  locals: {form_data: form_data, label: "paragraph-color", input_value: paragraph_color , input_name: "Description Color"} %>
+            </div>
+
+
+             <%=  render partial:"admin/manage_landing_page/forms/buttons", locals: {form_data: form_data}  %>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<% content_for :javascript do %>
+if("<%= form_data["background_color"]%>"){
+    $("#lp-form")[0].elements["background_type"].value = 'bg-color';
+    $("#bg-color-section").show();
+    $("#bg-image-section").hide();
+
+}else if("<%= form_data["background_image"]%>"){
+    $("#lp-form")[0].elements["background_type"].value = 'bg-image';
+    $("#bg-color-section").hide();
+    $("#bg-image-section").show();
+}
+else{
+    $("#lp-form")[0].elements["background_type"].value = 'bg-none';
+    $("#bg-color-section").hide();
+    $("#bg-image-section").hide();
+}
+
+ST.initializeRadioButtons({
+  buttons: [".background_image", ".background_type",".background_none"],
+  input: ".background-type",
+  callback: function(sel, el) { 
+
+      if(el.val() == 'bg-color'){
+          $("#bg-image-section").hide();
+          $("#bg-color-section").show();
+      }
+      else if(el.val() == 'bg-image'){
+           $("#bg-image-section").show();
+          $("#bg-color-section").hide();
+      }
+      else{
+           $("#bg-image-section").hide();
+          $("#bg-color-section").hide();
+      }
+  } });
+<% end %>
+

@@ -1,0 +1,24 @@
+
+<%if s["column_paragraph_color"]%>
+  <%= "section#" + section_id + " .info__column-paragraph--markdown p" %>{
+    color: rgb(<%=s["column_paragraph_color"]["value"].join(",")%>);
+  }
+<% end %>
+
+<%if s["column_title_color"]%>
+  <%= "section#"+section_id +" .info__column-title"%>{
+    color: rgb(<%=s["column_title_color"]["value"].join(",")%>);
+  }
+<% end %>
+
+<%if s["title_color"].present?%>
+  <%= "section#"+section_id+ " .info__title--"+ bg_styles[:variation_modifier] %>{
+    color: rgb(<%=s["title_color"]["value"].join(",")%>);
+  }
+<% end %>
+
+<%if s["paragraph_color"]%>
+  <%="section#"+section_id + " .info__paragraph--markdown p" %>{
+    color: rgb(<%=s["paragraph_color"]["value"].join(",")%>);
+  }
+<% end %>

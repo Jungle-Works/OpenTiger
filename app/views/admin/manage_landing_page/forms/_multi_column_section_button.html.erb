@@ -1,0 +1,34 @@
+<div class="form-group">
+    <label>Button Configuration</label>
+    <div class="row">
+        <div class="col-12" style="margin-left: 10px;">
+
+            <% enable_btn = form_data['enable_btn'] ? form_data['enable_btn']  : false %>
+            <div>
+                <% if enable_btn %>
+                <input checked onchange="window['ST']['landingPage']['enableBtn'](this,'<%=column_id%>',false)" 
+                name="lp-<%= column_id %>-enable_btn" 
+                id="lp-<%= column_id %>-enable_btn" type="checkbox">
+                <% else %>
+                <input onchange="window['ST']['landingPage']['enableBtn'](this,'<%=column_id%>',false)" 
+                name="lp-<%= column_id %>-enable_btn" 
+                id="lp-<%= column_id %>-enable_btn" type="checkbox">
+                <% end %>
+                <label for="lp-<%= column_id %>-enable_btn" class="checkbox-row-label" for="action-btn">Display the button </label>
+            </div>
+            <div>
+
+            <% button_title = Maybe(form_data['button_title']).or_else("") %>
+
+            <%=  render partial:"admin/manage_landing_page/forms/input_text", locals: {input_value: button_title, label: "lp-#{column_id}-button_title", input_name: "Button Title", info_text: "Set the title of button for this section"}  %>
+
+            <% button_path = form_data['button_path'] ? form_data['button_path']["value"] : "" %>
+
+            <%=  render partial:"admin/manage_landing_page/forms/input_text" , locals: {input_value: button_path, label: "lp-#{column_id}-button_path", input_name: "Button Path", info_text: "Set the button location"} %>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+- with_image_frame(@listing) do |reason, listing_images|
+  - if reason == :images_ok
+    .listing-image-carousel
+      #listing-image-frame
+      - if @listing_presenter.prev_image_id && @listing_presenter.next_image_id
+        = link_to params.permit(:id, :locale).merge(image: @listing_presenter.prev_image_id), class: "listing-image-navi listing-image-navi-left", id: "listing-image-navi-left" do
+          .listing-image-navi-arrow-container
+            .listing-image-arrow-icon-container.left
+              = icon_tag("directleft", ["navigate-icon-fix", "listing-image-navi-arrow"])
+        = link_to params.permit(:id, :locale).merge(image: @listing_presenter.next_image_id), class: "listing-image-navi listing-image-navi-right", id: "listing-image-navi-right" do
+          .listing-image-navi-arrow-container
+            .listing-image-arrow-icon-container.right
+              = icon_tag("directright", ["navigate-icon-fix", "listing-image-navi-arrow"])
+    #thumbnail-stripe.listing-image-thumbnail-stripe
+
+  - content_for :extra_javascript do
+    :javascript
+      var listingImages = #{raw listing_images.map { |image| ListingImageJSAdapter.new(image) }.to_json }
+      var currentImage = #{params[:image].present? ? params[:image].to_i : listing_images.first.id};
+      ST.listingImages(listingImages, currentImage);

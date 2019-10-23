@@ -1,0 +1,17 @@
+<div class="section-heading"><%=t("listings.new.add_listing")%></div>
+<div class="form-group">
+  <%= form.label :title, t("listings.form.title.listing_title") + "*", :class => "label-input" %>
+  <%= form.text_field(:title, :class => "title_text_field", :maxlength => "65") %>
+</div>
+
+<div class="form-group">
+  <%= form.label :description, t('listings.form.description.detailed_description'), :class => "label-input" %>
+  <% markdown_popup_link = link_to t("settings.profile.format_markdown_link"), "#", id: "markdown-popup-link" %>
+  <% info_text = t("listings.form.description.youtube_info_markdown", link: markdown_popup_link).html_safe %>
+  <%= render partial: "layouts/info_text", locals: { text:  info_text} %>
+  <%= form.text_area(:description, :maxlength => "5000", :class => "listing_description_textarea") %>
+
+</div>
+<div class="form-group">
+  <button class="button" onclick="ST['moveToNextStep'](event,<%= index %>,<%= sidebar_links.to_json %>)"><%=t("listings.new.next")%></button>
+</div>

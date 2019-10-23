@@ -1,0 +1,30 @@
+%table
+  %thead
+    %tr
+      %th= t("Field title")
+      %th= t("Field type")
+      %th= t("Actions")
+  %tbody
+    - @checkout_fields.each do |checkout_field|
+      %tr
+        %td= checkout_field.title
+        %td= checkout_field.field_type
+        %td
+          = link_to edit_admin_checkout_setting_path(checkout_field), :class => "checkout-action-edit", :id => "edit_checkout_field_#{checkout_field.id}" do
+            = icon_tag("edit", ["icon-fix"])
+          = link_to delete_checkout_field_admin_checkout_setting_path(checkout_field.id), :class => "checkout-action-delete", :id => "delete_checkout_field_#{checkout_field.id}", data: { :confirm => t("admin.checkout_fields.index.delete_checkout_field_confirmation", :field_name => checkout_field.title) } do
+            = icon_tag("cross", ["icon-fix"])
+          -# = link_to '#', :class => "checkout-fields-action-up admin-sort-button", :tabindex => "-1" do
+          -#   = icon_tag("directup", ["icon-fix"])
+          -# = link_to '#', :class => "checkout-fields-action-down admin-sort-button", :tabindex => "-1" do
+          -#   = icon_tag("directdown", ["icon-fix"])
+.add-new-checkout-field
+  = form_tag new_admin_checkout_setting_path, :method => :get, :id=>"add_checkout_field_form" do |form|
+    %span= t("Add new field")
+    = select_tag :field_type, options_for_select(checkout_field_dropdown_options(CheckoutField::VALID_TYPES)), :onChange => "ST.checkoutSettings.onSelectCheckoutField(this,'add_checkout_field_form')"
+
+
+
+  -#   <!-- <% dropdown_options.each_with_index do |option_data,index|%>
+  -# <%=  render partial:"admin/checkout_settings/new_option" ,  locals: {form_data: option_data, option_id: "option-#{index}"}%>
+  -# <% end %> -->

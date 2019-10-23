@@ -1,0 +1,8 @@
+
+<div class="form-group">
+    <label for=""><%= input_name %></label>
+    <% if defined? info_text %>
+    <%= render partial: "layouts/info_text", locals: { text: info_text} %>
+    <% end %>
+    <input name="<%= label%>" id="<%= label%>" value="<%= input_value%>" type="text">
+</div>

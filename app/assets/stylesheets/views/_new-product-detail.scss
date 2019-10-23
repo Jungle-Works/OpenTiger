@@ -1,0 +1,340 @@
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/box-sizing";
+@import "mixins/all";
+
+.flex-listing-details-and-actions {
+
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    padding: 0 em(2.25);
+    position: relative;
+    max-width: 1128px;
+    margin: 50px auto 117px;
+
+    .thumbnail-author-avatar {
+        display: flex;
+        position: absolute;
+        left: 60px;
+        top: -110px;
+        margin-left: 0;
+        margin-top: 0;
+        width: 96px;
+        height: 90px;
+
+        @media screen and (max-width: 768px) {
+            width: 60px;
+            height: 60px;
+            left: 25px;
+            top: -95px;
+        }
+
+    }
+
+    .flex-headings,
+    .text-with-icon {
+        font-weight: 600;
+        font-size: 20px;
+        color: #b2b2b2;
+        margin-bottom: lines(0.65);
+    }
+
+    .comment-form {
+        i {
+            font-weight: 600;
+            font-size: 20px;
+            color: #b2b2b2;
+            margin-bottom: lines(0.65);
+        }
+
+        .checkbox-container {
+            font-size: 16px;
+            color: #b2b2b2;
+        }
+    }
+
+    aside {
+        width: 100%;
+    }
+
+    .listing-author-activity {
+        margin-bottom: 25px;
+    }
+
+    .amount-and-listing-title {
+        display: flex;
+        margin-bottom: 40px;
+    }
+
+    .listing-description-flex {
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    .listing-all-details {
+        margin-right: 20px;
+
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            padding: 0 24px;
+
+            .listing-price {
+                display: none;
+            }
+        }
+    }
+
+    .book-or-listing-actions-admin {
+        display: none;
+
+        @media screen and (max-width: 1024px) {
+            display: block;
+
+            #booking-dates {
+                display: none;
+            }
+        }
+
+    }
+
+    .book-or-listing-actions {
+        width: 80%;
+        margin: 0 auto;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-left-color: #e7e7e7;
+        padding-left: 60px;
+        flex-basis: 420px;
+        flex-shrink: 0;
+
+        .row-with-divider {
+            @media screen and (min-width: 1024px) {
+                position: sticky;
+                top: calc(80px + 15px);
+            }
+        }
+
+        .datepicker-per-hour {
+            .field {
+                margin-bottom: 0.5em 0;
+            }
+
+            select,
+            input {
+                -webkit-appearance: none;
+                border-radius: 0;
+                background-image: url('data:image/svg+xml;utf8,<svg width="14" height="9" viewBox="0 0 14 9" xmlns="http://www.w3.org/2000/svg"><path d="M6.53 7.472c.26.26.68.26.94 0l5.335-5.333c.26-.263.26-.684 0-.944-.26-.26-.683-.26-.943 0L7 6.056l-4.862-4.86c-.26-.26-.683-.26-.943 0-.26.26-.26.68 0 .943L6.53 7.47z" stroke="%234A4A4A" fill="%234A4A4A" fill-rule="evenodd"/></svg>');
+                background-size: 16px 16px;
+                background-position: 100%;
+                background-repeat: no-repeat;
+                border-width: 0px 0px 2px 0px;
+                background-color: #fff;
+                margin: 0;
+
+                &:focus {
+                    outline: none;
+                }
+
+            }
+        }
+
+        .input-daterange {
+            input:last-child {
+                border-radius: 0px;
+            }
+        }
+
+        .quantity-input {
+            input {
+                border-radius: 0;
+                border-width: 0px 0px 2px 0px;
+                background-color: #fff;
+            }
+        }
+
+        .booking-listing {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 35px;
+            letter-spacing: -.3px;
+            color: #4a4a4a;
+        }
+
+        .close_datepicker-btn {
+            display: none;
+
+            @media screen and (max-width: 1024px) {
+                background-color: transparent;
+                color: #4a4a4a;
+                padding: 27px 30px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 101;
+                display: flex;
+                margin: 0;
+                border: 0;
+
+                .icon-remove {
+                    font-size: larger;
+                    padding-left: 5px;
+                }
+
+                &:hover {
+                    background-color: #fff;
+                    color: #4a4a4a;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+        }
+
+        @media screen and (max-width: 1024px) {
+            display: none;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            flex-direction: column;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, .4);
+
+            .datepicker-popup-content {
+                padding: 150px 50px 0px;
+
+                h1 {
+                    margin-bottom: 50px;
+                }
+
+                .enabled-book-button {
+                    margin-top: 100px;
+                }
+            }
+
+            .listing-message-links-flex {
+                padding: 0;
+                background-color: #fff;
+                background-image: none;
+                width: 576px;
+                height: 700px;
+                overflow: auto;
+                justify-content: center;
+                align-items: flex-start;
+                flex-grow: 1;
+                margin: 100px auto;
+                position: relative;
+            }
+
+            .booking-listing {
+                font-size: 48px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .listing-message-links-flex {
+                margin: 0;
+                width: 100%;
+                height: -webkit-fill-available;
+            }
+
+            .datepicker-popup-content {
+                margin: 0;
+                padding: 150px 24px;
+            }
+        }
+    }
+
+    .booking-panel {
+        display: none;
+
+        @media screen and (max-width: 1024px) {
+            display: block;
+
+            .datepicker-popup {
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 100;
+
+            }
+
+            .booking-panel-link {
+                display: flex;
+                padding: 18px 60px;
+                background-color: #fff;
+                -webkit-box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, .1);
+                box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, .1);
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                left: 0;
+                bottom: 0;
+                width: 100vw;
+                position: fixed;
+
+                .price-of-listing {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex-shrink: 0;
+                    margin-right: 22px;
+                    padding: 5px 12px;
+                }
+
+                .listing-price-amount-flex {
+                    font-weight: 600;
+                    font-size: 24px;
+                    letter-spacing: -.3px;
+                    line-height: 32px;
+                    // color: ##{ color1 };
+                }
+
+                .listing-price-quantity-flex {
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 16px;
+                    letter-spacing: -.1px;
+
+                }
+
+                .perform-listing-actions-btn {
+                    padding: 0;
+                    // background-color: ##{ color1 };
+                    color: #fff;
+                    min-height: 65px;
+                    width: 100%;
+                    -webkit-transition: all .1s ease-in-out;
+                    -o-transition: all ease-in-out .1s;
+                    transition: all .1s ease-in-out;
+                    margin: 0;
+                    border-radius: 0px;
+
+                    // &:hover {
+                    //     background-color: ##{ ColorUtils.darken(color1, 15) };
+                    // }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+            }
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        display: block;
+    }
+}

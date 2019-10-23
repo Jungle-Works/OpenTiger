@@ -1,0 +1,43 @@
+- content_for :title_header do
+  %h1
+    = t("layouts.admin.admin")
+    = "-"
+    = t("admin.communities.content_pages.content_pages")
+
+= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@presenter.community) }
+
+.left-navi-section
+  .content-page-heading
+    .row
+      %h3
+        = t("admin.communities.content_pages.content_pages")
+  .content-conatiner
+    .info-and-add
+      %p=t("admin.communities.content_pages.info")
+      = link_to( t("admin.communities.content_pages.add_content"),add_content_page_admin_content_pages_path, class: "button")
+    %table
+      %thead
+        %tr
+          %th= "URL"
+          %th= t("admin.communities.content_pages.title")
+          %th= t("admin.communities.content_pages.status")
+          %th= t("admin.communities.content_pages.action")
+      %tbody
+        - @content_pages_list.each_with_index do |content_page,index|
+          %tr
+            %td
+              %a{href: "#{@current_community.full_url}/pages/content/#{content_page.end_point}"}
+                = @current_community.full_url + "/pages/content/" + content_page.end_point
+            %td= content_page.title
+            %td
+              - if content_page.is_active == true
+                %input{type:"checkbox", name: "active-status", id: "active-status-#{index}", onchange: "ST.content_pages.updateActiveStatus(#{content_page.id}, #{index})", checked: "checked"} 
+              -else
+                %input{type:"checkbox", name: "active-status", id: "active-status-#{index}", onchange: "ST.content_pages.updateActiveStatus(#{content_page.id}, #{index})"}
+              %div{id: "status-spinner-#{index}", style: "display:none"}
+                = icon_tag("spinner", ["icon-spin"])
+            %td
+              = link_to edit_admin_content_page_path(content_page.id), :class => "checkout-action-edit" do
+                = icon_tag("edit", ["icon-fix"])
+              = link_to delete_content_page_admin_content_page_path(content_page.id), :class => "checkout-action-delete", data: { :confirm => t("admin.communities.content_pages.delete_content_page_confirmation", :field_name => content_page.title) }  do
+                = icon_tag("cross", ["icon-fix"])

@@ -1,0 +1,17 @@
+
+
+%div{:id=> "avail_calendar"}
+  = form.label :min_booking_days, t(".min_booking_days"), :class=>"input"
+  = form.text_field(:min_booking_days,:type=> "text", :data => {:min=>1, :max=>50})
+  = form.label :blocked_dates, t(".listing_availability"), :class => "input"
+  = render partial: "layouts/info_text", locals: { text: t(".availability_description") }
+
+  %div{:id => "avail_dates" }
+  = form.hidden_field(:blocked_dates, :class => "title_text_field",:autocomplete => 'off', :id=>"avail_dates_input")
+-if run_js_immediately
+  :javascript
+      $(document).ready(function() {window.ST.listingCalendar.setupListingCalendar({});});
+- else
+  - content_for :extra_javascript do
+    :javascript
+      $(document).ready(function() {window.ST.listingCalendar.setupListingCalendar({ blockedDates: #{raw @listing_block_dates.to_json}} )});

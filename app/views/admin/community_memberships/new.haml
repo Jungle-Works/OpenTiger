@@ -1,0 +1,57 @@
+- content_for :javascript do
+  initialize_signup_form("#{I18n.locale}","#{t("people.new.username_is_in_use")}","#{t("people.new.username_is_invalid")}","#{email_not_accepted_message}", "#{t("people.new.invalid_invitation_code")}", #{@current_community.real_name_required?}, false );
+
+- content_for :title_header do
+  %h1
+    = t("layouts.admin.admin")
+    = "-"
+    = t("admin.communities.manage_members.manage_members")
+
+= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@presenter.community) }
+
+.left-navi-section
+
+  %h2= t("community_memberships.new.add_new_user")
+  = form_for @person_service.person, :url => create_user_default_admin_community_community_memberships_path do |form|
+
+   
+    -# Email
+    = form.label :email, t('people.new.email')
+    = form.text_field :email, :class => :text_field, :maxlength => "255"
+
+    -# Name
+    = form.label :given_name, t('people.new.given_name')
+    = form.text_field :given_name, :class => :text_field, :maxlength => "30"
+    = form.label :family_name, t('people.new.family_name')
+    = form.text_field :family_name, :class => :text_field, :maxlength => "30"
+
+    
+    - if @person_service.has_person_custom_fields?
+      - @person_service.custom_field_values.each_with_index do |custom_field_value, index|
+        - custom_field = custom_field_value.question
+        - custom_field.with_type do |field_type|
+          - prefix = "person[custom_field_values_attributes][]"
+          .inline-label-container
+            = label "person_custom_fields", index, custom_field.name(I18n.locale),
+              class: 'inline'
+            - if custom_field.public?
+              %small= t('people.new.this_field_will_be_publicly_visible')
+          = hidden_field_tag "#{prefix}[id]", custom_field_value.id
+          = hidden_field_tag "#{prefix}[type]", custom_field_value.type
+          = hidden_field_tag "#{prefix}[custom_field_id]", custom_field_value.custom_field_id
+          = render "settings/custom_fields/#{field_type}", :service => @person_service,
+            :custom_field => custom_field, index: index,
+            :custom_field_value => custom_field_value,
+            :image_s3_options => image_s3_options,
+            :buttonID => 'add-new-user-btn',
+            :prefix => prefix
+    %div
+      .inline-button-container
+        = form.button t("admin.custom_fields.index.save"), id: "add-new-user-btn"
+      .inline-button-container
+        %a{:href => admin_community_community_memberships_path, :class => "cancel-button"}
+          .content
+            = t("admin.custom_fields.index.cancel")  
+
+
+    

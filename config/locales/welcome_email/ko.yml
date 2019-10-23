@@ -1,0 +1,19 @@
+ko: 
+  emails: 
+    welcome_email_marketplace_creator: 
+      welcome_email_subject_for_marketplace_creator: "yelo에 오신 것을 환영합니다."
+      welcome_to_marketplace_creator: "Yeloへようこそ%{name}!"
+      journey_begins: "시장 기업가가되기위한 여정은 이제 막 시작되었습니다! 앞으로 14 일 이내에 Yelo를 사용해보고 자신의 온라인 시장을 만들 수 있습니다."
+      marketplace_information: "이것이 귀하의 시장 정보입니다."
+      your_email_address: "- 계정의 이메일 주소 :"
+      your_marketplace_address: "- 시장 방향 :"
+      share_your_marketplace_address: "이것은 귀하의 시장에서 공개 주소이며 귀하가 방문자와 공유해야하는 내용입니다."
+      your_marketplace_admin_panel: "- 귀하의 시장의 관리자 패널 :"
+      follow_suggested_steps: "이것은 당신이 소유자로서 당신의 시장을 변화시킬 수있는 곳입니다. 제안 된 단계에 따라 시장 설정을 시작하십시오."
+      not_alone: "너 혼자가 아니야."
+      support_team: "Yeloのサポートチームがあなたのためにここにいます！最も一般的な質問への回答と%{knowledge_base_link}をチェックしてください。 contact@yelo.red으로 이메일을 보내거나이 이메일에 회신하여 팀과 연락하십시오."
+      helping_you: "길에서 당신을 도와주세요."
+      drip_emails_academy: "市場ビジネスを構築する方法についてもっとアドバイスが必要ですか？心配しないで、私たちはあなたを助けるためにここにいます！あなたはすでに私たちの%{marketplace_academy_link}?をチェックアウトしたことがありますか？さらに、Yeloを最大限に活用するのに役立つ一連の電子メールを送信します。あなたはすぐにあなたの受信トレイに最初の人が着地することを期待することができます。"
+      marketplace_academy_link_text: "마켓 플레이스 아카데미"
+      cheers: "건배,"
+      sharetribe_team: "yelo 팀"

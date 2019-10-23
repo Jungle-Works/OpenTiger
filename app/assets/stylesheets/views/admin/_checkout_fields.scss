@@ -1,0 +1,40 @@
+.choose-checkout-type{
+    .select-place-order, .select-send-message{
+        margin: 10px 0;
+    }
+    .save-checkout-type{
+        margin-top: 20px;
+    }
+}
+.iframe-size {
+    width: 100%;
+    border: none;
+    height: 100vh;
+}
+.dropdown-option-container{
+    &:nth-child(odd){
+        background: #e3e3e3;
+    }
+    padding: 20px;
+}
+.checkout-file-loader {
+    display: none;
+    position: absolute; 
+    top: 4.5px; 
+    right: 5px ;
+    border: 13px solid #fff;
+    border-radius: 50%;
+    border-top-color: #000;
+	  animation: spinner2 600ms linear infinite;
+
+}
+.checkout-fields{
+    margin-bottom: 10px;
+}
+.add-new-checkout-field{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.dropdown-info-icon{
+    margin-right: 10px;
+}

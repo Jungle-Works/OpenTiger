@@ -1,0 +1,18 @@
+#avail_calendar{
+    display: none;
+
+}
+#avail_dates{
+    .datepicker-inline{
+        width: 100%;
+        div table tr td{
+            padding: 20px;
+        }
+
+        div table tr td.active{
+            background-color: #e8e8e8;
+            color: #4a4a4a;
+            text-shadow: none;
+        }
+    }   
+}

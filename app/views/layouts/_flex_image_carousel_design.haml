@@ -1,0 +1,63 @@
+:scss
+  .flex-image-carousel{
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    
+    .flex-carousel-1{
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(1,1,1,.92);
+      .flex-carousel-2{
+        width: 100%;
+        height: 100%;
+        button{
+          color: #b2b2b2;
+          -webkit-transition: .1s ease-in-out;
+          -o-transition: ease-in-out .1s;
+          transition: .1s ease-in-out;
+          background-color: transparent;
+          position: absolute;
+          z-index: 1;
+
+          &:hover{
+            color: #fff;
+          }
+          &:focus{
+            outline: none;
+          }
+        }
+        .flex-carousel-3{
+      padding: 100px 10vw;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      .listing-image-carousel{
+        position: relative;
+        display: flex;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        .listing-image-frame{
+        background-color: transparent;
+        height: 100%;
+        .listing-image-vertical-centering{
+            vertical-align: middle;
+        }
+        img{
+          object-fit: contain;
+        }
+      }
+      }
+    }
+      }
+    }
+    
+  }

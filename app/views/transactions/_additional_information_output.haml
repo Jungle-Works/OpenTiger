@@ -1,0 +1,24 @@
+- content_for :extra_javascript do
+  :javascript
+    ST.transaction.onDropdownSelect();
+
+- if @additional_information && !@additional_information.empty?
+
+  .message-avatar-padding
+    .row
+      .col-12
+
+        %h2= "Additional Information"
+
+        .initiate-transaction-totals
+
+          - @additional_information.each do |info|
+
+            %div{style: "display:flex; justify-content: space-between"}
+              - if info["title"]
+                %p= info["title"]
+                %p= info["value"]
+
+          - if @additional_price > 0
+            %p.addtional_price{style: "display:none"}= @additional_price
+

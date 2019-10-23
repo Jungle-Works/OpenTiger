@@ -1,0 +1,31 @@
+
+%script{type: "text/template", class: "template", id: "image-frame-template"}
+  .listing-image-frame
+    #listing-image-link.listing-image-frame-content
+      .listing-image-vertical-centering{:class => "${aspectRatioClass}" }
+        %img{:src => "${url}", :class => "listing-image ${aspectRatioClass}"}
+
+%script{type: "text/template", class: "template", id: "image-thumbnail-template"}
+  .listing-image-thumbnail-container
+    %img.listing-image-thumbnail{src: "${url}"}
+    .fade
+
+
+.listing-image-parent
+  %button.close-carousel-btn{type: "button", onclick: "window.ST.adminThemes.hideCarousel()" }
+    %span.close_datepicker-span
+      %span.close_datepicker-text
+        = "Close"
+      %i.icon-remove
+  .listing-image-carousel
+    #listing-image-frame
+    %a{href: "http://admin20.localhost:5000/en/admin/themes",class: "listing-image-navi listing-image-navi-left", id: "listing-image-navi-left"}
+      .listing-image-navi-arrow-container
+        .listing-image-arrow-icon-container.left
+          = icon_tag("directleft", ["navigate-icon-fix", "listing-image-navi-arrow"])
+    %a{href:"http://admin20.localhost:5000/en/admin/themes", class: "listing-image-navi listing-image-navi-right", id: "listing-image-navi-right"}
+      .listing-image-navi-arrow-container
+        .listing-image-arrow-icon-container.right
+          = icon_tag("directright", ["navigate-icon-fix", "listing-image-navi-arrow"])
+  #thumbnail-stripe.listing-image-thumbnail-stripe
+

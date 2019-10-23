@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>Select Icon</label>
+     <% icon_link = link_to t("admin.landing_page.icon_link"), "https://rental-icons.taxi-hawk.com/yelo_icons.html", target: "_blank"%>
+     <% info_text = t("admin.landing_page.icon_text", link: icon_link).html_safe %>
+    <%= render partial: "layouts/info_text", locals: { text: info_text } %>
+    <select name="lp-<%=column_id%>-icon-selection" id="lp-<%=column_id%>-icon-selection">
+    </select>
+</div>

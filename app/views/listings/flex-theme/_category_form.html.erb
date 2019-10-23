@@ -1,0 +1,17 @@
+<div class="section-heading">Choose your Category</div>
+<div class="form-group">
+  <%= form.label :title, t("listings.form.title.listing_title") + "*", :class => "label-input" %>
+  <%= form.text_field(:title, :class => "title_text_field", :maxlength => "65") %>
+</div>
+
+
+<script>
+ <% categories_hash = @listing_presenter.categories.map{ |category| {:id => category.id, :label => category.display_name(I18n.locale)}} %>
+ <% subcategories_hash =  @listing_presenter.subcategories.map{ |value| {:id => value.id, :label => value.display_name(I18n.locale)}} %>
+ <% shapes_hash = @listing_presenter.shapes.map{ |value| {:id => value.id, :label => t("listings.new.selected_transaction_type", :transaction_type => t(value[:name_tr_key]) ) }} %>
+var categories = <%= categories_hash.to_json.html_safe %>
+var subcategories = <%= subcategories_hash.to_json.html_safe %>
+var shapes = <%= shapes_hash.to_json.html_safe %>
+ST.initializeCategoryForm(categories,subcategories,shapes,<%= @listing_presenter.category_tree.to_json.html_safe %>, <%= @listing_presenter.listing_form_menu_titles().to_json.html_safe %>)
+
+</script>

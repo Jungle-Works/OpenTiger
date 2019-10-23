@@ -1,0 +1,84 @@
+.plan-expiration-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.6);
+    height: 100vh;
+
+
+}
+
+.plan-expiration-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    background: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px 0px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    .close-btn {
+        position: absolute;
+        cursor: pointer;
+        right: 25px;
+        top: 17px;
+    }
+
+}
+
+.expiration-logo {
+    img {
+        width: 350px;
+    }
+}
+
+.free-trial-section {
+    line-height: 1.5;
+    letter-spacing: .1px;
+    text-align: center;
+    color: #474747;
+    margin-bottom: 10px;
+    font-size: 20px;
+
+    .line-1 {
+        font-weight: 700;
+    }
+
+    .line-2 {
+        // font-weight: 400;
+        font-size: 20px;
+    }
+}
+
+.dont-worry-section {
+    margin-bottom: 20px;
+
+    .line-1,
+    .line-2 {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: .1px;
+        text-align: center;
+        color: #474747;
+        font-weight: 400;
+        font-size: 20px;
+    }
+}
+
+.choose-plan {
+    button {
+        margin: 0 auto;
+    }
+
+    margin-bottom: 20px;
+    text-align: center;
+}

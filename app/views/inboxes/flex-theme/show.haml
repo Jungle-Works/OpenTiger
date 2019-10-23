@@ -1,0 +1,19 @@
+= render :partial=> "inboxes/flex-theme/flex_inbox_design" , locals: MarketplaceHelper.style_customizations_map(@current_community)
+
+- content_for :title_header do
+  %h1= t("layouts.no_tribe.inbox")
+
+= render partial: "inboxes/flex-theme/conversation_types", locals: {coversation_types: coversation_types}
+
+
+.undo-mobile-wrapper-margin#conversations
+  - if inbox_rows.present?
+
+    = render :partial => "inboxes/flex-theme/inbox_row", :collection => inbox_rows, :as => :conversation, locals: { payments_in_use: payments_in_use }
+
+    = will_paginate(inbox_rows)
+    = pageless(inbox_rows.total_pages, '#conversations', request.path, t('conversations.index.loading_more_messages'))
+
+  - else
+    #no_conversations
+      = t("conversations.index.no_received_messages")

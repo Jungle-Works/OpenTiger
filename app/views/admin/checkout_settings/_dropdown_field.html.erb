@@ -1,0 +1,20 @@
+<div id="dropdown-options" class="column-info-section">
+  <script type="text/template" class="template" id="new-option-tmpl">
+    <%=  render partial:"admin/checkout_settings/new_option" ,  locals: {form_data: {},option_id: "${id}" }%>
+  </script>
+  <% form_data.each_with_index do |option_data,index|%>
+  <%=  render partial:"admin/checkout_settings/new_option" ,  locals: {form_data: option_data, option_id: "option-#{index}"}%>
+  <% end %> 
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <%= link_to t("admin.custom_fields.index.add_option"), "#", :id => "add-option-btn" %>
+  </div>
+</div>
+
+<% checkout_field = { "value" => @checkout_field["value"]} %>
+
+<% content_for :javascript do%>
+ window.ST.checkoutSettings.initDropdownForm(<%=raw checkout_field.to_json%>)
+<% end%>

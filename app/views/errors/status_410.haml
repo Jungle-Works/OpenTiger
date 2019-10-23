@@ -1,0 +1,32 @@
+-# %div{style: "position: absolute;display: flex; flex-direction: column; align-items: center; width: 100%; height: 100%; justify-content: center;"}
+
+-#   %h2{style:"text-align:center"}
+-#     = t('error_pages.error_410.page_removed')
+-#   %p
+-#     = t('error_pages.error_410.page_you_requested_has_been_removed')
+
+-#     = image_tag "https://yelodotred.s3.amazonaws.com/task_images/sSRG1556865995893-group75.png", :class => "mp-img"
+-#     %br/
+-#     %br/
+
+-#     = t('error_pages.error_410.page_removed_reason')
+
+-#     %br/
+-#     %br/
+
+-#     %a{href: '/'}
+-#       = t('error_pages.back_to_kassi_front_page')
+
+%div{style:"position: absolute;display: flex;flex-direction: column;align-items: center;width: 100%;height: 100%;justify-content: center;"}
+  %h2
+    = t('error_pages.error_410.page_removed')
+  %br/
+  %br/
+  = t('error_pages.error_410.page_removed_reason')
+  %br/
+  %br/
+  = image_tag "https://yelodotred.s3.amazonaws.com/task_images/sSRG1556865995893-group75.png" , class: "mp-img"
+  %span{style: "padding-top: 30px;"}
+    = "This service is not available at the moment"
+  %span{style:"padding-top: 7px;"}
+    = "Please try again later"

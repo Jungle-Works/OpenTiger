@@ -1,0 +1,39 @@
+<% content_for :title_header do %>
+<h1><%= t("layouts.admin.admin") + "-" + t(".heading")%></h1>
+<% end %>
+
+
+<%= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@current_community)} %>
+<%= render partial: 'layouts/onboarding_popup_wrapper' %>
+
+
+<div class="left-navi-section">
+    <div class="row">
+
+        <!-- heading -->
+      <div class="col-12">
+        <h2><%= t(".heading")  %></h2>
+      </div>
+      <div class="row themes-wrapper">
+
+
+      <!-- theme card -->
+      <% @available_themes.each_with_index do |theme,index|%>
+        <div class="col-4">
+          <%= render partial: "admin/themes/theme_card", locals: {theme_detail: theme}%>
+        </div>
+      <% end %>
+      </div>
+
+      <div id="theme-carousel-wrapper">
+      <%= render partial: "admin/themes/theme_carousel"%>
+      </div>
+
+      <%= render partial: "admin/themes/choose_themes"%>
+      <%= render partial: "admin/themes/choose_paid_themes"%>
+
+
+    </div>
+ 
+</div>
+

@@ -1,0 +1,41 @@
+.people-fluid-thumbnail-grid-item
+  %div{:class => "card"}
+    -# Listing image
+    = render :partial => "layouts/grid_item_listing_image", :locals => {:listing => listing, :modifier_class => "people-listings"}
+
+    .card-info
+      .card-price
+        .card-pricevalue  
+          - if listing.price
+            %span{:title => listing.price}
+              = listing.price.currency.symbol
+              = listing.price
+              
+          - else
+            %span.fluid-thumbnail-grid-image-type{:class => ""}
+            = shape_name(listing)
+
+        .card-perunit
+          - if listing.price
+            - price_unit = price_quantity_slash_unit(listing)
+            - if !price_unit.blank?
+              - price_text = " " + price_unit
+              %span.fluid-thumbnail-grid-image-quantity{:title => price_text}
+                = price_text
+      .card-main-info
+        .card-title
+          =listing.title
+        - if (@current_community.id != 1546)
+          .card-review-info
+            %div
+              -if listing.star && listing.star > 0
+                - (1..listing.star.round).each do |star|
+                  = image_tag "goldStar.svg", :class => "rating-star"
+                - if (5-listing.star) > 0
+                  - (1..(5-listing.star.round)).each do |star|
+                    = image_tag "greyStar.svg", :class => "rating-star"
+              -elsif (@current_community.id != 212)
+                = t("custom.no_ratings")
+
+            
+         

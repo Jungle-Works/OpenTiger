@@ -1,0 +1,52 @@
+<div class="third-step-wrapper">
+    <div class="website-img">
+        <%= image_tag("in-process.png", class: "process-img")%>
+    </div>
+    <div class="content">
+
+    <div class="all-done">
+            All Done!
+        </div>
+        <div class="mkt-conf-text">
+            Your marketplace is configured
+        </div>
+
+         <div class="redirect-text">
+            Redirecting to dashboard in <span style="font-size: 19px;font-weight: bolder;" id="timer"></span> seconds
+        </div>
+        
+        <div class="congratulations">
+            Congratulations! Your domain 
+            <span style="font-size: 22px;font-weight: 600;"><%= domain %></span>
+
+        </div>
+
+        <div class="configured">
+            has been successfully configured
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script>
+    var counter = 5;
+     document.getElementById('timer').innerHTML = counter;
+    function redirection(){
+        var interval = setInterval(function(){
+            counter--;
+            document.getElementById('timer').innerHTML = counter;
+            if(counter <= 0){
+                clearInterval(interval);
+            }
+            if(counter == 0){
+                window.open("<%= url %>",'_self');
+            }
+        },1000);
+    
+
+    }
+    redirection();
+</script>

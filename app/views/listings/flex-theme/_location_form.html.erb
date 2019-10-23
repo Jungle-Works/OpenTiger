@@ -1,0 +1,12 @@
+<div class="section-heading"><%= t("listings.new.where_your_listing")%></div>
+<div class="form-group">
+  <%= render partial: "listings/flex-theme/origin", locals: { :form => form, :run_js_immediately => run_js_immediately}%>
+</div>
+
+<div class="form-group">
+  <%= render partial: "listings/flex-theme/googlemap", locals: { :form => form, :run_js_immediately => run_js_immediately}%>  
+
+</div>
+<div class="form-group">
+  <button class="button" onclick="ST['moveToNextStep'](event,<%= index %>,<%= sidebar_links.to_json %>)"><%=t("listings.new.next")%></button>
+</div>

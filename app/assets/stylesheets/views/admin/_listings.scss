@@ -1,0 +1,40 @@
+@import "mixins/all";
+
+#listing_popup {
+  @include media(desktop) {
+    min-width: 600px;
+  }
+}
+#listing-form {
+  .listing-save {
+    text-align: center;
+    .button {
+      display: initial;
+      margin-left: 6px;
+    }
+  }
+}
+
+
+#delete_listing_popup{
+  .delete-text{
+    font-size: em(18);
+    margin-top: lines(1);
+    text-align: center;
+  }
+  .delete-buttons{
+    text-align: center;
+
+    .save-btn{
+        display: flex;
+        color: white;
+        align-items: center;
+        i{
+          margin-right: 2px;
+        }
+      
+    }
+
+  }
+  
+}

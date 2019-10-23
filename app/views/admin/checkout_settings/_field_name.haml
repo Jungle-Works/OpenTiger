@@ -1,0 +1,9 @@
+.checkout-text-field
+  %label= "Field title"
+  - title = Maybe(@checkout_field.try("title")).or_else("")
+  %input{type: "text", value: "#{title}", name:"title", class: "required"}
+  - value = Maybe(@checkout_field.try("field_type")).or_else(@selected_field)
+  %input{type: "hidden", value: "#{value}", name:"field_type"}
+  - id = Maybe(@checkout_field.try("id")).or_else("")
+  %input{type: "hidden", value: "#{id}", name:"id"}
+

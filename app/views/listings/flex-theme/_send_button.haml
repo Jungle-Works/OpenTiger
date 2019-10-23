@@ -1,0 +1,11 @@
+= form.hidden_field(:category_id, :value => @listing.category_id)
+= form.hidden_field(:listing_shape_id, :value => @listing.listing_shape_id)
+- key = @listing_presenter.show_submit_for_review? ? t("listings.form.send_button.submit_for_review") : t("listings.form.send_button.save_listing")
+.form-group
+  = form.button key, :class => "send_button"
+
+- if FeatureFlagHelper.feature_enabled?(:approve_listings)
+  - if @listing_presenter.show_submit_for_review?
+    = render "layouts/info_text", text: t('listings.form.send_button.will_be_reviewed')
+  - elsif @current_user.has_admin_rights?(@current_community) && @current_community.pre_approved_listings
+    = render "layouts/info_text", text: t('listings.form.send_button.we_noticed_youre_an_admin')

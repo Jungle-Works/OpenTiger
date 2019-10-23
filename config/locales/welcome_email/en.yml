@@ -1,0 +1,19 @@
+en:
+  emails:
+    welcome_email_marketplace_creator:
+      welcome_email_subject_for_marketplace_creator: "Welcome to Yelo"
+      welcome_to_marketplace_creator: "Welcome to Yelo, %{name}!"
+      journey_begins: "We are super excited to have you started with Yelo! Your journey to becoming a marketplace entrepreneur has just begun! In the next 14 days, you get to try out Yelo for free and build your own online marketplace."
+      marketplace_information: "Here is your marketplace information"
+      your_email_address: "- Your account's email address:"
+      your_marketplace_address: "- Your marketplace address:"
+      share_your_marketplace_address: "This is the public address of your marketplace, the one you should share with your visitors."
+      your_marketplace_admin_panel: "- Your marketplace admin panel:"
+      follow_suggested_steps: "This is where you, as the owner, can make changes to your marketplace. Follow the suggested steps to get started setting up your marketplace."
+      not_alone: "You’re not alone"
+      support_team: "Yelo's support team is here for you! Contact the team by email at contact@yelo.red, or by simply replying to this email."
+      helping_you: "Helping you along the way"
+      drip_emails_academy: "Need more advice about how to build a marketplace business? No worries, we're here to help you out! Have you already checked out our %{marketplace_academy_link}? It contains a comprehensive guide teaching you everything you need to know about building a marketplace business. Furthermore, we will be sending you a series of emails that will help you get the most out of Yelo. You can expect the first one to land in your inbox soon."
+      marketplace_academy_link_text: "Marketplace Guide"
+      cheers: "Thanks, "
+      sharetribe_team: "The Yelo Team"

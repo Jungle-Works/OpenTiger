@@ -1,0 +1,97 @@
+.avatarDropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+
+  & .avatarProfileDropdown {
+    visibility: hidden;
+    margin-bottom: -32px;
+  }
+
+  & .transitionDelay {
+    transition: visibility 0ms;
+    transition-delay: 300ms;
+  }
+
+  &.openDropdown,
+  &.openOnHover:hover {
+    & .avatarProfileDropdown {
+      visibility: visible;
+      transition-delay: 0ms;
+    }
+  }
+
+  & :global(.notification-background) { /* stylelint-disable-line selector-class-pattern */
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+
+.avatarWithNotifications {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.hasNotifications {
+  & :global(.notification-background) { /* stylelint-disable-line selector-class-pattern */
+    display: block;
+  }
+}
+
+.notificationBadge {
+  position: absolute;
+
+  @media (--medium-viewport) {
+    top: -5px;
+    left: 22px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+  }
+
+  @media (--large-viewport) {
+    top: -5px;
+    left: 28px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+}
+
+.logoBorder{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  transition: .1s all ease-in-out;
+  border-bottom: 0 solid;
+}
+.avatarNewTheme{
+  height: 100%;
+  align-items: center;
+  width: auto;
+  cursor: pointer;
+  position: relative;
+}
+.avatarWithNotificationsNew{
+  @media (--medium-viewport) {
+    height: 36px;
+    width: 36px;
+    margin-top: 12px;
+  }
+  @media (--large-viewport) {
+    height: 44px;
+    width: 44px;
+    margin-top: 17.5px;
+
+  }
+}

@@ -1,0 +1,136 @@
+= render :partial=> 'listing_conversations/flex-theme/flex_checkout_initiate_design' , locals: MarketplaceHelper.style_customizations_map(@current_community)
+- content_for :javascript do
+  initialize_send_message_form('#{I18n.locale}');
+  ST.transaction.initializePayPalBuyForm("transaction-form", #{paypal_analytics_event.to_json.html_safe},  #{raw @current_community.id},#{raw APP_CONFIG.delivery_address_option_ids});
+
+- content_for :extra_javascript do
+  :javascript
+    $('#transaction-agreement-read-more').click(function() { $('#transaction-agreement-content').lightbox_me({centered: true, zIndex: 1000000}); });
+
+- content_for :title_header do
+  %h1
+    = action_button_label
+    = link_to(listing[:title], listing_path(listing[:id]))
+
+#new_message_form.flex-checkout-container
+
+  - author_link = link_to(PersonViewUtils.person_display_name(author, @current_community), person_path(username: author.username))
+
+  .flex-checkout-form
+    .listing-and-host-name
+      %h1.checkout-listing-heading
+        %span 
+          = t(@listing.action_button_tr_key)
+          %span
+            = @listing.title
+      .hosted-by{style: "display:flex"}
+        %span
+          = t("transactions.new.hosted_by")
+        %span.hostname-text
+          = PersonViewUtils.person_display_name(@listing.author, @current_community)
+    = form_tag(form_action, method: :post, id: "transaction-form") do |form|
+
+      = render :partial => "transactions/additional_information", :locals => { :form => form, :image_s3_options => image_s3_options }
+      -if params["unit_type"] == 'unit' && APP_CONFIG.delivery_address_option_ids.include?(@current_community.id)
+        = render :partial => "transactions/delivery_address", :locals => { :form => form }
+      = hidden_field_tag(:start_on, start_on&.iso8601 )
+      = hidden_field_tag(:end_on, end_on&.iso8601 )
+      - if per_hour
+        = hidden_field_tag(:start_time, start_time&.iso8601 )
+        = hidden_field_tag(:end_time, end_time&.iso8601 )
+        = hidden_field_tag(:per_hour, '1' )
+
+      .preauthorize-section
+        %h2
+          = t("conversations.new.optional_message_to", author_name: author_link).html_safe
+
+        .row
+          .col-12
+            = text_area_tag :message, nil, :class => "text_area", placeholder: "Type a message"
+
+        - if @current_community.transaction_agreement_in_use
+          = render :partial => "listing_conversations/transaction_agreement_checkbox"
+
+        - if quantity
+          = hidden_field_tag :quantity, quantity
+
+        - if delivery_method
+          = hidden_field_tag :delivery, delivery_method
+
+        = hidden_field_tag :payment_type
+
+        - if stripe_in_use
+          .row
+            .col-12
+              %h2
+                = t("listing_conversations.stripe_payment.payment")
+          = render :partial => "listing_conversations/stripe_payment", locals: {  publishable_key: stripe_publishable_key, stripe_shipping_required: stripe_shipping_required, paypal_in_use: paypal_in_use}
+        
+        - if razorpay_in_use
+          = render partial: "listing_conversations/razorpay", locals: {paypal_in_use: paypal_in_use}
+ 
+        - if paypal_in_use && !stripe_in_use
+          .row
+            .col-12.payment-button-wrapper.paypal-payment
+              = button_tag t("paypal.pay_with_paypal"), class: "checkout-with-paypal-button"
+
+        - if paypal_in_use  && stripe_in_use
+          .row
+            .col-12.paypal-or-stripe
+              %span
+                = t("paypal.or_pay_with_paypal")
+          .row
+            .col-12.payment-button-wrapper.paypal-payment
+              %button.checkout-with-paypal-button.paypal-image{type: 'button'}
+                = t("paypal.checkout_with")
+                = image_tag 'checkout_with_paypal.png'
+
+        - if stripe_in_use || paypal_in_use || razorpay_in_use
+          .row
+            .col-12
+              %p
+                = t("listing_conversations.preauthorize.you_will_be_charged", author: author_link, expiration_period: paypal_expiration_period).html_safe
+        
+  .flex-listing-checkout-details
+    .flex-checkout-listing-image
+      - if has_images?(listing)
+        %img{:src => "#{@listing.listing_images.first.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}"}
+      -else
+        = image_tag "default-img.png", :class => "fluid-thumbnail-grid-image-image"
+    .flex-checkout-host-avatar
+      .flex-checkout-host-avatar-image
+        = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
+    .flex-checkout-price-breakdown-details
+      .preauthorize-section
+        .check-listing-and-host-name
+          %h2.checkout-listing-heading
+            = link_to @listing.title, listing_path(listing)
+          .hosted-by{style: "display:flex"}
+            %span.listed-by  
+              = t("transactions.new.listed_by")
+            %span.hostname-text
+              = PersonViewUtils.person_display_name(@listing.author, @current_community)
+          
+          .price-breakdown-details
+            = render partial: "transactions/price_break_down", locals: price_break_down_locals.merge(is_author: false,show_delivery_address: false, show_delivery_charge: false)
+  %noscript
+    = "For security reasons JavaScript has to be enabled"
+  - content_for :extra_javascript do
+    :javascript
+      $(function(){
+        $(".checkout-with-paypal-button").click(function(){
+          $("#payment_type").val("paypal");
+        });
+        $(".checkout-with-stripe-button").click(function(){
+          $("#payment_type").val("stripe");
+        });
+      });
+      $(".paypal-image").click(function(){
+        $("#payment_type").val("paypal");
+        var form = $("#transaction-form");
+        form.validate();
+        $('input[stripe-shipping-address]').each(function(){
+          $(this).rules('remove');
+        });
+        form.trigger("submit");
+      });

@@ -1,0 +1,416 @@
+@import "mixins/all";
+
+.toggle-menu {
+  margin-top: 7px;
+  background: #fff;
+  border-top: 1px solid #e7e7e7;
+  position: relative;
+  z-index: 99999;
+  text-align: left;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,.3);
+  background-color: #fff;
+  min-width: 300px;
+  font-family: sofiapro,Helvetica,Arial,sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  
+
+  // For mobile
+  margin-bottom: lines(0.5);
+
+  $arrow-width: 1em;
+  .price-range{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    .price-range-text{
+      margin: auto 0px;
+      padding-right: 10px;
+    }
+    
+    
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      
+      
+    }
+    
+    input{
+      display: block;
+      margin: 0;
+      border: none;
+      border-bottom-style: solid;
+      border-radius: 0;
+      border-bottom-width: 3px;
+      color: #3c3c3c;
+
+      
+    }
+  }
+  .num-range{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    .num-range-text{
+      margin: auto 0px;
+      padding-right: 10px;
+    }
+    
+    
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      
+      
+    }
+    
+    input{
+      display: block;
+      margin: 0;
+      border: none;
+      border-bottom-style: solid;
+      border-radius: 0;
+      border-bottom-width: 3px;
+      color: #3c3c3c;
+
+      
+    }
+  }
+  
+  .price-min-max{
+    display: flex;
+    margin-bottom: auto;
+    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+      margin-bottom: auto;
+    }
+  }
+
+  
+  .min-price-limit{
+    font-family: sofiapro,Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    width: auto;
+    max-width: 70px;
+    text-align: center;
+    padding: 0px;
+    
+    &:focus{
+      outline: none;
+    }
+    
+  }
+  .price-seperator{
+    margin: auto 10px;
+    font-size: 30px;
+  }
+  .max-price-limit{
+    font-family: sofiapro,Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    width: auto;
+    max-width: 70px;
+    text-align: center;
+    max-width: 80px;
+    padding: 0px;
+    &:focus{
+      outline: none;
+    }
+  }
+  .num-min-max{
+    display: flex;
+    margin-bottom: auto;
+    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+      margin-bottom: auto;
+    }
+  }
+
+  
+  .min-num-limit{
+    font-family: sofiapro,Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    width: auto;
+    max-width: 80px;
+    text-align: center;
+    padding: 0px;
+    
+    &:focus{
+      outline: none;
+    }
+    
+  }
+  .num-seperator{
+    margin: auto 10px;
+    font-size: 30px;
+  }
+  .max-num-limit{
+    font-family: sofiapro,Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    width: auto;
+    text-align: center;
+    max-width: 80px;
+    padding: 0px;
+
+    &:focus{
+      outline: none;
+    }
+  }
+  .custom-filter-checkbox-container :hover{
+    background-color: #fff;
+    color: hsl(0, 0%, 0%);
+  }
+
+  .filter-action{
+    display: flex;
+    padding: 0px 0.75em;
+    button{
+      padding: 0px;
+    }
+    .apply-cancel-btn{
+      text-align: right;
+      flex: 1 1 auto;
+      padding: 0px 10px 0px 0px;
+      .cancel-filter-button{
+        padding: 0px 10px 0px 0px;
+      }
+    }
+   
+  }
+  .highlight_clear{
+    background-color: #fff;
+    color: #4a4a4a;
+    // padding-left: 5px;
+    &:hover{
+      color: #4a4a4a;
+    }
+    &:focus {outline:none}
+  }
+  .clear-filter-button{
+    background-color: #fff;
+    color: #b2b2b2;
+    // padding-left: 5px;
+    &:hover{
+      color: #4a4a4a;
+    }
+    &:focus {outline:none}
+  }
+  
+  .cancel-filter-button{
+    background-color: #fff;
+    color: #4a4a4a;
+    &:focus {outline:none}
+  }
+  .apply-filter-button{
+    background-color: #fff;
+    
+    
+    &:focus {outline:none}
+  }
+  
+  
+
+  a, .toggle-menu-item {
+
+    &, .feedback {
+      display: block;
+      position: relative;
+      color: #3c3c3c;
+      padding: lines(0.5);
+      padding-right: lines(0.5);
+    }
+
+
+    &.login-form {
+      padding: 0;
+      &:hover {
+        color: lighten($link, 20%);
+        background: none;
+      }
+      &:after {
+        content: "";
+      }
+    }
+  }
+
+  a, .toggle-menu-link {
+    &:hover {
+      background: #fff;
+      color: #4a4a4a;
+
+      &:after {
+        color: $background;
+      }
+    }
+  }
+
+  .toggle-menu-title {
+    @extend .toggle-menu-item;
+    background-color: lighten($light-body, 5%);
+  }
+
+  p.login-form {
+    color: $background;
+    margin: lines(0.25) 0 lines(0.5) 0;
+  }
+
+  .feedback {
+    textarea {
+      @include small-type;
+      display: block;
+      width: 100%;
+      min-height: lines(3, 13);
+      padding: lines(0.25, 13);
+    }
+  }
+
+  &.hidden {
+    // Added and removed via JS, to toggle visibility
+    display: none;
+  }
+
+  .badge {
+    position: absolute;
+    right: em(9, 13); top: em(14, 13); bottom: auto;
+    z-index: 900;
+
+    &.huge-badge {
+      top: em(10, 13); right: em(9, 13); bottom: auto;
+    }
+  }
+
+  @include media(tablet) {
+    position: absolute;
+  }
+
+}
+
+.toggle {
+  display: block;
+  cursor: pointer;
+
+  @include media(tablet) {
+    display: inline-block;
+    width: auto;
+  }
+  
+  &.toggled {
+    background: $light-body;
+    color: $background !important;
+    border-color: $light-body;
+
+    @include media(tablet) {
+      width: auto;
+      border-bottom-color: $light-body !important;
+    }
+  }
+  
+
+
+  &.with-borders{
+    $toggle-border-width: 1px;
+    border: $toggle-border-width solid #e7e7e7;
+
+    &:hover{
+      border-color: #b2b2b2;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+     }
+    &:focus{
+      box-shadow: 0 4px 16px 0 rgba(0,0,0,.2);
+      border-color: none;
+      outline: none;
+     
+    }
+    
+
+    @include border-radius(em(5));
+    background: #fff;
+
+    &.toggled {
+      border-width: 0;
+      @include border-radius(0);
+      border-bottom: 1px solid gray;
+      background: $light-body;
+      display: none;
+
+      @include media(tablet) {
+        // Add padding to fill missing space left by removed borders.
+        // No need to do this in mobile, since were not absolutely positioned there.
+        padding: $toggle-border-width;
+      }
+
+    }
+
+  }
+
+  &.without-borders{
+    border: 1px solid transparent;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,.2);
+    &:hover{
+      border: 1px solid transparent;
+      box-shadow: 0 4px 16px 0 rgba(0,0,0,.2);
+     }
+  }
+}
+
+.toggle-header {
+  display: inline-block;
+}
+
+.toggle-header-container {
+  @include button-group-button-padding;
+  height: $default-button-height;
+  line-height: $default-button-line-height;
+}
+
+.icon-dropdown {
+  @include dropdown-icon-fix;
+  float: right;
+
+  @include media(tablet) {
+    float: none;
+  }
+}
+
+.toggle-menu-subitem, a.toggle-menu-subitem {
+  padding-left: lines(1);
+  color: #4a4a4a;
+  
+}
+.for-left-border{
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: calc(100% - 4px);
+  width: 0;
+  -webkit-transition: width .1s ease-in-out;
+  -o-transition: width ease-in-out .1s;
+  transition: width .1s ease-in-out;
+
+  
+}

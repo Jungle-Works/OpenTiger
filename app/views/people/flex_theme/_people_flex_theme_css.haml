@@ -1,0 +1,135 @@
+:scss
+  .wrapper{
+    max-width:100%;
+    max-height:100%
+  }
+  .signup-form{
+    background-image: linear-gradient(-45deg,rgba(0,0,0,.3),rgba(0,0,0,.6)),url("#{ image_map[:cover_photo] }");
+    width: 100%;
+    background-size: cover;
+    padding: 40px 0;
+    min-height: 80vh;
+  }
+  .signup-centered-section{
+    max-width: 480px;
+    border-bottom: 8px solid ##{color1};
+    padding: 25px 60px;
+    background-color: white;
+    margin: 0 auto;
+    a#google-oauth2-login,a#linkedin-login{
+      border-radius: 0;
+    }
+    .flex-fb-login-link{
+      a.fb-connect {
+        padding: 0px 12px 0px 5px;
+        width: 100%;
+        margin-bottom: lines(0.5);
+        margin-top: lines(1.5);
+        position: relative;
+        cursor: pointer;
+        color: white;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        background: #25567c;
+        min-height: 46px;
+        &:hover {
+          background: #6f99bc;
+        }
+        .fb-icon {
+          height: 30px;
+          width: 40px;
+        }
+        .fb-text {
+          padding-left: 10px;
+        }
+      }
+    }
+    .flex-form-group{
+      label.error{
+        border-radius: 0px;
+        background: #fff;
+        color: red;
+        padding: 0;
+        margin: 5px 0 0 0;
+         &:before{
+           content: none;
+         }
+      }
+      label{
+        margin-top: 28px;
+      }
+      input{
+        padding: 0;
+        border: none;
+        border-radius: 0px;
+        border-bottom: 2px solid #fa0;
+        transition: border-bottom-color .2s ease-in;
+        &:hover, &:focus {
+          border-bottom-color: #4a4a4a;
+          outline: none;
+        }
+      }
+      input.valid{
+        border-bottom-color: #2ecc71;
+      }
+      input.error{
+        border-bottom-color: red;
+      }
+      input[type=file]{
+        border:none;
+      }
+      .new-person-fullname{
+        display: flex;
+        .given-name{
+          margin-right: 7px;
+        }
+        .family-name{
+          margin-left: 7px;
+        }
+      }
+      .create-new-account{
+        width: 100%;
+        margin-top: 50px;
+        border-radius: 0px;
+        min-height: 65px;
+
+      }
+      .signup-checkbox-container{
+        margin-top: 20px;
+        .outer-checkbox-container{
+          label{
+            margin-top: 5px;
+          }
+        }
+      }
+        
+    }
+  }
+  .horizontal-nav{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    .nav-tab{
+       padding: 0px 14px;
+       a{
+          color: #4a4a4a;
+        }
+    }
+    .nav-tab.signup{
+      border-bottom: 4px solid black;
+      a{
+        color: #000;
+      }
+     
+    }
+  }
+  @media screen and (max-width: 768px){
+    .signup-form{
+      background-image: none;
+      padding-top: 0;
+    }
+    .signup-centered-section{
+      padding: 25px 15px;
+    }
+  }

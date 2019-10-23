@@ -1,0 +1,123 @@
+//= require ./normalize
+//= require ./reset
+//= require ./topbar
+//= require_tree ./sections
+//= require ./development
+
+
+.fab-toggler {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    flex-direction: column-reverse;
+    z-index: 100;
+    align-items: flex-end;
+  }
+  
+  #fugu-widget {
+  
+    display: none;
+    // background-color: var(--color);
+    // flex-direction: column-reverse;
+    // align-items: flex-end;
+    // margin-bottom: 20px;
+    // z-index: 100;
+    // border: 0;
+    // background-color: var(--blue);
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 100%;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    // margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .22), 0 3px 6px rgba(0, 0, 0, .08);
+  }
+  
+  #unread-count {
+    position: absolute;
+    top: -7px;
+    background-color: red;
+    right: -3px;
+    font-size: 11px;
+    border-radius: 10px;
+    min-width: 22px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 20px;
+    padding: 3px;
+  }
+  
+  #support-widget {
+    margin-bottom: 17px;
+    display: none;
+    align-items: center;
+    margin-right: 10px;
+    &.show-widget{
+      display: flex;
+    }
+    animation: slideTop 200ms ease-in;
+  }
+  
+  #agent-widget {
+    margin-bottom: 17px;
+    display: none;
+    align-items: center;
+    margin-right: 10px;
+    
+    &.show-widget{
+      display: flex;
+    }
+    animation: slideTop 300ms ease-in;
+    
+  }
+  .fugu-icon {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 100%;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    // background-color: var(--color);
+    display: flex;
+    // margin-right: 20px;
+    cursor: pointer;
+    // position: relative;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .22), 0 3px 6px rgba(0, 0, 0, .08);
+    img{
+      height: 20px;
+      width: 20px;
+    }
+  }
+  
+  .fugu-text {
+    background-color: #fff;
+    color: #000;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .16), 0 0 0 rgba(0, 0, 0, .23);
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  
+  @keyframes slideTop{
+  
+    0% {
+      margin-bottom: 2px;
+    }
+  
+  
+    100% {
+      margin-bottom: 17px;
+    }
+  }

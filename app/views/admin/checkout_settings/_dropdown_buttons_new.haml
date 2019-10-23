@@ -1,0 +1,7 @@
+.add-custom-field-buttons
+  .inline-button-container
+    = button_tag t("admin.custom_fields.index.save"),id: "submit-dropdwn-data-btn",  type: "button", onclick: "window.ST.checkoutSettings.submitDropdownForm(event)"
+  .inline-button-container
+    %a{:href => admin_checkout_settings_path, :class => "cancel-button"}
+      .content
+        = t("admin.custom_fields.index.cancel")

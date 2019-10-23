@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+    <title><%= locals(local_assigns, :title) %></title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&subset=latin-ext' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.0/js/intlTelInput.min.js"></script>
+
+    <style type="text/css">
+
+    html, body {
+      background-color: #f6f7f7;
+      font-family: 'Source Sans Pro', sans-serif;
+      text-align: center;
+      color: #333;
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    #loader{
+      width: 100%;
+      height: 100%;
+      top: 0;
+      position: fixed;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    #loader .btn-loading{
+      width: 55px!important;
+      height: 55px!important;
+      border: 5px solid #f3f3f3;
+      /* border-top: 5px solid #555!important; */
+      border-top: 5px solid #2496ff;
+      margin: 0!important;
+    }
+    #loader .bg-color{
+      background-color: #ddd;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    span.btn-loading{
+      display: inline-flex;
+      right: 0;
+      border: 2px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 2px solid #555;
+      width: 25px;
+      height: 25px;
+      -webkit-animation: spin .8s linear infinite;
+      animation: spin .8s linear infinite;
+      vertical-align: inherit;
+      margin-left: 10px;
+      float: right;
+      margin-top: 2px;
+    }
+    @keyframes spin {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+    }
+
+    h2 {
+      padding-top: 1em;
+      font-size: 26px;
+      text-align: left;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .box {
+      max-width: 100%;
+      /* width: 90%; */
+      background-color: #ffffff;
+      border-radius: 5px;
+      margin: -8px;
+      /* margin: 10% auto;
+      padding: 50px 5%; */
+    }
+
+    .new-marketplace-form-row {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .new-marketplace-label {
+      margin-bottom: 5px;
+      display: block;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .new-marketplace-input {
+      height: 35px;
+      border: solid 1px #ced4da;
+      background-color: #ffffff;
+      /* text-align: left; */
+      max-width: 100%;
+      width: 350px;
+      padding-left: 10px;
+      font-size: 15px;
+      border-radius: 4px;
+    }
+    .new-marketplace-input:focus{
+        outline: none;
+    }
+
+    .new-marketplace-input:focus{
+        border: 1px solid #2f93ff91;
+    }
+     .phone-code
+    {
+      width:55px;
+      height:35px;
+      background-color:white;
+      border-color: solid  #ced4da;
+      border-width:1px;      
+      border-radius: 4px;
+    }
+
+
+    .new-marketplace-select {
+      width: 350px;
+      font-size: 14px;
+      height: 38px;
+      border-radius: 0px;
+      max-width: 100%;
+      background-color: white;
+      border-color: #ced4da;
+    }
+
+    .new-marketplace-select:focus{
+      outline: none;
+    }
+    .new-marketplace-input-phone{
+      height: 35px;
+      border: solid 1px #ced4da;
+      background-color: #ffffff;
+      /* text-align: left; */
+      max-width: 100%;
+      width: 290px;
+      padding-left: 10px;
+      font-size: 15px;
+      border-radius: 4px;
+    }
+
+
+    .new-marketplace-submit {
+      color: white;
+      font-size: 16px;
+      width: 127px;
+      background-color: #007bff;
+      border-radius: 4px;
+      height: 44px;
+    }
+
+    .new-marketplace-errors {
+      margin: auto;
+      color: red;
+      font-size: 14px;
+    }
+
+  .register-marketplace-wrapper{
+    display: none;
+  }
+  .home-img{
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    object-fit: cover;
+    display: block;
+    position: fixed;
+    top: 0px;
+    width: 50%;
+  }
+  .register-form{
+    padding: 0px 3em 0 5em;
+    text-align: left;
+    /* overflow: scroll; */
+    /* max-height: 100vh; */
+  }
+  .logo-img{
+    height: 70px;
+    margin-top: 3em;
+  }
+
+ .second-step-wrapper{
+    min-height: 100vh;
+
+  }
+
+ .second-step-wrapper .process-gif{
+   height: 400px;
+   max-width: 100%;
+ }
+ .second-step-wrapper .content{
+   margin-top: 30px;
+  font-size: 20px;
+ }
+
+  .third-step-wrapper{
+    min-height: 110vh;
+  }
+ 
+   .third-step-wrapper .website-img .process-img{
+      height: 300px;
+    }
+
+    .third-step-wrapper .content{
+      width: 100%;
+      text-align: center;
+    } 
+
+    .mkt-conf-text{
+      font-size: 25px;
+      margin-top: 10px;
+    }
+    .all-done{
+      color: #007bff;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+  .congratulations{
+    margin-top: 35px;
+    font-size: 20px;
+  }
+
+  #errors{
+    display: none;
+    min-height: 200px;
+    justify-content: center;
+    align-items: center;
+  }
+  .redirect-text{
+    margin-top: 7px;
+  }
+
+  .configured{
+     margin-top: 0.2rem;
+    font-size: 20px;
+  }
+
+  .launch-text {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  #secondStep{
+    display: none;
+  }
+
+  .register-marketplace-wrapper .col-6{
+      width: 50%;
+      width: 50%;
+      display: inline-block;
+    }
+  }
+
+
+ 
+  </style>
+
+  
+  <%= favicon_link_tag('favicon.ico')%>
+</head>
+<body>
+  <div class="box">
+    <%= yield %>
+  </div>
+  <script>
+    
+    
+     var loc = window.location.href,query;
+      if(loc.includes("?"))
+      query = loc.slice(loc.indexOf('?') + 1)
+      else
+      query = '';
+
+
+    function getUrlVars(url) {
+        var hash;
+        var myJson = {};
+        var hashes = url.slice(url.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            if(hash[1] != "undefined")
+            try{
+
+              myJson[hash[0]] = decodeURIComponent(hash[1]);
+            }
+            catch(e){
+              myJson[hash[0]] = "";
+            }
+        }
+        return myJson;
+    }
+
+
+    
+    if(!query.includes("access_token")){
+      if("<%= Rails.env%>" == "production"){
+        document.getElementById("register-wrapper").style.display = 'none'; 
+        window.location.assign("https://admin.yelo.red/en/page/register");
+      }
+      else{
+        document.getElementById("register-wrapper").style.display = 'flex';
+      }
+    }
+    else{
+      if(query.includes("errors")){
+        var queryParams = getUrlVars(window.location.href);
+
+        document.getElementById('errors').style.display = 'flex';
+        
+      }
+      else{
+        if(document.getElementById("register-wrapper")){
+          document.getElementById('loader').style.display = 'flex';
+          document.getElementById("register-wrapper").style.display = 'none';
+          setTimeout(()=>{
+            document.getElementById('loader').style.display = 'none';
+            fillForm();
+            onSubmit()
+            document.getElementById("register-form").submit();
+          },3000);
+        }
+      }
+     
+    }
+
+    function fillForm(){
+      var form = document.getElementById("register-form");
+      var params = getUrlVars(window.location.href);
+      form.elements.admin_first_name.value = params.name;
+      form.elements.admin_email.value = params.email;
+      form.elements.admin_password.value = "Qwert@1232";
+      form.elements.admin_phone.value = params.phone;
+      form.elements.marketplace_name.value = params.marketplaceName;
+      form.elements.marketplace_country.value = params.countryCode;
+      form.elements.rental_vertical.value = params.rental_vertical;
+
+     console.log("vertical is : ",form.elements.rental_vertical.value)
+
+
+    }
+   
+
+    function onSubmit(){
+      
+      if(document.getElementById("register-form").checkValidity())
+      {
+      document.getElementById('register-wrapper').style.display = 'none';
+      document.getElementById('secondStep').style.display = 'block';
+      }
+      setTimeout(function(){
+        document.getElementById('vid').play();
+      },200);
+
+
+      var params = getUrlVars(window.location.href);
+    
+      var form = document.getElementById("register-form");
+
+      var tempField = generateField("temp_phone", params.phone);
+      tempField.setAttribute("id","temp-phone")
+      form.appendChild(tempField); 
+
+      window.intlTelInput(tempField);
+      var iti = window.intlTelInputGlobals.getInstance(tempField);
+
+      form.elements.marketplace_country.value = iti.getSelectedCountryData().iso2.toUpperCase();
+
+      /* for name input field */
+
+      var admin_name = form.elements.admin_first_name.value;
+      if(admin_name.includes(" ")){
+        var name = admin_name.split(" ");
+        var hiddenField = generateField("admin_last_name", name[1]);
+        form.elements.admin_first_name.value = name[0];
+        form.appendChild(hiddenField); 
+      }
+      else{
+        var hiddenField = generateField("admin_last_name", "");
+        form.appendChild(hiddenField);
+      }
+
+      /*
+          for extra fields in query
+        */
+      for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+
+          var hiddenField = generateField(key,params[key]);
+          form.appendChild(hiddenField);
+        }
+      }
+
+      var hiddenField = generateField("query",query)
+      form.appendChild(hiddenField);
+
+
+      var hiddenField = generateField("marketplace_type", "rental");
+      form.appendChild(hiddenField);
+
+      var hiddenField = generateField("marketplace_language", "en");
+      form.appendChild(hiddenField);
+
+      console.log(form.elements);
+    }
+
+
+    function generateField(name,value){
+       var field = document.createElement("input");
+        field.setAttribute("type", "hidden");
+        field.setAttribute("name", name);
+        field.setAttribute("value", value);
+        return field;
+    }
+
+    var phoneOldValue;
+    function phoneKeyDown(){
+      phoneOldValue = document.getElementById("phoneInput").value
+    }
+
+    function phoneOnInput(){
+       var newValue = document.getElementById("phoneInput").value
+        if (newValue.match(/^\+?[0-9]*$/)) {
+            document.getElementById("phoneInput").value = newValue;
+        } else {
+            document.getElementById("phoneInput").value = phoneOldValue;
+        }
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+@import "mixins/all";
+
+.no-bullets {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.approval-select{
+  margin-bottom: 20px;
+}
+
+.submit-btn{
+  margin-bottom: 15px;
+  display: none;
+  text-align: right;
+}
+

@@ -1,0 +1,24 @@
+ <!-- input for price -->
+            <% image = form_data['background_image'] ? form_data['background_image']["src"] : nil %>
+<% if image%>
+<input type="hidden" accept="image/*" id="<%=id%>-input" name="<%= id %>-image" onchange="window['ST']['lpImageUpload']['uploadImage']('<%= t('listings.form.images.image_uploading_in_progress')%>','#<%=id%>')" class="lp-file-input" value="<%= image%>">
+<% else %>
+<input type="file" accept="image/*" id="<%=id%>-input" name="<%= id %>-image" class="lp-file-input" onchange="window['ST']['lpImageUpload']['uploadImage']('<%= t('listings.form.images.image_uploading_in_progress')%>','#<%=id%>')">
+<% end %>
+
+<div class="form-group">
+ <label for="">Background Image</label>
+
+<div id="<%=id%>" class="lp-upload-image-placeholder" onclick="window['ST']['lpImageUpload']['clikcOnFileUpload']('#<%=id%>')">
+  <div class="centred-text"><%= image ? "" : "Select file"%></div>
+    <% if image%>
+      <img class="lp-fileupload-preview-image" src="<%= image %>" alt="">
+    <% else %>
+      <img class="lp-fileupload-preview-image" alt="">
+    <% end %>
+
+  <div class="fileupload-preview-remove-image <%= image ? "show" : ""%>" onclick="window['ST']['lpImageUpload']['removeImage'](event,'#<%=id%>')">
+    <%= icon_tag("cross", ["icon-fix"]) %>
+  </div>
+</div>
+</div>

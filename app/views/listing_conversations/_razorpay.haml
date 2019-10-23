@@ -1,0 +1,17 @@
+.row
+  .col-12
+    %h2
+      = t("listing_conversations.stripe_payment.payment")
+    = button_tag t("razorpay.checkout_with_razorpay"), class: "checkout-with-razorpay-button", type: "button", onclick: "ST.razorpay.initPayment()"
+    .row
+      .col-12
+        %p="You can use all payment modes including credit card, debit card, netbanking, UPI and popular wallets including JioMoney, Mobikwik, Airtel Money, FreeCharge, Ola Money and PayZapp."
+    - if paypal_in_use
+      .paypal-or-stripe
+        %span
+          = t("paypal.or_pay_with_paypal")
+.container-fluid.razorpay-gateway#razorpay-payment-gateway{onclick: "ST.razorpay.focusOnWindow()", style: "display:none"}
+  .razorpay-message
+    %p= "Don't see the secure razorpay browser? We will help you re-launch the window to complete your purchase."
+  .razorpay-checkout-continue
+    %u= "Click to Continue"

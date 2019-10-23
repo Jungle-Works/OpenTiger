@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label>Select Listing</label>
+    <select id="listing-selection" multiple="true">
+        <% @listings.each_with_index do |listing,index|%>
+        <option value="<%= listing["id"]%>"><%= listing["title"]%> <option>
+        <% end %>
+    </select>
+</div>
+
+<% content_for :javascript do %>
+
+    window.ST.landingPage.initListingSelection(<%= raw form_data["listings"].to_json %>);
+<% end %>

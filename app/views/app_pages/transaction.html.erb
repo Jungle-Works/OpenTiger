@@ -1,0 +1,554 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css">
+  <style>
+    select.form-control:not([size]):not([multiple]) {
+            height: 34px;
+        }
+
+        body {
+            background-color: #fff;
+        }
+
+        .panel {
+            width: 95%;
+            margin: 2em auto;
+        }
+
+        .bootstrap-basic {
+            background: white;
+        }
+
+        .panel-body {
+            width: 90%;
+            margin: 1em auto;
+        }
+
+        #loader {
+          background: transparent;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            margin: -25px 0 0 -25px;
+            border: 6px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 6px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .helper-text {
+            color: #8A6D3B;
+            font-size: 12px;
+            margin-top: 5px;
+            height: 12px;
+            display: block;
+        }
+
+        /* Braintree Hosted Fields styling classes*/
+
+        .braintree-hosted-fields-focused {
+            border: 1px solid #0275d8;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+        }
+
+        .braintree-hosted-fields-focused.focused-invalid {
+            border: 1px solid #ebcccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(100, 100, 0, .6);
+        }
+
+        .img-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
+        .img-container>img {
+            margin-top: -50%;
+            margin-left: -50%;
+        }
+
+        @media (max-width: 670px) {
+            .form-group {
+                width: 100%;
+            }
+
+            .btn {
+                white-space: normal;
+            }
+        }
+
+        .has-error,
+        .has-error .help-block,
+        .has-error .form-control {
+            border: #e60000 1px solid
+        }
+
+        .red{
+          color:#e60000;
+        }
+
+
+        .error_span {
+            color: #a94442;
+            font-size: 12px;
+        }
+
+        .invisible_custom {
+            /* display: none; */
+            position: absolute;
+            top: 10px;
+            z-index: 1000;
+            right: 10px;
+        }
+
+        .visible_custom {
+            display: block;
+        }
+
+        #toast-container .toast.toast-success{
+          background-image: none !important;
+          opacity:1;
+        }
+        .loader-wrapper{
+          height: 100%;
+          position: fixed;
+          width: 100%;
+          left: 0;
+          z-index: 1000;
+          top: 0;
+          background: rgba(0,0,0,.5);
+        }
+    </style>
+
+
+</head>
+
+<body ng-app="myApp" ng-cloak="" ng-controller="myCtrl">
+  <div class="panel panel-default bootstrap-basic" id="top">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Enter Card Details</h3>
+    </div>
+    <!--https://checkout.payfort.com/FortAPI/paymentPage-->
+    <!--Live-->
+    <!--https://sbcheckout.payfort.com/FortAPI/paymentPage-->
+    <!--Dev-->
+
+    <form class="panel-body" name="cardForm" ng-submit="addCard()" id="payment-form" novalidate>
+      <div class="row">
+
+
+        <div class="form-group col-xs-6">
+          <label class="control-label">Name on card</label>
+          <input type="text" name="name" ng-model="name" ng-class="{'has-error': (submitted || cardForm.name.$touched) && cardForm.name.$error.required}"
+            class="form-control" id="card-fname" placeholder="Name on card" required maxlength="20">
+          <span class="red" ng-show="(submitted || cardForm.name.$touched) && cardForm.name.$error.required">Field is
+            required*</span>
+        </div>
+
+        <div class="form-group col-xs-6">
+          <label class="control-label">Card Number</label>
+          <!-- Hosted Fields div container -->
+          <input type="tel" class="form-control" name="cardNo" id="cardNo" ng-class="{'has-error': (submitted || cardForm.cardNo.$touched) && cardForm.cardNo.$error.required}"
+            ng-model="cardNo" id="card-number" ng-keydown="saveOldValue($event)" ng-change="inputHandler(cardNo);"
+            placeholder="4111 1111 1111 1111" minlength="12" maxlength="23" required />
+          <span class="red" ng-show="(submitted || cardForm.cardNo.$touched) && cardForm.cardNo.$error.required">Field
+            is required*</span>
+        </div>
+
+      </div>
+      <div class="row">
+        <!-- <div class="form-group col-xs-4">
+          <label class="control-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email">
+        </div> -->
+
+        <div class="form-group col-xs-6">
+
+          <label class="control-label">CVV</label>
+
+          <input type="password" class="form-control" numbers-only name="cvv" ng-model="cvv" ng-class="{'has-error': (submitted || cardForm.cvv.$touched) && cardForm.cvv.$error.required}"
+            id="cvv" placeholder="123" maxlength="4" required>
+          <span class="red" ng-show="(submitted || cardForm.cvv.$touched) && cardForm.cvv.$error.required">Field is
+            required*</span>
+        </div>
+        <div class="form-group col-xs-6">
+          <div class="row">
+
+            <label class="control-label col-xs-12">Expiration Date</label>
+            <div class="col-xs-6">
+              <!-- Hosted Fields div container -->
+              <!--<input type="text" class="form-control" id="expiration-month" placeholder="MM" onkeypress="return isNumberKey(event);" maxlength="2">-->
+              <select class="form-control" name="expMonth" ng-class="{'has-error': (submitted || cardForm.expMonth.$touched) && cardForm.expMonth.$error.required}"
+                ng-model="expMonth" id="exp-month" required>
+                <option disabled value="" selected>MM</option>
+                <option value="01">Jan</option>
+                <option value="02">Feb</option>
+                <option value="03">Mar</option>
+                <option value="04">Apr</option>
+                <option value="05">May</option>
+                <option value="06">Jun</option>
+                <option value="07">Jul</option>
+                <option value="08">Aug</option>
+                <option value="09">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+            </div>
+            <div class="col-xs-6">
+              <select class="form-control" name="expYear" ng-class="{'has-error': (submitted || cardForm.expYear.$touched) && cardForm.expYear.$error.required}"
+                ng-model="expYear" id="exp-year" required>
+                <option disabled value="" selected>YYYY </option>
+                <option ng-repeat="year in years track by $index" value="{{year}}">{{year}}</option>
+              </select>
+            </div>
+            <div class="col-xs-12 text-center">
+              <span class="red" ng-show="(submitted || cardForm.cvv.$touched) && (cardForm.expYear.$error.required || cardForm.expMonth.$error.required )">Field
+                is
+                required*</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-xs-12 col-sm-6 form-group">
+          <label class="control-label">ZipCode</label>
+          <input type="text" class="form-control" numbers-only name="zipCode" ng-model="zipCode" ng-class="{'has-error': (submitted || cardForm.zipCode.$touched) && cardForm.zipCode.$error.required}"
+            placeholder="ZipCode" required>
+          <span class="red" ng-show="(submitted || cardForm.zipCode.$touched) && cardForm.zipCode.$error.required">Field
+            is required*</span>
+        </div>
+
+      </div> -->
+
+      <div style="text-align: center;">
+      <button type="submit" id="submit" class="btn btn-success btn-lg">Make
+        <span id="card-type">Payment</span>
+      </button>
+      </div>
+      <div style="text-align: right; margin: 20px -10px 0px -10px;">
+       <a href="/<%= I18n.locale %>/app_pages/payment_cancel">Return back >></a>
+      </div>
+    </form>
+    <div id="loader-wrapper" class="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+
+  </div>
+
+
+  <!-- <script src="payform-validation.js"></script> -->
+  <script>
+    var app = angular.module('myApp', ['toastr']);
+    app.controller('myCtrl', ['$scope', '$http', 'toastr', function ($scope, $http, toastr) {
+
+      $scope.submitted = false;
+      $scope.oldValue = '';
+      $scope.oldCursor = '';
+      $scope.cardNo = '';
+
+
+      /* get paramters from url
+       */
+      $scope.getParameterByName = function (name, url) {
+        if (!url) {
+          url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      
+
+
+
+      // toastr.success('Hello world!', 'Toastr fun!', {
+      //   'timeOut': '10000000'
+      // });
+    
+
+
+
+      $scope.inputHandler = function (evt) {
+
+        var el = document.getElementById('cardNo');
+        var newValue = el.value;
+        var newCursorPosition;
+
+        /**
+         * Check for deviation of seperator
+         */
+        if ($scope.oldValue[el.selectionEnd] == ' ') {
+          var charArray = newValue.split('');
+          charArray.splice(el.selectionEnd - 1, 1);
+          newValue = charArray.join('');
+        }
+
+
+        newValue = $scope.unmask(newValue);
+        if (newValue.match(/^\d{0,30}$/g)) {
+          newValue = $scope.mask(newValue);
+          newCursorPosition = $scope.oldCursor - $scope.checkSeparator($scope.oldCursor, 4) +
+            $scope.checkSeparator($scope.oldCursor + (newValue.length - $scope.oldValue.length), 4) +
+            ($scope.unmask(newValue).length - $scope.unmask($scope.oldValue).length);
+          if (newValue !== "") {
+            el.value = newValue;
+          } else {
+            el.value = "";
+          }
+        } else {
+          el.value = oldValue;
+          newCursorPosition = oldCursor;
+        }
+        el.setSelectionRange(newCursorPosition, newCursorPosition);
+        $scope.cardNo = el.value
+
+        return true;
+      }
+
+      $scope.checkSeparator = function (position, interval) {
+        return Math.floor(position / (interval + 1));
+      }
+
+
+      $scope.mask = function (value) {
+        var output = [];
+        for (var i = 0; i < value.length; i++) {
+          if (i !== 0 && i % 4 === 0) {
+            output.push(' '); // add the separator
+          }
+          output.push(value[i]);
+        }
+        return output.join('');
+      }
+
+      $scope.unmask = function (value) {
+        var output = value.replace(new RegExp(/[^\d]/, 'g'), ''); // Remove every non-digit character
+        return output;
+      }
+
+
+      $scope.saveOldValue = function (evt) {
+
+        // console.log(evt);
+        $scope.oldValue = evt.target.value;
+        $scope.oldCursor = evt.target.selectionEnd;
+
+      }
+
+
+      document.getElementById("loader-wrapper").style.display = "none";
+
+      /**
+        Make an array of future years
+      */
+      var d = new Date();
+      var n = d.getFullYear();
+      $scope.years = [];
+      $scope.years[0] = n;
+      for (var i = 1; i <= 25; i++) {
+        $scope.years[i] = $scope.years[i - 1] + 1;
+      }
+
+      $scope.errorHandling = function () {
+        document.getElementById("loader-wrapper").style.display = "none";
+        // window.location.href = window.location.origin + '/authorize_redirect.html';
+        // if ($scope.getParameterByName('app_type') == 'WEB')
+        //   window.parent.postMessage({
+        //     status: 'add_card_error',
+        //     payment_method: 32768
+        //   }, $scope.getParameterByName('domain_name'));
+      }
+
+
+      $scope.getCardType = function (number) {
+        // visa 
+        var re = new RegExp("^4");
+        if (number.match(re) != null)
+          return "Visa";
+
+        // Mastercard 
+        // Updated for Mastercard 2017 BINs expansion 
+        if (
+          /^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/
+          .test(number))
+          return "Mastercard";
+
+        // AMEX 
+        re = new RegExp("^3[47]");
+        if (number.match(re) != null)
+          return "AMEX";
+
+        // Discover 
+        re = new RegExp("^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)");
+        if (number.match(re) != null)
+          return "Discover";
+
+        // Diners 
+        re = new RegExp("^36");
+        if (number.match(re) != null)
+          return "Diners";
+
+        // Diners - Carte Blanche 
+        re = new RegExp("^30[0-5]");
+        if (number.match(re) != null)
+          return "Diners - Carte Blanche";
+
+        // JCB 
+        re = new RegExp("^35(2[89]|[3-8][0-9])");
+        if (number.match(re) != null)
+          return "JCB";
+
+        // Visa Electron 
+        re = new RegExp("^(4026|417500|4508|4844|491(3|7))");
+        if (number.match(re) != null)
+          return "Visa Electron";
+
+        return "";
+      }
+
+      $scope.addCard = function () {
+        console.log($scope.cardForm)
+        $scope.submitted = true;
+
+        if ($scope.cardForm.$invalid) {
+          return;
+        }
+        var month = new Date().getMonth() + 1;
+        if ((parseInt($scope.expMonth, 10) <= month) && ($scope.expYear == new Date().getFullYear())) {
+          toastr.error('You card is expired', '', {
+            'timeOut': '4000'
+          });
+          return;
+        }
+
+        if(!$scope.getCardType($scope.cardNo.replace(/ /g, ''))){
+          toastr.error('Card No is invalid', '', {
+            'timeOut': '4000'
+          });
+          return;
+        }
+        document.getElementById("loader-wrapper").style.display = "block";
+
+        $.ajax({
+          url: window.location.origin + "/<%= I18n.locale%>/app_pages/create_transactions",
+          type: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          data: JSON.stringify({
+
+            'card_number': $scope.cardNo.replace(/ /g, ''),
+            'expiration_date': $scope.expYear + '-' + $scope.expMonth,
+            'cardCode': $scope.cvv,
+            'start_on': "<%= @order_request_data["start_on"] %>",
+            'end_on': "<%= @order_request_data["end_on"] %>",
+            'listing_id': "<%= @order_request_data["listing_id"] %>",
+            'per_hour': "<%= @order_request_data["per_hour"] %>",
+            'start_time': "<%= @order_request_data["start_time"] %>",
+            'end_time': "<%= @order_request_data["end_time"] %>",
+            'quantity': "<%= @order_request_data["quantity"] %>",
+            'payment_type': "<%= @order_request_data["payment_type"] %>",
+            'contract_agreed': "<%= @order_request_data["contract_agreed"] %>",
+            'delivery': "<%= @order_request_data["delivery"] %>" ? "<%= @order_request_data["delivery"] %>" : undefined ,
+            'order_request_id': "<%= @request_data.id %>",
+            'shipping_address': {
+              'name': "<%= @order_request_data["shipping_address_name"] %>",
+              'street1': "<%= @order_request_data["shipping_address_street1"] %>",  
+              'street2': "<%= @order_request_data["shipping_address_street2"] %>",  
+              'postal_code': "<%= @order_request_data["shipping_address_postal_code"] %>",
+              'city': "<%= @order_request_data["shipping_address_city"] %>",  
+              'country_code': "<%= @order_request_data["shipping_address_country_code"] %>",  
+              'state_or_province': "<%= @order_request_data["shipping_address_state_or_province"] %>",  
+            },
+            'person_id': "<%= @current_user.id %>"
+            
+          }),
+          dataType: "json"
+        }).success(function (result) {
+          //document.getElementById("loader-wrapper").style.display = "none"; 
+          if (result.status === 200) {
+            window.location.href = window.location.origin + result.redirect_link;
+         
+          } else {
+            document.getElementById("loader-wrapper").style.display = "none";
+            toastr.error(result.message, '', {
+              'timeOut': '4000'
+            });
+          }
+
+        }).error(function (error) {
+          document.getElementById("loader-wrapper").style.display = "none";
+          toastr.error(error.message, '', {
+            'timeOut': '4000'
+          });
+
+        });
+      }
+
+    }])
+
+    app.directive('numbersOnly', function () {
+      return {
+        require: 'ngModel',
+        link: function (scope, element, attrs, modelCtrl) {
+          modelCtrl.$parsers.push(function (inputValue) {
+            // this next if is necessary for when using ng-required on your input.
+            // In such cases, when a letter is typed first, this parser will be called
+            // again, and the 2nd time, the value will be undefined
+            if (inputValue == undefined) return ''
+            var transformedInput = inputValue.replace(/[^0-9]/, '');
+            if (transformedInput != inputValue) {
+              modelCtrl.$setViewValue(transformedInput);
+              modelCtrl.$render();
+            }
+
+            return transformedInput;
+          });
+        }
+      };
+    });
+  </script>
+
+</body>
+
+</html>

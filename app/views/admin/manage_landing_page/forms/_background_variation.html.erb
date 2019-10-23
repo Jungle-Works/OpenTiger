@@ -1,0 +1,7 @@
+<% variation =  Maybe(form_data['background_image_variation']).or_else('transparent')%>
+
+<div class="form-group">
+        <label for="">Background Image variation</label>
+        <%= select_tag("background-variation", options_for_select( [['Dark', "dark"],["Light", "light"],["Transparent", "transparent"]] ,variation ) ) %>
+
+</div>

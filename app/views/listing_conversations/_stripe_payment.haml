@@ -1,0 +1,68 @@
+= javascript_include_tag "#{STRIPE_JS_HOST}/v3/"
+- if paypal_in_use
+  .row
+    .col-12
+      %h3
+        = t("listing_conversations.stripe_payment.pay_with_card")
+.form-row
+  .row
+    .col-12
+      #card-element
+      %label.hidden#card-errors{role: "alert"}
+
+  - if stripe_shipping_required
+    %h2= t("listing_conversations.stripe_payment.address")
+    .row
+      .col-12
+        %label= t("listing_conversations.stripe_payment.address_name")
+        = text_field_tag 'shipping_address[name]', '', 'stripe-shipping-address': true
+
+    .row
+      .col-12
+        %label= t("listing_conversations.stripe_payment.address_street1")
+        = text_field_tag 'shipping_address[street1]', '', 'stripe-shipping-address': true
+    .row
+      .col-12
+        %label= t("listing_conversations.stripe_payment.address_street2")
+        = text_field_tag 'shipping_address[street2]', ''
+
+    .row
+      .col-4
+        %label= t("listing_conversations.stripe_payment.address_postal_code")
+        = text_field_tag 'shipping_address[postal_code]', '', 'stripe-shipping-address': true
+
+      .col-8
+        %label= t("listing_conversations.stripe_payment.address_city")
+        = text_field_tag 'shipping_address[city]', '', 'stripe-shipping-address': true
+
+    .row
+      .col-4
+        %label= t("listing_conversations.stripe_payment.address_country")
+        = select_tag 'shipping_address[country_code]', options_for_select(CountryI18nHelper.translated_shipping_countries, @current_community.country), {}
+
+      .col-8
+        .us-only.hidden
+          %label= t("listing_conversations.stripe_payment.address_state")
+          = select_tag 'shipping_address[state_or_province]', options_for_select(CountryI18nHelper.us_states), 'stripe-shipping-address': true, prompt: "Select state"
+    .row
+      .col-12
+
+  .row.stripe-payment
+    .col-12.payment-button-wrapper.paypal-button-wrapper
+      = button_tag t("stripe_accounts.add_and_pay"), id: "send-add-card", class: 'checkout-with-stripe-button'
+      %img{src: "https://s3.amazonaws.com/sharetribe/assets/ajax-loader-grey.gif", class: "paypal-button-loading-img", style: "display: none;"}
+
+
+  .row
+    .col-12
+      %p
+        = t("stripe_accounts.card_not_stored").html_safe
+
+= js_t ['error_messages.stripe.generic_error']
+- content_for :extra_javascript do
+  :javascript
+    window.ST.StripePayment.initIntent({
+      publishable_key: '#{publishable_key}'
+    });
+  
+

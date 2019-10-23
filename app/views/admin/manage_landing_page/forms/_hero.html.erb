@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-12">
+        <div>
+            <h3>Edit Main Section</h3>
+        </div>
+        <div class="row hero-form">
+            <form id="lp-form">
+            
+             <%= render partial: "admin/manage_landing_page/forms/images", locals:{form_data: form_data, id: "lp-fileupload-1"}%>
+             <%=  render partial:"admin/manage_landing_page/forms/background_variation", locals: {form_data: form_data} %>
+
+             <%=  render partial:"admin/manage_landing_page/forms/buttons" %>
+            </form>
+        </div>
+    </div>
+</div>

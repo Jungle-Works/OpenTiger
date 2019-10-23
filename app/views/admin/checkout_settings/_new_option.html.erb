@@ -1,0 +1,44 @@
+
+<%label_field_value =   Maybe(form_data['label']).or_else("")%>
+<%price_field_value =  Maybe(form_data['price']).or_else("")%>
+<% description_field_value =  Maybe(form_data['description']).or_else("")%>
+
+<div class="dropdown-option-container" id="<%=option_id %>">
+  <div class="row">
+
+    <div class="col-10">
+      <div class="label-and-price">
+      <div class="col-6">
+        <label>
+          <%= "Label" %>
+        </label>
+        <input name="<%='label-'+ option_id %>" id="<%='label-'+ option_id %>" value="<%=label_field_value%>" type="text" >
+      </div>
+      <div class="col-6">
+        <label>
+          <%= "Price" %>
+        </label>
+        <input name="<%='price-'+ option_id %>" value="<%=price_field_value%>" type="text" maxlength = "10" placeholder = "0" id="<%='price-'+ option_id %>" >
+      </div>
+      </div>
+      <label>
+        <%= "Description" %>
+      </label>
+      <input name="<%='description-'+ option_id %>" value="<%= description_field_value%>" type="text">
+    </div>
+
+    <div class="col-2">
+        <a href="#" class="dropdown-field-option-remove">
+            <%= icon_tag("cross", ["icon-fix"]) %>
+        </a>
+        <a href="#" class="option-fields-action-up admin-sort-button">
+            <%= icon_tag("directup", ["icon-fix"]) %>
+        </a>
+        <a href="#" class="option-fields-action-down admin-sort-button">
+            <%= icon_tag("directdown", ["icon-fix"]) %>
+        </a>
+        
+    </div>
+  </div>
+</div>
+
