@@ -1,0 +1,29 @@
+.links {
+  height: 100%;
+  font-family: var(--Topbar_fontFamily);
+  &.linksNewTheme{
+  font-family: 'sofiapro', helvetica, sans-serif;
+    @media (--medium-viewport) {
+    padding: 0px 12px 0px 0px;
+    }
+  }
+}
+
+
+
+.link {
+  display: inline-block;
+  height: 100%;
+  line-height: var(--Topbar_mobileHeight);
+  padding: 0 12px;
+  position: relative;
+
+  @media (--medium-viewport) {
+    line-height: var(--Topbar_tabletHeight);
+  }
+
+  @media (--large-viewport) {
+    line-height: var(--Topbar_height);
+  }
+
+}

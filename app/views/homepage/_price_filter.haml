@@ -1,0 +1,53 @@
+
+  
+.toggle-container.home-toolbar-toggle-container.price-filter
+  .toggle.with-borders{data: {toggle: '#home-toolbar-'+t("listings.form.price.price")+'-menu'}}
+    .toggle-header-container
+      .toggle-header
+      = t("listings.form.price.price")
+      -# = icon_tag("dropdown", ["icon-dropdown"])
+  .toggle-menu.hidden{:id => 'home-toolbar-'+t("listings.form.price.price")+'-menu'}
+    .custom-filter-options
+      - id = ["range-slider", "price"].join("-")
+      - price_min = MoneyUtil.to_units(MoneyUtil.to_money(@current_community.price_filter_min, @current_community.currency))
+      - price_max = MoneyUtil.to_units(MoneyUtil.to_money(@current_community.price_filter_max, @current_community.currency))
+      - range = [price_min, price_max]
+      - start = [params["price_min"] || price_min, params["price_max"] || price_max]
+      - labels = ["#price-filter-min-value", "#price-filter-max-value"]
+      - fields = ["#price_min", "#price_max"]
+      %div.price-range
+        %span.price-range-text
+          %span
+            = t("custom.price_range")
+        %div.price-min-max
+          %input{ class: 'min-price-limit', type: 'tel',  id: "price_min", name: "price_min", onkeydown:"window.ST.numberFilters.onKeyDownHandler(event)" , oninput:"window.ST.numberFilters.onInputHandler(event,#{range.to_json.html_safe},#{fields.to_json.html_safe},'#price_min','##{id}')",value: params["price_min"], placeholder: price_min, min: price_min, max: price_max, step: "1"}
+          %span.price-seperator
+            = "-"
+          %input{ class: 'max-price-limit', type: 'tel', id: "price_max", name: "price_max", onkeydown:"window.ST.numberFilters.onKeyDownHandler(event)" , oninput:"window.ST.numberFilters.onInputHandler(event,#{range.to_json.html_safe},#{fields.to_json.html_safe},'#price_max','##{id}')",
+          value: params["price_max"], placeholder: price_max, min: price_min, max: price_max, step: "1"}
+      - id = ["range-slider", "price"].join("-")
+      .range-slider{id: id}
+       
+
+        - content_for :extra_javascript do
+          :javascript
+            window.ST.rangeFilter("##{id}", #{range.to_json.html_safe}, #{start.to_json.html_safe}, #{labels.to_json.html_safe}, #{fields.to_json.html_safe}, false)
+
+    -# .row
+    -#   .col-12
+    -#     .left
+    -#       %span.custom-filter-min-max-title= t("homepage.custom_filters.min")
+    -#       %span{id: "price-filter-min-value"}
+    -#       %input{type: "hidden", id: "price_min", name: "price_min", value: params["price_min"]}
+    -#     .right
+    -#       %span.custom-filter-min-max-title= t("homepage.custom_filters.max")
+    -#       %span{id: "price-filter-max-value"}
+    -#       %input{type: "hidden", id: "price_max", name: "price_max", value: params["price_max"]}
+    .filter-action
+      %button{class: "clear-filter-button", id: "clear-button", :type=> "submit", :onclick => "window.ST.clearPriceRangeFilter(`##{id}`)"}
+        = t("custom.clear")
+      %div{:class=> "apply-cancel-btn"}
+        %button{ class: "cancel-filter-button", :type=> "button", :onclick => "window.ST.cancelPriceRangeFilter(`##{id}`)"}
+          = t("custom.cancel")
+        %button{type: 'submit', class: "apply-filter-button"}
+          = t("custom.apply")

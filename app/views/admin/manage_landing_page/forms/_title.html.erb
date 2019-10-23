@@ -1,0 +1,6 @@
+<% title_data = Maybe(form_data['title']).or_else("") %>
+  
+  <div class="form-group">
+      <label for="">Title</label>
+      <input type="text" id="<%= label %>" name="<%= label %>" value="<%= title_data %>">
+  </div>

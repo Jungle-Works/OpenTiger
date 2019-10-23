@@ -1,0 +1,14 @@
+<% if form_data['button_color'] %>
+<% button_color = convertRGBToHex(form_data['button_color']["value"]) %>
+<% else %>
+<% button_color = "" %>
+<%end%>
+
+<div class="form-group">
+    <label for="">Button Color</label>
+    <div class="color-picker-wrapper">
+    <%= render partial: "layouts/info_text", locals: { text: "Set the button color" } %>
+    <input class="lp-color-picker" name="<%= label%>-picker" id="<%= label%>-picker" value="<%= Maybe(button_color).or_else("#0074F9")%>" type="color">
+    </div>
+    <input name="<%= label%>" id="<%= label%>" value="<%= button_color%>" type="text">
+</div>

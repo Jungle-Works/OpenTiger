@@ -1,0 +1,69 @@
+%div#razorpay_payout_forms
+  .row.paypal-wizard
+    .col-12
+      .paypal-wizard-content
+        .row
+          .col-12
+            %form{id: "add-seller-account-details"}
+              .row
+                .col-12
+                  %label
+                    = "Name: "
+                  %input{type: "text", name: "name", id: "seller-name", placeholder: "Enter your name"}
+                  %input{type: "hidden", name: "email", id: "seller-email", value: @current_user.emails.first.address}
+
+              %h3
+                = "Account details: "
+              .row
+                .col-12
+                  %label
+                    = "Business name: "
+                  %input{type: "text", name: "business_name", id: "seller-business-name", placeholder: "Enter business name"}
+              .row
+                .col-12
+                  %label
+                    = "Business type: "
+                  = select_tag :business_type, options_for_select(RazorpayHelper.business_type_options(RazorpayAccount::VALID_BUSINESS_TYPES))
+              %h3
+                = "Bank account details: "
+              .row
+                .col-12
+                  %label
+                    = "Account number: "
+                  %input{type: "text", name: "account_number", id: "seller-account-number", placeholder: "Enter account number"}
+              .row
+                .col-12
+                  %label
+                    = "IFSC code: "
+                  %input{type: "text", name: "ifsc_code", id: "seller-ifsc-code", placeholder: "Enter ifsc code"}
+              .row
+                .col-12
+                  %label
+                    = "Account type: "
+                  = select_tag "account_type", options_for_select([ ['Current',"current"],['Savings',"savings"] ], "current")
+              .row
+                .col-12
+                  %label
+                    = "Bneficiary Name: "
+                  %input{type: "text", name: "beneficiary_name", id: "seller-beneficiary-name", placeholder: "Enter beneficiary name", minlength: "4"}
+
+              .outer-checkbox-container
+                .checkbox-container
+                  %input{type: "checkbox", id: "accept-rp-tnc", name: "accept-rp-tnc" }
+                  %span{style: "display:flex"}
+                    = label_tag "accept-rp-tnc", t("razorpay.seller_account.i_accept_the_terms"), :class => "checkbox"
+                    = link_to t('razorpay.seller_account.terms'), "https://razorpay.com/terms/", :class => "razorpay-terms", target: "_blank"
+
+              .row
+                .col-4
+                  = link_to t('stripe_accounts.form_new.cancel'), person_payment_settings_path(@current_user), style: 'float: right; margin-top: 1.5em'
+                  %button{type: "button", id: "submit-rp-payouts", onclick: "ST.razorpay.submitRazorpayPayouts()"}
+                    = t('stripe_accounts.form_new.save_details')
+                  
+                
+
+              - content_for :extra_javascript do
+                :javascript
+                  $(document).ready(function() {
+                    ST.razorpay.initRazorpayPayoutForm();
+                  });

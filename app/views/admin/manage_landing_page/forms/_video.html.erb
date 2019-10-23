@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-12">
+    <div>
+      <h3>Edit Info Section</h3>
+    </div>
+    <div class="row hero-form">
+      <form id="lp-form">
+
+        <% youtube_video_id = form_data['youtube_video_id'] ? form_data['youtube_video_id'] : "" %>
+        <%=  render partial:"admin/manage_landing_page/forms/input_text", locals: {label: "youtube_video_id", input_value: youtube_video_id , input_name: "YouTube Video Id",
+        info_text: "Hint: This is the link for youtube video https://www.youtube.com/watch?v=gdyOiUNGwDw and video id is gdyOiUNGwDw"} %>
+
+        <% height = form_data['height'] ? form_data['height'] : "" %>
+         <%=  render partial:"admin/manage_landing_page/forms/input_text", locals: {label: "height", input_value: height , input_name: "Section Height"} %>
+
+        <% width = form_data['width'] ? form_data['width'] : "" %>
+         <%=  render partial:"admin/manage_landing_page/forms/input_text", locals: {label: "width", input_value: width , input_name: "Section Width"} %>
+
+        <% text = form_data['text'] ? form_data['text'] : "" %>
+         <%=  render partial:"admin/manage_landing_page/forms/input_text", locals: {label: "text", input_value: text , input_name: "Video Text"} %>
+
+
+        <%=  render partial:"admin/manage_landing_page/forms/buttons", locals: {form_data: form_data}  %>
+
+      </form>
+    </div>
+  </div>
+</div>

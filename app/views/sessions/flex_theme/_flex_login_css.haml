@@ -1,0 +1,181 @@
+:scss
+  .wrapper{
+     max-width:100%;
+     max-height:100%
+  }
+  .login-form, .new-password-form{
+        background-image: linear-gradient(-45deg,rgba(0,0,0,.3),rgba(0,0,0,.6)),url("#{ image_map[:cover_photo] }");
+        width: 100%;
+        background-size: cover;
+        padding: 84px 0;
+        min-height: 80vh;
+    }
+    .login-centered-section, .new-password-centered-section{
+      max-width: 480px;
+      border-bottom: 8px solid ##{color1};
+      padding: 25px 60px;
+      background-color: white;
+      margin: 0 auto;
+      .flex-fb-login-link{
+        a#google-oauth2-login,a#linkedin-login{
+          border-radius: 0;
+        }
+        a.fb-connect {
+          padding: 0px 12px 0px 5px;
+          width: 100%;
+          margin-bottom: lines(0.5);
+          margin-top: lines(1.5);
+          position: relative;
+          cursor: pointer;
+          color: white;
+          display: flex;
+          align-items: center;
+          text-align: left;
+          background: #25567c;
+          min-height: 46px;
+
+          &:hover {
+            background: #6f99bc;
+          }
+
+          .fb-icon {
+            height: 30px;
+            width: 40px;
+          }
+          .fb-text {
+            padding-left: 10px;
+          }
+        }
+      }
+      .flex-form-group{
+        label.error{
+        border-radius: 0px;
+        background: #fff;
+        color: red;
+        padding: 0;
+        margin: 5px 0 0 0;
+         &:before{
+           content: none;
+         }
+      }
+      label{
+        margin-top: 28px;
+      }
+      input{
+        padding: 0;
+        border: none;
+        border-radius: 0px;
+        border-bottom: 2px solid #fa0;
+        transition: border-bottom-color .2s ease-in;
+        
+
+        &:hover, &:focus {
+          border-bottom-color: #4a4a4a;
+          outline: none;
+        }
+      }
+      input.valid{
+        border-bottom-color: #2ecc71;
+      }
+      input.error{
+        border-bottom-color: red;
+      }
+      input[type=file]{
+      border:none;
+      }
+      .forgot-password-and-login{
+        margin-top: 80px;
+        .login_button{
+          margin-top: 0;
+          width: 100%;
+          border: none;
+          border-radius: 0px;
+          min-height: 65px;
+        }
+        .reset-your-password{
+          text-align: center;
+          margin-bottom: 10px;
+          color: #b2b2b2;
+          a{
+            color: #4a4a4a;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .reques-new-or-login{
+        margin-top: 80px;
+        .request-new-password-button{
+          width: 100%;
+          margin-top: 0;
+          border-radius: 0px;
+          min-height: 65px;
+        }
+        .remembered-password{
+          text-align: center;
+          margin-bottom: 10px;
+          color: #b2b2b2;
+          a{
+            color: #4a4a4a;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      }
+      .req-new-password-instructions{
+        svg{
+          height: 64px;
+          margin-bottom: 23px;
+          g{
+            g{
+              stroke: ##{color1};
+            }
+          }
+        }
+      }
+    }
+    .horizontal-nav{
+      display: flex;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      .nav-tab{
+         padding: 0px 14px;
+         a{
+           color: #4a4a4a;
+         }
+      }
+      .nav-tab.login{
+        border-bottom: 4px solid black;
+        a{
+          color: #000;
+        }
+      }
+    }
+  .new-password-form{
+    .new-password-centered-section{
+      .req-new-password-instructions{
+        h1{
+          margin: 0;
+          color: #4a4a4a;
+        }
+        p{
+          margin: 24px 0 0;
+          font-size: 20px;
+          line-height: 32px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px){
+    .login-form, .new-password-form{
+      background-image: none;
+      padding-top: 0;
+      .login-centered-section, .new-password-centered-section{
+        padding: 25px 15px;
+      }
+    }
+  }

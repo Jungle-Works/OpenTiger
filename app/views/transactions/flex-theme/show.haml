@@ -1,0 +1,56 @@
+= render :partial=> "transactions/flex-theme/flex_show_design" , locals: MarketplaceHelper.style_customizations_map(@current_community)
+- currency = Money::Currency.new(@current_community.currency)
+
+= render :partial => "conversations/conversation_header", locals: {other_party: conversation_other_party}
+
+.flex-checkout-container
+  .flex-listing-checkout-details
+    .flex-checkout-listing-image
+      - if has_images?(@listing)
+        %img{:src => "#{@listing.listing_images.first.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}"}
+      -else
+        = image_tag "default-img.png", :class => "fluid-thumbnail-grid-image-image"
+    .flex-checkout-host-avatar
+      .flex-checkout-host-avatar-image
+        = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
+    .flex-listing-order-details
+      .preauthorize-section
+        .check-listing-and-host-name
+          %h2.checkout-listing-heading
+            = link_to_unless @transaction.listing.deleted, @transaction.listing.title, listing_path(id: @transaction.listing.id)
+          .start-a-convo
+            .hosted-by{style: "display:flex"}
+              %span.listed-by  
+                = "Listed by" 
+              %span.hostname-text
+                = PersonViewUtils.person_display_name(@listing.author, @current_community)
+            .open-chatbox
+              %button{ class: "chatbox-button", type: "button", onclick: "window.ST.openChatBox()"}
+                = "Chat"
+          .transaction-and-additional-information
+            = render :partial => "transactions/flex-theme/flex_details", locals: {role: role, is_author: is_author, price_break_down_locals: price_break_down_locals, show_listing_title: false}
+
+            = render :partial => "transactions/additional_information_output"
+
+            = render :partial => "transactions/fugu_group", locals: {fuguChatUrl: @fuguChatUrl}
+  .flex-message-and-form
+    = render :partial =>  (true ? "conversations/flex_conversations/flex_message_and_form" : "conversations/messages_and_form"), locals: {role: role, message_form: message_form, message_form_action: message_form_action, messages: messages, other_party: conversation_other_party}
+
+
+
+- if params['unit_type'] == 'unit'
+
+  - content_for :extra_javascript do
+    :javascript
+      $(document).ready( function() {
+        var delivery_charge_value = "#{raw @charge}";
+        var currency = "#{raw currency.symbol}";
+        const value = parseFloat($('.total_value').html().trim());
+          $('.initiate-transaction-total-value').html(currency + (value + parseFloat(delivery_charge_value)).toFixed(2));
+      });
+      
+
+
+
+   
+  

@@ -1,0 +1,9 @@
+
+<% button_path = form_data['button_path'] ? form_data['button_path']["value"] : ""%>
+
+
+<div class="form-group">
+    <label for="">Button Path</label>
+    <%= render partial: "layouts/info_text", locals: { text: "Set the button location" } %>
+    <input name="<%= label%>" id="<%= label%>" value="<%= button_path%>" type="text">
+</div>

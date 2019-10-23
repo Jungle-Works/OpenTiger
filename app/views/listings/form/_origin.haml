@@ -1,0 +1,45 @@
+- required = @current_community.listing_location_required?
+- title = t(".location") + (required ? "*" : "")
+- required_class = (required ? "required" : "")
+- origin_loc = @listing.origin_loc
+
+= form.label :origin, title, :class => "input"
+%div.location_text_field
+  = form.text_field :origin, :class => "text_field #{required_class}", :onkeypress => "hideLocationError()", :value => (origin_loc ? origin_loc.address : nil)
+  = form.fields_for :origin_loc, include_id: false do |loc|
+    = loc.hidden_field :address, :value => origin_loc.address
+    = loc.hidden_field :google_address, :value => origin_loc.google_address
+    = loc.hidden_field :latitude, :value => origin_loc.latitude
+    = loc.hidden_field :longitude, :value => origin_loc.longitude
+  
+  = image_tag "gun-pointer.svg" , class: "locate-me", id: "locate-me-popup", :onclick => "window.ST.locationPermission()"
+  %div.loader{id: 'spinner'}
+%p{id: "deny-location-message"}
+
+-if run_js_immediately
+  :javascript
+      $(document).ready(function() { 
+      console.log("qwerty");
+      var searchInput = document.getElementById('listing_origin')
+      const autocomplete = new window.google.maps.places.Autocomplete(searchInput);
+      autocomplete.setTypes(['geocode']);
+      autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
+      this.placeChangedListener = window.google.maps.event.addListener(
+          autocomplete,
+          'place_changed',
+          () => {update_map(searchInput)});
+    });
+- else
+  - content_for :extra_javascript do
+    :javascript
+      $(document).ready(function() { 
+      console.log("qwerty");
+      var searchInput = document.getElementById('listing_origin')
+      const autocomplete = new window.google.maps.places.Autocomplete(searchInput);
+      autocomplete.setTypes(['geocode']);
+      autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
+      this.placeChangedListener = window.google.maps.event.addListener(
+          autocomplete,
+          'place_changed',
+          () => {update_map(searchInput)});
+    });

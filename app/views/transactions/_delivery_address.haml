@@ -1,0 +1,46 @@
+- currency = Money::Currency.new(@current_community.currency)
+%div.Aapartment-no
+  %h2
+    Apartment No.
+  %div
+    %input{type: "text", id: "apartment-no", name: "apartment-no", placeholder: "Enter your apartment number"}
+  %br
+%div
+  %h2
+    Delivery Address
+  %div.location_text_field
+    %input{type: "text", id: "delivery-address",placeholder: "Enter the location", name: "delivery-address", class:"text_field",:onkeyup => "timed_input(this)", :oninput => "hideLocationError()"}
+    = image_tag "gun-pointer.svg" , class: "locate-me", id: "locate-me-popup", :onclick => "window.ST.locationPermission()"
+    %div.loader{id: 'spinner'}
+    %p{id: "deny-location-message"}
+  %div{:id => "delivery-estimate",style: "display: none; background-color: #c9c9c9c9;padding: 9px;"}
+    Fetching Delivery Charges..
+  %div  
+    = render :partial => "transactions/googlemap"
+
+
+%br
+%div.landmark    
+  %h2
+    Landmark
+  %div
+    %input{type: "text", id: "landmark", name: "landmark", placeholder: "Enter any landmark"}
+  %br
+
+  %input{type: "hidden", id: "delivery_loc_latitude", name: "delivery_lat"}
+  %input{type: "hidden", id: "delivery_loc_longitude", name: "delivery_long"}
+  %input{type: "hidden", id: "delivery_loc_address", name: "delivery_fulladdress"}
+  %input{type: "hidden", id: "delivery_loc_google_address", name: "delivery_google_address"}
+  %input{type: "hidden", id: "estimated_fare", name: "estimated_fare"}
+  
+
+- content_for :extra_javascript do
+  :javascript
+    $(document).ready(function() { 
+        initTransactionDeliveryForm("#{raw currency.symbol}","#{APP_CONFIG.tookan_api_key}");
+    });
+
+
+
+
+  

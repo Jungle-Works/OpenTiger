@@ -1,0 +1,19 @@
+ja: 
+  emails: 
+    welcome_email_marketplace_creator: 
+      welcome_email_subject_for_marketplace_creator: "Yeloへようこそ"
+      welcome_to_marketplace_creator: "Yeloへようこそ%{name}!"
+      journey_begins: "市場起業家になるためのあなたの旅は始まったばかりです！次の 14 日で、あなたは無料でYeloを試してみて、あなた自身のオンライン市場を構築することになります。"
+      marketplace_information: "これはあなたの市場情報です。"
+      your_email_address: " - あなたのアカウントのEメールアドレス："
+      your_marketplace_address: " - あなたの市場アドレス："
+      share_your_marketplace_address: "これはあなたのマーケットプレイスのパブリックアドレスです、あなたがあなたの訪問者と共有するべきものです。"
+      your_marketplace_admin_panel: " - あなたのマーケットプレイス管理者パネル："
+      follow_suggested_steps: "これは、あなたが所有者としてあなたの市場に変更を加えることができる場所です。あなたのマーケットプレイスの設定を始めるために提案されたステップに従ってください。"
+      not_alone: "あなたは一人じゃない"
+      support_team: "Yeloのサポートチームがあなたのためにここにいます！最も一般的な質問への回答と%{knowledge_base_link}をチェックしてください。contact@yelo.red に電子メールで、または単にこの電子メールに返信してチームに連絡してください。"
+      helping_you: "途中であなたを助ける"
+      drip_emails_academy: "市場ビジネスを構築する方法についてもっとアドバイスが必要ですか？心配しないで、私たちはあなたを助けるためにここにいます！あなたはすでに私たちの%{marketplace_academy_link}?をチェックアウトしたことがありますか？さらに、Yeloを最大限に活用するのに役立つ一連の電子メールを送信します。あなたはすぐにあなたの受信トレイに最初の人が着地することを期待することができます。"
+      marketplace_academy_link_text: "マーケットプレイスアカデミー"
+      cheers: "からの歓声、"
+      sharetribe_team: "Yeloチーム"

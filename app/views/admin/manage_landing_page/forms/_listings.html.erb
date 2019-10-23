@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-12">
+        <div>
+            <h3>Edit Info Section</h3>
+        </div>
+        <div class="row hero-form">
+            <form id="lp-form">
+             
+            <%=  render partial:"admin/manage_landing_page/forms/title", locals: {form_data: form_data, label: "title"} %>
+
+             <%=  render partial:"admin/manage_landing_page/forms/section_button",  locals: {form_data: form_data, column_id: "listing"} %>
+             <%=  render partial:"admin/manage_landing_page/forms/description",  locals: {form_data: form_data, label: "description"} %>
+             <%=  render partial:"admin/manage_landing_page/forms/listing_selection",  locals: {form_data: form_data, label: "listing-selection"} %>
+
+            <!-- input for no listing image text -->
+            <% no_image_text = form_data['no_listing_image_text'] ? form_data['no_listing_image_text']["value"] : "" %>
+              <%=  render partial:"admin/manage_landing_page/forms/input_text" ,  locals:   {input_value: no_image_text,label: "no_listing_image_text" , 
+              input_name: "No Listing Image Text", info_text: "Some of the listings do not have an image, so you need to set default text"}%>
+    
+            <!-- input for price -->
+            <% price_color = form_data['price_color'] ? convertRGBToHex(form_data['price_color']["value"])  : "" %>
+             <%=  render partial:"admin/manage_landing_page/forms/color_input",  locals: {form_data: form_data, label: "price_color", input_value: price_color , input_name: "Price Color"} %>
+
+
+             <%=  render partial:"admin/manage_landing_page/forms/buttons", locals: {form_data: form_data}  %>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

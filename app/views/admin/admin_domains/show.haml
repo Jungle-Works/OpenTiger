@@ -1,0 +1,80 @@
+- content_for :title_header do
+  %h1
+    = t("layouts.admin.admin")
+    = "-"
+    = t("admin.communities.domain.domain")
+
+= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@presenter.community) }
+
+.left-navi-section
+  .custom-domain-container
+    %section
+      .form-container
+        %h5.box-heading.container-heading
+          = "Set up your existing domains to connect to Yelo"
+      .setup-instruction
+        %p.instruction-heading
+          = "Setting up your domain is not something you have to do often, but it's important that you do it properly the first time. The following instructions work for the most common third-party domain providers :"
+        %ul.setup-instruction-list.one
+          %li.setup-instruction-list-item
+            = "Log in to the account you have with your domain provider."
+          %li.setup-instruction-list-item
+            = "Find your DNS settings. Look for your account admin panel, or your domain management area, or advance DNS Zone, or similar."
+          %li.setup-instruction-list-item
+            ="Edit your CNAME record to point to Yelo's CNAME, which is 'rentals.yelo.red' for Marketplace."
+          %li.setup-instruction-list-item
+            ="Add/Edit your 'A' record to point to Yelo's server IP address which is '34.194.223.182'."
+        %p.instruction-subheading
+          = "The third-party admin panel might feature drop-downs or editable fields, or you might have to check boxes or edit a table. In the admin, you need to:"
+        %ul.setup-instruction-sub-list
+          %li.setup-instruction-sub-list-item
+            = "enter or choose the @ symbol, or CNAME record"
+          %li.setup-instruction-sub-list-item
+            = "enter Yelo's CNAME [rentals.yelo.red] as the destination for the CNAME record"
+        %ul.setup-instruction-list.two{:start => "5"}
+          %li.setup-instruction-list-item
+            = "Save the CNAME Record (click Save, Save Zone File, Add Record, or similar)."
+          %li.setup-instruction-list-item
+            = "Add/Update your final domain name on below mentioned textboxes and save the change."
+        %p.instruction-subheading
+          = "For example :"
+        = image_tag "domain-help.png", :class => "domain-help"
+
+
+    %section
+      %form{ id: "cust_domain_form"}
+        .form-container
+          %h5.box-heading.container-heading 
+            = "Marketplace Domain"
+          .fill-domain
+            %span.protocol 
+              = "https://"
+            %input.domain-field{:maxlength => "60", id: "cust_domain", name: "cust_domain",value: (@current_community.domain.include? ".yelo.red")? "" : @current_community.domain , :placeholder => "enter marketplace domain", :type => "text", :oninput => "displaySaveCancel()"}
+          %label.heading-l2.cname-record-instructuion
+            = "* Make sure you create a CNAME DNS record for your domain to rentals.yelo.red. And, it can take up to 24-48 hrs for the custom domain to be activated."
+          %div{:class=> "save-cancel-btn", id: "domain-buttons", style: "display:none"}
+            %button{type: 'submit', id: 'change-domain-btn', class: "change-domain-button", :onclick => "checkDomainAvailability(event,'#{ @auth_user[:access_token]}','#{@current_community[:user_id]}'"}
+              = t("custom.save")
+            %button{ class: "cancel-domain-button", type: 'button' , :onclick => "closeDomainForm()"}
+              = t("custom.cancel")
+
+    %section
+      %form{ id: "google_map_form",method: "post", action: update_google_maps_key_admin_admin_domains_path}
+        .form-container
+          %h5.box-heading.container-heading 
+            = "Google maps key"
+          %input{:maxlength => "60", id: "google_maps_key", name: "google_maps_key",value: Maybe(@current_community.google_maps_key).or_else(""), :placeholder => "Enter Google maps key", :type => "text", :oninput => "ST.adminDomain.showMapFormButtons()"}
+          %label.heading-l2.cname-record-instructuion
+            = "* Please make sure to set your marketplace domain before entering the google map api key."
+          %div{:class=> "map-form-btn save-cancel-btn", id: "map-buttons", style: "display:none"}
+            %button{class: "change-domain-button",type: 'submit', id: 'submit-map-form', :onclick => "ST.adminDomain.disableSubmitButton()"}
+              = t("custom.save")
+            %button{ id: "reset-map-form", type: 'button', class: "cancel-domain-button" , :onclick => "ST.adminDomain.resetMapForm()"}
+              = t("custom.cancel")
+
+
+    - content_for :extra_javascript do
+      :javascript
+        $(document).ready(function() {
+          initAdminDomainForm();
+        });

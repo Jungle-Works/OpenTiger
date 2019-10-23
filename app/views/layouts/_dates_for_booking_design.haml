@@ -1,0 +1,116 @@
+:scss
+ 
+    #datepicker-popup{
+        padding: 0;
+        background-color: rgba(0,0,0,.4);
+        background-image: none;
+        min-height: 100vh;
+        overflow: auto;
+        justify-content: center;
+        align-items: flex-start;
+        flex-grow: 1;
+        display: flex;
+        z-index: 100;
+    }
+    .datepicker-popup-flex{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-basis: 576px;
+        height: 100%;
+        padding: 55px 60px;
+        background-color: #fff;
+        margin-top: 12.5vh;
+        margin-bottom: 12.5vh;
+        flex-grow: 0;
+    }
+    .close_datepicker-btn{
+        background-color: transparent;
+        color: #4a4a4a;
+        padding: 27px 30px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 101;
+        display: flex;
+        margin: 0;
+        border: 0;
+        &:hover{
+            background-color: #fff;
+            color: #4a4a4a;
+        }
+         &:focus{
+            outline: none;
+        }
+    }
+    .close_datepicker-span{
+        margin: -2.5px 0 0;
+        line-height: 16px;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        .icon-remove{
+            font-size: larger;
+            padding-left: 5px;
+        }
+    }
+    .datepicker-popup-content{
+        height: 100%;
+        overflow: visible;
+        width: 100%;
+        .listing-title-heading{
+        padding: 0;
+        margin-top: 89px;
+        margin-bottom: 36px;
+        h1{
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #4a4a4a;
+            width: 100%;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 56px;
+            letter-spacing: -2px;
+        }
+        .listing-host{
+            margin-top: 0;
+            margin-bottom: 0;
+            color: #4a4a4a;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0;
+        }
+    }
+    }
+    @media screen and (max-width: 768px){
+        #datepicker-popup{
+            background-color: #fff;
+            min-height: 100vh;
+            overflow: auto;
+            flex-grow: 1;
+            display: -ms-flexbox;
+            display: flex;
+            .datepicker-popup-flex{
+            height: 100vh;
+            flex-direction: column;
+            padding: 0;
+            background-color: #fff;
+            border-radius: 2px;
+            }
+            .close_datepicker-btn{
+                position: fixed;
+                top: 0;
+                right: 0;
+                z-index: 101;
+                padding: 24px;
+            }   
+            .datepicker-popup-content{
+                    width: 100%;
+            }
+        }
+        
+    }
+    
+   

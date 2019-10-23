@@ -1,0 +1,14 @@
+/* Display a notice */
+$("#conversation_notice").html('<div class="conversation_notice"><%= t("layouts.notifications.#{flash[:message_notice]}") %></div');
+
+/* Add the new message to the bottom of the message list */
+$("#messages").prepend("<%=raw escape_javascript(render(:partial => 'conversations/flex_conversations/flex_message', locals: { message_or_action: message })) %>");
+$("#message<%= @message.id.to_s %>").effect("highlight", {}, 3000);
+$(".chat-history").scrollTop($(".chat-history")[0].scrollHeight);
+
+/* Reset the message form */
+$("#new_message")[0].reset();
+
+/* Enable send button */
+$('#new_message button').removeAttr('disabled');
+$('#new_message button').empty().append('<%= t("conversations.show.send_reply") %>');

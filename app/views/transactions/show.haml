@@ -1,0 +1,28 @@
+- currency = Money::Currency.new(@current_community.currency)
+
+= render :partial => "conversations/conversation_header", locals: {other_party: conversation_other_party}
+
+.centered-section-wide
+  = render :partial => "transactions/details", locals: {role: role, is_author: is_author, price_break_down_locals: price_break_down_locals, show_listing_title: true}
+  - if price_break_down_locals.present?
+    = render :partial => "transactions/additional_information_output"
+  = render :partial =>  "conversations/messages_and_form", locals: {role: role, message_form: message_form, message_form_action: message_form_action, messages: messages, fuguChatUrl: @fuguChatUrl}
+
+  
+
+
+
+- if params['unit_type'] == 'unit'
+
+  - content_for :extra_javascript do
+    :javascript
+      $(document).ready( function() {
+        var delivery_charge_value = "#{raw @charge}";
+        var currency = "#{raw currency.symbol}";
+        const value = parseFloat($('.total_value').html().trim());
+          $('.initiate-transaction-total-value').html(currency + (value + parseFloat(delivery_charge_value)).toFixed(2));
+      })
+
+
+   
+  

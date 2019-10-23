@@ -1,0 +1,9 @@
+#delivery_address_map.jsmap
+
+- content_for :extra_javascript do
+  :javascript
+    $(document).ready(function() {
+      var source = "transaction_form";
+      googlemapMarkerInit('delivery_address_map',"delivery_loc","delivery-address",true, #{tribe_latitude}, #{tribe_longitude});
+    });
+

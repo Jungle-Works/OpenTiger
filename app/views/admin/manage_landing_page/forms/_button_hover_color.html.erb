@@ -1,0 +1,18 @@
+
+<% if form_data['button_color_hover'] %>
+<% button_hover_color = convertRGBToHex(form_data['button_color_hover']["value"]) %>
+<% else %>
+<% button_hover_color = "" %>
+
+<%end%>
+
+<div class="form-group">
+    <label for="">Button Hover Color</label>
+    <div class="color-picker-wrapper">
+    <%= render partial: "layouts/info_text", locals: { text: "Set the button color when mouse is over the button" } %>
+    <input class="lp-color-picker" name="<%= label%>-picker" id="<%= label%>-picker" value="<%= Maybe(button_hover_color).or_else("#0074F9")%>" type="color">
+    </div>
+    <input name="<%= label%>" id="<%= label%>" value="<%= button_hover_color %>" type="text">
+
+</div>
+

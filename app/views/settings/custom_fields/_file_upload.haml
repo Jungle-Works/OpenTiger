@@ -1,0 +1,11 @@
+%div.signup-file-fields
+  - value = custom_field_value.file_upload_value.present? ? custom_field_value.file_upload_value : ""
+  %input{type: "hidden", id: "person_custom_file_fields_#{index}_hd", name: "#{prefix}[file_upload_value]", class: "signup-file-input",value: "#{value}", onchange: "window.ST.personCustomFields.uploadImageForVerification(#{index},'#{buttonID}')"}
+  %input{type: "file",id: "person_custom_file_fields_#{index}", name: "file_upload_value_signup", class: "signup-file-input", :class => ((custom_field.required? && !custom_field_value.file_upload_value.present?) ? "required" : ""), value: "#{value}", onchange: "window.ST.personCustomFields.uploadImageForVerification(#{index}, '#{buttonID}')"}
+  %p{id: "upload-in-progress-#{index}"}
+- content_for :extra_javascript do
+  :javascript
+    $(document).ready(function(){ 
+      var imageOpts = #{raw image_s3_options};
+      window.ST.personCustomFields.initializeSignupS3Options(imageOpts);
+    });

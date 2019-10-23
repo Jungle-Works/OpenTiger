@@ -1,0 +1,56 @@
+<% screenshot = JSON.parse(theme_detail["content"])["screenshots"]%>
+<div class="theme-card">
+  <div class="thumbnail">
+    <%= image_tag(theme_detail.title.downcase+".png") %>
+   
+
+    <% if @current_theme.theme_id == theme_detail.id %>
+    <div class="selected-tag">
+      CURRENT THEME
+    </div>
+  
+    <% end%>
+
+    <% if @current_theme.theme_id != theme_detail.id %>
+     <div class="theme-overlay">
+    </div>
+    <div class="action-buttons">
+      <div class="preview-button" onclick='ST["adminThemes"]["initCarousel"](<%= raw screenshot.to_json%>)'>
+        <%= icon_tag("layout")%>
+      </div>
+      <% if theme_detail.is_paid == "paid" %>
+         <% if true %>
+   
+         <% theme_data = {'id'=> theme_detail.id}%>
+         <button class="select-button" id="<%= 'publish-' + theme_detail.id.to_s%>" onclick='ST["adminThemes"]["publish"](<%= raw theme_data.to_json %>,"<%= change_theme_admin_theme_path(theme_detail.id)%>")'>
+           Publish
+         </button>
+   
+         <% else %>
+   
+         <button class="select-button" onclick='ST["adminThemes"]["showPaidThemesDialog"]()'>
+           Publish
+         </button>
+         <% end %>
+      <% else%>
+       <% theme_data = {'id'=> theme_detail.id}%>
+        <button class="select-button" id="<%= 'publish-' + theme_detail.id.to_s%>" onclick='ST["adminThemes"]["publish"](<%= raw theme_data.to_json %>,"<%= change_theme_admin_theme_path(theme_detail.id)%>")'>
+        Publish
+        </button>
+      <% end %>
+
+    </div>
+    <% end %>
+  </div>
+
+  <div class="theme-info">
+    <div class="name">
+      <%= theme_detail.title%>
+    </div>
+    <div class="price">
+      <%= theme_detail.is_paid == "paid" ? 'PAID' : 'FREE' %>
+
+    </div>
+  </div>
+
+</div>

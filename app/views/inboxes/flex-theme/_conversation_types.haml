@@ -1,0 +1,7 @@
+.conversation-types
+  .coversation-types-tab
+    - coversation_types.each_with_index do |conversation,index|
+    - selected_class = params[:type] ? (if conversation["href"].include?(params[:type]) then " selected" else "" end) : (index == 0 ? " selected" : "")
+      %a(value="#{raw conversation.to_json}"){ href:" #{conversation["href"]}", class: "conversation-type-link"}
+        %h1{ class: "conversation-type-title#{selected_class}"}
+          = conversation["type"]

@@ -1,0 +1,87 @@
+<div class="credit-card-wrapper">
+    <div class="card-detail">Card Details</div>
+    <form name="cardData" id="addCardForm" novalidate>
+        <div class="card-view">
+            <div class="card-no form-group">
+                <label>CARD NUMBER</label>
+                <div id="card-number" class="stripe-elements"></div>
+
+                <%# <input id="card-number-input" name="card_number" required placeholder="xxxx xxxx xxxx xxxx" class="input-control">
+                <span id="value"></span>
+                <div class="errors"></div> %>
+            </div>
+            <div class="exp-cvv">
+                <div class="exp-date form-group">
+                    <label>VALID THRU</label>
+                    <div id="expiry-date" class="stripe-elements"  ></div>
+                    <%# <input placeholder="MM/YY" name="exp_date" maxlength="5" id="exp-date-input" class="input-control" type="tel">
+                    <span id="value"></span>
+                    <div class="errors"></div> %>
+
+                </div>
+                <div class="cvv form-group">
+                    <label>CVV</label>
+                    <div id="cvv" class="stripe-elements"></div>
+                    <%# <input placeholder="xxx" name="cvv" id="card-cvv-input" class="input-control" maxlength="4" type="tel">
+                    <span id="value"></span> %>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="">
+            <button id="update-btn" type="submit">Update Card</button>
+            <button id="cancel-btn" type="button">Cancel</button>
+        </div>
+    </form>
+
+    <button id="add-btn" onclick="ST['creditCardForm']['addCard']()">ADD</button>
+
+
+    <form name="cardData" id="billingCard" novalidate>
+        <div class="card-view">
+            <div class="form-group">
+                <label>CARD NUMBER</label>
+                <div class="card-no">
+                <span>XXXX</span>
+                <span>XXXX</span>
+                <span>XXXX</span>
+                <span id="card-no-value"></span>
+                </div>
+                
+                <div class="errors"></div>
+            </div>
+            <div class="exp-cvv">
+                <div class="form-group">
+                    <label>VALID THRU</label>
+                    <div class="exp_date">
+                    <span id="exp-date-value"></span>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>CVV</label>
+                    <div class="cvv">
+                    <span id="cvv-value"></span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <button id="change-card-btn" type="button">Change Card</button>
+    </form>
+
+</div>
+<% if card %>
+<% exp_date = card["expiry_date"].split("-") %>
+<% exp_mnth = exp_date[0] %>
+<% exp_yr = exp_date[1] %>
+<% end %>
+<% cardData = card ? {"last4" => card["last4_digits"],"exp_month" => exp_mnth, "exp_year" => exp_yr}.to_json : {} %>
+<% content_for :javascript do %>
+window.ST.creditCardForm.initStripeForm(<%=@current_community.id%>, <%= raw cardData %>, "<%= @auth_user[:access_token]%>",
+"<%= @current_user.given_name + @current_user.family_name%>");
+<% end %>
+

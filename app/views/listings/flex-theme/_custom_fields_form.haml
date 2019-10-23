@@ -1,0 +1,22 @@
+.section-heading
+  =t("listings.new.additional_information")
+
+- if @custom_field_questions.present?
+  .new_listing_form_field_container
+    - @custom_field_questions.each do |custom_field|
+      - custom_field.with_type do |field_type|
+        .form-group
+          = label "custom_fields", "#{custom_field.id}".to_sym, "#{custom_field.name(I18n.locale)}#{custom_field.required ? '*' : ''}", :class=> "input-label"
+          = render :partial => "listings/flex-theme/custom_field_partials/#{field_type}", :locals => { :custom_field => custom_field, :custom_field_value => @listing.answer_for(custom_field) }
+
+- unless @current_community.hide_expiration_date
+  .inline-label-container
+    = form.label :valid_until, t('listings.form.valid_until.valid_until') + "*", :class => "inline"
+    %a.label-info#help_valid_until_link{tabindex: "-1"}
+      = t('common.what_is_this')
+    .valid-until-dropdown
+      = date_select(:listing, :valid_until, {:start_year => Time.now.year, :end_year => Time.now.year + 1, :default => 3.months.from_now}, :class => "listing_date_select")
+
+.form-group
+  %button{:class=>"button", :onclick => "ST['moveToNextStep'](event,#{ index },#{raw sidebar_links.to_json })"}
+    =t("listings.new.next")

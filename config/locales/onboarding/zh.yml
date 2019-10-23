@@ -1,0 +1,147 @@
+zh: 
+  web: 
+    admin: 
+      onboarding: 
+        guide: 
+          cover_photo: 
+            title: "很好，你做到了！"
+            description: "口号和描述将帮助新访客了解他们的市场。它结构紧凑，但易于解释，因为这是访问者访问您网站时首先注意到的事情。"
+            info_image_alt: "主页截图显示口号和描述。"
+            add_your_own: "添加你的口号和描述。"
+            advice: 
+              content1: "%{link}を使用するか、または無料で使用できる見栄えのよい画像を探す場所については%{link}をチェックしてください。"
+              content2: "注意：写真のサイズは%{width}x%{height}ピクセルに変更されます。高さが高い画像の上部と下部は切り取られます。"
+              link_images: "这是已创建的图像之一。"
+              link: "我们的指南"
+              alt_images: "找到哪里可以快速获得6张惊人的封面照片。"
+              alt: "如何获得一个很酷的封面照片，徽标，图标，个人资料，照片列表"
+          filter: 
+            title: "很好，你做到了！"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              display_on_homepage: "根据此字段在主页上显示过滤器"
+            info_image_alt: "主页截图显示口号和描述。"
+            add_fields_and_filters: "添加字段和过滤器"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              not_too_many_link: "不要添加太多。"
+          invitation: 
+            title: "很好，你做到了！"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              preview_link: "最后预览"
+              preview_link_alt: "预览预览"
+            info_image_alt: "主页截图显示口号和描述。"
+            invite_users: "邀请用户"
+            advice: "首先邀请您的朋友，并从他们那里获得反馈。"
+          listing: 
+            title: "很好，你做到了！"
+            description: "口号和描述将帮助新访客了解他们的市场。它结构紧凑，但易于解释，因为这是访问者访问您网站时首先注意到的事情。"
+            info_image_alt: "主页截图显示口号和描述。"
+            post_your_first_listing: "发布第一个列表"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              close_listing: "关闭清单"
+          next_step: 
+            slogan_and_description: "添加你的口号和描述。"
+            cover_photo: "上传封面照片"
+            filter: "添加字段和过滤器"
+            paypal: "接受付款"
+            listing: "发布您的商家信息"
+            invitation: "邀请用户"
+            skip_this_step_for_now: "现在跳过这一步。"
+          payments: 
+            title: "很好，你做到了！"
+            description_p1: "如下所示，激活和运营市场需要采取几个重要步骤。"
+            not_sure_link: "不知道选哪一个？"
+            description_p2: "完成后，市场准备接收您的第一批访客！"
+            info_image_alt: "主页截图显示口号和描述。"
+            disable_payments: "请停用付款。"
+            setup_payments: "付款设置"
+            cta_separator: "该"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              disable_payments_link: "这篇文章"
+              disable_payments_alt: "如何禁用付款或向市场添加免费清单"
+              content_paypal_stripe: "%{stripe_paypal_link}.からの支払いを無効にする方法についてもっと読むか、%{stripe_paypal_link}.についてもっと読んでください。"
+              stripe_paypal_link: "在线支付，线路和贝宝。"
+            i_dont_want: "オンライン決済システムを使用したくない、%{link}."
+            disable_it: "残"
+          slogan_and_description: 
+            title: "很好，你做到了！"
+            description: "口号和描述将帮助新访客了解他们的市场。它结构紧凑，但易于解释，因为这是访问者访问您网站时首先注意到的事情。"
+            info_image_alt: "主页截图显示口号和描述。"
+            add_your_own: "添加你的口号和描述。"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              food_from_locals_slogan: "“从当地人那里购买食物”"
+              guitar_lessons_slogan: "“专业吉他课”"
+              food_from_locals_description: "“FoodMarket是直接从当地供应商订购产品的最简单方式。”"
+              guitar_lessons_description: "“GuitarPro是比较音乐教师的好地方。”"
+          status_page: 
+            title: "很好，你做到了！"
+            title_done: "一切都完成了！"
+            description_p1: "如下所示，激活和运营市场需要采取几个重要步骤。"
+            description_p2: "完成后，市场准备接收您的第一批访客！"
+            congratulation_p1: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              knowledge_base_link: "帮助中心"
+              knowledge_base_alt: "帮助中心"
+            congratulation_p2: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              marketplace_guide_link: "建立在线市场业务的实用指南"
+              marketplace_guide_alt: "培育市场学院。"
+            congratulation_p3: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              contact_support_link: "联系支持"
+              contact_support_title: "支持"
+            create_your_marketplace: "打造你的市场。"
+            slogan_and_description: "添加你的口号和描述。"
+            cover_photo: "上传封面照片"
+            filter: "添加字段和过滤器"
+            paypal: "接受付款"
+            listing: "发布您的商家信息"
+            invitation: "邀请用户"
+          back_to_todo: "返回任务列表。"
+        topbar: 
+          progress_label: "市场进步"
+          next_step: "时间"
+          slogan_and_description: "添加你的口号和描述。"
+          cover_photo: "上传封面照片"
+          filter: "添加字段和过滤器"
+          paypal: "接受付款"
+          listing: "发布您的商家信息"
+          invitation: "邀请用户"
+  admin: 
+    onboarding: 
+      popup: 
+        slogan_and_description: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          button: "看看下一步该做什么"
+        cover_photo: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          button: "看看下一步该做什么"
+        filter: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          button: "看看下一步该做什么"
+        payment: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          body_stripe: "接下来，建立一个在线支付市场。您需要关联自己的PayPal或Stripe帐户，以便商家可以接受付款。或者，您可以在此时关闭在线支付。"
+          button: "看看下一步该做什么"
+        listing: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          button: "看看下一步该做什么"
+        invitation: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          button: "看看下一步该做什么"
+        all_done: 
+          title: "很好，你做到了！"
+          body: "很好，你做到了！您的市场目前正在运营。但这只是一个开始。我们将在旅程的每一步帮助您。"
+          button: "看看下一步该做什么"
+        button_later: "我以后再谢谢你。"

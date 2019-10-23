@@ -1,0 +1,49 @@
+- content_for :extra_javascript do
+  :javascript
+    ST.transaction.initializeFreeTransactionForm('#{I18n.locale}',#{raw @current_community.id},#{raw APP_CONFIG.delivery_address_option_ids});
+
+- content_for :title_header do
+  %h1
+    = action_button_label
+    = link_to(listing[:title], listing_path(listing[:id]))
+
+#new_message_form.centered-section
+
+  - author_link = link_to(author[:display_name], person_path(username: author[:username]))
+
+  .preauthorize-section
+    %h2.preauthorize-details-title
+      = t("listing_conversations.preauthorize.details")
+
+    %ul.no-bullets
+      %li
+        %div
+          = t("listing_conversations.preauthorize.by", listing: link_to("#{listing[:title]}", listing_path(listing[:id])), author: author_link).html_safe
+      
+      - m_price_break_down.each do |price_break_down|
+        %li
+          = render partial: "transactions/price_break_down", locals: price_break_down.merge(is_author: false, show_delivery_address: false, show_delivery_charge: false)
+
+  = form_tag(form_action, method: :post, id: "transaction-form") do |form|
+    - m_price_break_down.each do |price_break_down|
+      = render :partial => "transactions/additional_information", :locals => { :form => form, :image_s3_options => image_s3_options }
+    - if ( params["unit_type"] == 'unit' || params["unit_type"] == 'day' || params["unit_type"] == 'night' ) && APP_CONFIG.delivery_address_option_ids.include?(@current_community.id)
+      = render :partial => "transactions/delivery_address", :locals => { :form => form }
+
+    = hidden_field_tag(:start_on, booking_start)
+    = hidden_field_tag(:end_on, booking_end)
+
+
+    .preauthorize-section
+      %h2{class: "transaction-field-heading"}
+        = t("conversations.new.send_message_to_user", person: author_link).html_safe
+      .row
+        .col-12
+          = text_area_tag(:message, nil, :class => "text_area")
+
+      - if quantity
+        = hidden_field_tag(:quantity, quantity)
+
+      .row
+        .col-12
+          = button_tag (@current_community.checkout_flow == 1 ? t("conversations.new.place_order") : t("conversations.new.send_message")), :class => "send_button", :id=>"booking-btn"

@@ -1,0 +1,113 @@
+<div class="select-plans-container">
+    <div class="content" id="plan-content">
+        <div class="line"></div>
+        <div class="close-btn" onclick="ST.communityPlan.closeSelectPlan()">
+            <%= icon_tag("cross")%>
+        </div>
+        <div class="change-plan">Change Plan</div>
+        <div class="plan-types">
+            <div class="monthly-plan" onclick="ST['communityPlan']['selectPlanType']('monthly')">MONTHLY</div>
+            <div class="annual-plan" onclick="ST['communityPlan']['selectPlanType']('annualy')">ANNUAL</div>
+        </div>
+        <div class="pricing-text">
+            Pay what you see! No setup costs or hidden charges.
+            <div class="money-back"></div>
+        </div>
+       
+        <div class="plans-section month-wise">
+            <% @monthly_plans.each_with_index do |plan,index| %>
+            <% plan_description = ActiveSupport::JSON.decode(plan["content"])%>
+            <div class="plan-detail">
+                <div class="plan-icon">
+                    <%= image_tag( plan_description["image_name"] + (plan["plan_type"] == 0  ? '.png' : '.svg'), class: "logo-img") %>
+                </div>
+                <div class="plan-name">
+                    <%= plan["name"] %>
+                </div>
+                <div class="plan-price">
+                    <span class="currency">$</span>
+                    <span class="amount"><%= number_with_precision(plan["discounted_price"], :precision => 2) %></span>
+                    <span class="frequency">/mo</span>
+                </div>
+                <div class="plan-type">
+                    (Billed Annually)
+                </div>
+                <div class="plan-description">
+                    <ul>
+                        <% plan_description["plan_detail"].each_with_index do |data,index| %>
+                        <li>
+                            <%= image_tag("check-btn.svg", class: "desc-img", width: "200") %>
+                            <%= render_markdown(data) %>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <% selectedPlan = { 'plan_name'=> plan["name"] , 'cost' => number_with_precision(plan["discounted_price"], :precision => 2) , 'id' => plan["id"] , 'plan_code': plan["plan_code"], 'billing_frequency': plan["billing_frequency"], 'plan_type': plan["plan_type"]}.to_json%>
+                <button class="choose-plan-btn" onclick="ST['communityPlan']['selectPlan']('monthly',<%= selectedPlan %>,<%= @current_community.id %>)" id="choose-plan-<%=plan["id"] %>">
+                    CHOOSE PLAN
+                </button>
+            </div>
+            <% end %>
+
+        </div>
+
+         <div class="plans-section year-wise">
+            <% @yearly_plans.each_with_index do |plan,index| %>
+            <% plan_description = ActiveSupport::JSON.decode(plan["content"])%>
+            <div class="plan-detail">
+                <div class="plan-icon">
+                    <%= image_tag( plan_description["image_name"] + (plan["plan_type"] == 0  ? '.png' : '.svg'), class: "logo-img") %>
+                </div>
+                <div class="plan-name">
+                    <%= plan["name"] %>
+                </div>
+                <div class="plan-price">
+                    <span class="currency">$</span>
+                    <span class="amount"><%= number_with_precision(plan["discounted_price"], :precision => 2) %></span>
+                    <span class="frequency">/mo</span>
+                </div>
+                <div class="plan-type <%= plan["plan_type"] == 0 ? 'no-opacity': ''%>">
+                    (Billed Annually)
+                </div>
+                <div class="plan-description">
+                    <ul>
+                        <% plan_description["plan_detail"].each_with_index do |data,index| %>
+                        <li>
+                            <%= image_tag("check-btn.svg", class: "desc-img", width: "200") %>
+                            <%= render_markdown(data) %>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <% selectedPlan = { 'plan_name'=> plan["name"] , 'cost' => number_with_precision(plan["discounted_price"], :precision => 2) , 'id' => plan["id"], 'plan_code': plan["plan_code"],'billing_frequency': plan["billing_frequency"], 'plan_type': plan["plan_type"] }.to_json %>
+                <button class="choose-plan-btn" onclick="ST['communityPlan']['selectPlan']('annualy',<%= selectedPlan %>,<%=@current_community.id%>)" id="choose-plan-<%=plan["id"] %>">
+                    CHOOSE PLAN
+                </button>
+            </div>
+            <% end %>
+
+        </div>
+        <%# <div class="setup-cost-text">* One time setup cost will be charged separately for the white-labelled apps. 
+        <span class="contact-hippo" onclick="ST['communityPlan']['contactHippo']()">Contact Us</span></div> %>
+
+
+     
+    </div>
+
+    <div class="content " id="confirm-plan-dialog">
+    <div class="body">
+        <div class="message">
+
+        </div>
+        
+    </div>
+    <div class="footer">
+        <button onclick="ST['communityPlan']['showPlanTypes']()"  id="plan-cancel-btn" class="cancel-btn">Cancel</button>
+        <button onclick="ST['communityPlan']['proceedWithPlan']()" id="plan-proceed-btn" class="proceed-btn">Proceed</button>
+    </div>
+    </div>
+</div>
+
+<% content_for :javascript do %>
+window.ST.communityPlan.initializeChoosePlan(<%= raw @current_plan_data.to_json %>,<%= (@plan_expired == 'stop' ? true : false) %>);
+<% end %>

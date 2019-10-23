@@ -1,0 +1,30 @@
+<div class="form-group">
+    <label>Button Configuration</label>
+    <div class="row">
+        <div class="col-12" style="margin-left: 10px;">
+
+            <% enable_btn = form_data['enable_btn'] ? form_data['enable_btn']  : false %>
+            <div>
+                <% if enable_btn %>
+                <input checked onchange="window['ST']['landingPage']['enableBtn'](this,'<%=column_id%>', true)" 
+                name="lp-<%= column_id %>-enable_btn" 
+                id="lp-<%= column_id %>-enable_btn" type="checkbox">
+                <% else %>
+                <input onchange="window['ST']['landingPage']['enableBtn'](this,'<%=column_id%>', true)" 
+                name="lp-<%= column_id %>-enable_btn" 
+                id="lp-<%= column_id %>-enable_btn" type="checkbox">
+                <% end %>
+                <label for="lp-<%= column_id %>-enable_btn" class="checkbox-row-label" for="action-btn">Display the button </label>
+            </div>
+            <div>
+                <%=  render partial:"admin/manage_landing_page/forms/button_title", locals: {form_data: form_data, label: "lp-#{column_id}-button_title"}  %>
+                <%=  render partial:"admin/manage_landing_page/forms/button_path" , locals: {form_data: form_data, label: "lp-#{column_id}-button_path"} %>
+                <%=  render partial:"admin/manage_landing_page/forms/button_color" , locals: {form_data: form_data, label: "lp-#{column_id}-button_color"} %>
+                <%=  render partial:"admin/manage_landing_page/forms/button_hover_color", locals: {form_data: form_data, label: "lp-#{column_id}-button_hover_color"}  %>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

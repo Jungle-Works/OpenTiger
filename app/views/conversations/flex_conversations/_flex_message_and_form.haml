@@ -1,0 +1,31 @@
+- content_for :extra_javascript do
+  :javascript
+    window.ST.scrollChatToBottom();
+    window.ST.makeTextareaScrollable();
+    
+    
+.close-chatbox-button
+  %button{  type: "button", onclick: "window.ST.closeChatBox()"}   
+    %span
+      = "Close"
+    %i.icon-remove
+.chat-header
+  .chat-person-image
+  .chat-about
+    .chat-with
+      = t("conversations.show.conversation_with", person: link_to_unless(other_party.deleted, PersonViewUtils.person_display_name(other_party, @current_community),person_path(other_party))).html_safe
+.chat-history
+  #messages
+    = render :partial => "conversations/flex_conversations/flex_message", :collection => messages, as: :message_or_action
+
+- if role == :participant
+  - content_for :javascript do
+    initialize_reply_form('#{I18n.locale}');
+
+  #reply_form.message-avatar-padding.message-reply-form
+    = form_for message_form, :url => message_form_action do |f|
+      -# = f.label :content, t("conversations.show.write_a_reply")
+      .chat-message
+        = f.text_area :content, :class => "reply_form_text_area" , placeholder: "Type your message..."
+        = f.hidden_field :conversation_id
+        = f.button t("conversations.show.send_reply") , class: "flex-send-message-button"

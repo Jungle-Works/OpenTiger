@@ -1,0 +1,147 @@
+es: 
+  web: 
+    admin: 
+      onboarding: 
+        guide: 
+          cover_photo: 
+            title: "Maravilloso, lo lograste!"
+            description: "El eslogan y la descripción ayudarán a los nuevos visitantes a comprender cuál es su mercado. Hágalos compactos pero descriptivos, ya que son lo primero que notarán los visitantes cuando lleguen a su sitio."
+            info_image_alt: "Una captura de pantalla de la página de inicio que muestra el eslogan y la descripción."
+            add_your_own: "Añadir eslogan y descripción."
+            advice: 
+              content1: "%{link}を使用するか、または無料で使用できる見栄えのよい画像を探す場所については%{link}をチェックしてください。"
+              content2: "注意：写真のサイズは%{width}x%{height}ピクセルに変更されます。高さが高い画像の上部と下部は切り取られます。"
+              link_images: "Una de nuestras imagenes ya hechas."
+              link: "Nuestra guia"
+              alt_images: "Encuentra lugares y lugares donde puedas usar rápidamente las seis increíbles fotos de portada."
+              alt: "Cómo obtener una bonita foto de portada, logotipo, favicon, perfil, lista de fotos"
+          filter: 
+            title: "Maravilloso, lo lograste!"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              display_on_homepage: "Mostrar un filtro en la página de inicio basado en este campo"
+            info_image_alt: "Una captura de pantalla de la página de inicio que muestra el eslogan y la descripción."
+            add_fields_and_filters: "Añadir campos y filtros"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              not_too_many_link: "No agregues demasiado"
+          invitation: 
+            title: "Maravilloso, lo lograste!"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              preview_link: "Última vista previa"
+              preview_link_alt: "Revisa la vista previa"
+            info_image_alt: "Una captura de pantalla de la página de inicio que muestra el eslogan y la descripción."
+            invite_users: "Invitar a un usuario"
+            advice: "Invita a tus amigos primero y recibe comentarios de ellos."
+          listing: 
+            title: "Maravilloso, lo lograste!"
+            description: "El eslogan y la descripción ayudarán a los nuevos visitantes a comprender cuál es su mercado. Hágalos compactos pero descriptivos, ya que son lo primero que notarán los visitantes cuando lleguen a su sitio."
+            info_image_alt: "Una captura de pantalla de la página de inicio que muestra el eslogan y la descripción."
+            post_your_first_listing: "Publica tu primera lista"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              close_listing: "Cierra la lista"
+          next_step: 
+            slogan_and_description: "Añadir eslogan y descripción."
+            cover_photo: "Subir foto de portada"
+            filter: "Añadir campos y filtros"
+            paypal: "Aceptar pago"
+            listing: "Publicar un listado"
+            invitation: "Invitar a un usuario"
+            skip_this_step_for_now: "Salta este paso por ahora"
+          payments: 
+            title: "Maravilloso, lo lograste!"
+            description_p1: "Hay varios pasos importantes que debe seguir para que su mercado esté en funcionamiento, como se indica a continuación."
+            not_sure_link: "¿No sabes cuál elegir?"
+            description_p2: "Cuando haya terminado, su mercado está listo para recibir al primer visitante!"
+            info_image_alt: "Una captura de pantalla de la página de inicio que muestra el eslogan y la descripción."
+            disable_payments: "Desactivar pago"
+            setup_payments: "Configurar pago"
+            cta_separator: O
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              disable_payments_link: "Este articulo"
+              disable_payments_alt: "Cómo desactivar un pago o agregar una lista gratuita al mercado"
+              content_paypal_stripe: "%{stripe_paypal_link}.からの支払いを無効にする方法についてもっと読むか、%{stripe_paypal_link}.についてもっと読んでください。"
+              stripe_paypal_link: "Pago en línea, raya y paypal."
+            i_dont_want: "オンライン決済システムを使用したくない、%{link}."
+            disable_it: Deshabilitar
+          slogan_and_description: 
+            title: "Maravilloso, lo lograste!"
+            description: "El eslogan y la descripción ayudarán a los nuevos visitantes a comprender cuál es su mercado. Hágalos compactos pero descriptivos, ya que son lo primero que notarán los visitantes cuando lleguen a su sitio."
+            info_image_alt: "Una captura de pantalla de la página de inicio que muestra el eslogan y la descripción."
+            add_your_own: "Añadir eslogan y descripción."
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              food_from_locals_slogan: "\"Comprar comida de los lugareños\""
+              guitar_lessons_slogan: "\"Una lección de guitarra de un profesional\""
+              food_from_locals_description: "\"FoodMarket es la forma más fácil de ordenar productos directamente del vendedor local\""
+              guitar_lessons_description: "\"GuitarPro es un gran lugar para comparar profesores de música\""
+          status_page: 
+            title: "Maravilloso, lo lograste!"
+            title_done: "¡Todo fue hecho!"
+            description_p1: "Hay varios pasos importantes que debe seguir para que su mercado esté en funcionamiento, como se indica a continuación."
+            description_p2: "Cuando haya terminado, su mercado está listo para recibir al primer visitante!"
+            congratulation_p1: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              knowledge_base_link: "Centro de ayuda"
+              knowledge_base_alt: "Centro de ayuda"
+            congratulation_p2: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              marketplace_guide_link: "Una guía práctica para construir un negocio de mercado en línea"
+              marketplace_guide_alt: "Enlaces a Marketplace Academy"
+            congratulation_p3: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              contact_support_link: "Contactar a soporte"
+              contact_support_title: Apoyo
+            create_your_marketplace: "Haz tu mercado"
+            slogan_and_description: "Añadir eslogan y descripción."
+            cover_photo: "Subir foto de portada"
+            filter: "Añadir campos y filtros"
+            paypal: "Aceptar pago"
+            listing: "Publicar un listado"
+            invitation: "Invitar a un usuario"
+          back_to_todo: "Volver a la lista de cosas por hacer."
+        topbar: 
+          progress_label: "Progreso del mercado"
+          next_step: "Los tiempos"
+          slogan_and_description: "Añadir eslogan y descripción."
+          cover_photo: "Subir foto de portada"
+          filter: "Añadir campos y filtros"
+          paypal: "Aceptar pago"
+          listing: "Publicar un listado"
+          invitation: "Invitar a un usuario"
+  admin: 
+    onboarding: 
+      popup: 
+        slogan_and_description: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          button: "Vea qué hacer a continuación"
+        cover_photo: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          button: "Vea qué hacer a continuación"
+        filter: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          button: "Vea qué hacer a continuación"
+        payment: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          body_stripe: "A continuación, configure un mercado para el pago en línea. Debe conectar su cuenta de PayPal o Stripe para que su vendedor pueda aceptar pagos. O puede deshabilitar el pago en línea por ahora."
+          button: "Vea qué hacer a continuación"
+        listing: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          button: "Vea qué hacer a continuación"
+        invitation: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          button: "Vea qué hacer a continuación"
+        all_done: 
+          title: "Maravilloso, lo lograste!"
+          body: "Maravilloso, lo hiciste! Su mercado está actualmente en funcionamiento. Pero esto es solo el comienzo. Estamos aquí para ayudarlo en cada paso de su viaje."
+          button: "Vea qué hacer a continuación"
+        button_later: "Lo hare mas tarde gracias"

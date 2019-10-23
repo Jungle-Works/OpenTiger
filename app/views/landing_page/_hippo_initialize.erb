@@ -1,0 +1,244 @@
+<script>
+
+var adminSecretKey;
+var currentUser={};
+var environment;
+
+function insertHippoCustomerScript(url) {
+  return new Promise(function (resolve, reject) {
+    if (!document.getElementById("hippoCustomerWidget")) {
+      var script = document.createElement("script");
+      script.setAttribute("type", "text/javascript");
+      script.setAttribute("src", url);
+      script.setAttribute("id", "hippoWidget");
+      script.onload = function () {
+        resolve(true);
+      };
+      document.head.appendChild(script);
+    } else {
+      resolve(true);
+    }
+  });
+}
+
+
+function insertHippoAgentScript(url) {
+  return new Promise(function (resolve, reject) {
+    if (!document.getElementById("hippoAgentWidget")) {
+      var script = document.createElement("script");
+      script.setAttribute("type", "text/javascript");
+      script.setAttribute("src", url);
+      script.setAttribute("id", "hippoWidget");
+      script.onload = function () {
+        resolve(true);
+      };
+      document.head.appendChild(script);
+    } else {
+      resolve(true);
+    }
+  });
+}
+
+window.ST = window.ST || {};
+window.ST.updateFugu = function (id, name, color, loggedIn, secretKey, is_admin, access_token,environment, uniqueId,hippoKey) {
+  var adminCheck = Number(is_admin);
+
+
+  if (environment == 'production') {
+    adminSecretKey = hippoKey;
+    hippoAgentWidgetUrl = 'https://chat.fuguchat.com/js/widget-agent.js';
+    hippoSupportWidgetUrl = 'https://chat.fuguchat.com/js/widget.js';
+  }
+  else {
+    adminSecretKey = hippoKey;
+    hippoAgentWidgetUrl = 'https://test-chat.fuguchat.com/js/widget-agent.js';
+    hippoSupportWidgetUrl = 'https://test-chat.fuguchat.com/js/widget.js';
+
+  }
+
+  if (is_admin && loggedIn) {
+    insertHippoAgentScript(hippoAgentWidgetUrl).then(function () {
+      window.fuguInitAgentWidget({
+        'access_token': access_token,
+        'user_unique_keys': [],
+        'color': color,
+        callback: function () {
+          if (adminCheck) {
+            generateChatwWidget(id, color, secretKey, access_token, name);
+          }
+        }
+      });
+    })
+  }
+  else {
+    insertHippoCustomerScript(hippoSupportWidgetUrl).then(function () {
+      var initHippoObj;
+      if(loggedIn){
+        initHippoObj = {
+          'appSecretKey': secretKey,
+          'tags': ['yelo Rental'],
+          'color': color,
+          'uniqueId': uniqueId,
+          'name': name
+        }
+       
+      }
+      else{
+        initHippoObj = {
+          'appSecretKey': secretKey,
+          'tags': ['yelo Rental'],
+          'color': color
+        }
+      }
+
+      window.fuguInit(initHippoObj);
+    })
+  }
+
+
+  // initFugu(id,color, secretKey, access_token, adminCheck);
+  currentUser['id'] = id;
+  currentUser['name'] = name;
+  currentUser['color'] = color;
+  
+
+
+}
+
+window.ST.shutdownFuguWidget = function () {
+  try {
+    window.shutDownFugu();
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+var generateChatwWidget = function (id, color, secretKey, access_token, name) {
+
+  document.addEventListener("TotalUnreadCount", function (e) {
+    if (e.detail) {
+      document.getElementById('unread-count').style.display = 'flex';
+      document.getElementById('unread-count').innerText = e.detail;
+    } else {
+      document.getElementById('unread-count').style.display = 'none';
+    }
+  })
+
+  document.addEventListener("fuguWidgetCollapse", function (e) {
+    setStyles('chat-widgets', 'display', 'flex');
+    try {
+      window.destroyHippoCustomerWidget();
+    }
+    catch (e) {
+      console.log(e);
+    }
+    window.fuguInitAgentWidget({
+      'access_token': access_token,
+      'user_unique_keys': [],
+      'color': color,
+    });
+
+  });
+
+
+  setStyles('fugu-widget', 'display', 'flex');
+  setStyles('chat-widgets', 'display', 'flex');
+
+  document.getElementById('fugu-widget').addEventListener('click', function () {
+    toggleClassOnElement('support-widget', 'show-widget');
+    toggleClassOnElement('agent-widget', 'show-widget');
+  })
+  document.getElementById('support-widget').addEventListener('click', function () {
+    setStyles('chat-widgets', 'display', 'none');
+    toggleClassOnElement('support-widget', 'show-widget');
+    toggleClassOnElement('agent-widget', 'show-widget');
+    newinitFugu();
+
+  })
+  document.getElementById('agent-widget').addEventListener('click', function () {
+    toggleClassOnElement('support-widget', 'show-widget');
+    toggleClassOnElement('agent-widget', 'show-widget');
+    window.fuguAgentMyConversation();
+
+  })
+
+}
+
+var setStyles = function (id, propertyName, value) {
+  document.getElementById(id).style[propertyName] = value;
+}
+
+
+var toggleClassOnElement = function (id, className) {
+  document.getElementById(id).classList.toggle(className);
+}
+
+
+
+function newinitFugu() {
+  var hippoSupportWidgetUrl;
+  if (environment == 'production') {
+    hippoSupportWidgetUrl = 'https://chat.fuguchat.com/js/widget.js';
+  }
+  else {
+    hippoSupportWidgetUrl = 'https://test-chat.fuguchat.com/js/widget.js';
+
+  }
+  insertHippoCustomerScript(hippoSupportWidgetUrl).then(function () {
+    try {
+      window.fuguDestroyAgentWidget();
+    }
+    catch (e) {
+      console.log(e);
+    }
+    showFuguWidget().then(function () { });
+  }, function () { });
+
+}
+
+function showFuguWidget() {
+  return new Promise(function (resolve, reject) {
+    window.fuguInit({
+      appSecretKey: adminSecretKey,
+      uniqueId: currentUser['id'],
+      name: currentUser['name'],
+      showData: true,
+      ignore_auto_msgs: true, // ignore timed how can i help u message.
+      tags: ["Yelo Rental"],
+      color: currentUser['color'],
+      callback: function () {
+        window.expandHippoWidget();
+        resolve();
+      },
+      'collapseType': 'hide',
+    });
+  });
+
+
+}
+
+var promise = window.fetch('<%=hippo_endpoint%>')
+.then(function (res) {
+        return res.json();
+      })
+.then(function(res){
+
+  if(res.status == 200){
+    
+    if (res.logged_in){
+      environment = res.environment;
+      window.ST.updateFugu(res.user_id,res.name, res.color,true,
+      res.app_secret_key, res.is_admin,res.access_token,res.environment,res.unique_id,res.hippo_secret_key);
+    }
+    else{
+
+      window.ST.updateFugu("","",res.color,false,res.app_secret_key,"","",res.environment,"",res.hippo_secret_key);
+    }
+
+  }
+
+})
+
+
+</script>

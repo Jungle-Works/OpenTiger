@@ -1,0 +1,17 @@
+- content_for :title_header do
+  %h1
+    = t("layouts.admin.admin")
+    = "-"
+    = t(".edit_date_field")
+
+= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@current_community) }
+.left-navi-section
+  = form_for @community, :as => :community, :url => update_date_admin_custom_fields_path, :method => :put do |form|
+
+    .row
+      .col-12
+        .checkbox-container
+          = form.check_box :show_date_filter
+          = form.label :show_date_filter, t("admin.custom_fields.form.search_filter.search_filter")
+
+    = render :partial => "admin/custom_fields/form/buttons", :locals => { :form => form }

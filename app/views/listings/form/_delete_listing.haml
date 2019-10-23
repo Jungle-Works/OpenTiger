@@ -1,0 +1,16 @@
+%form{method: "get", name:"delete-form" ,action:listing_delete_listing_path(@listing), onsubmit: "ST.deletelisting()"}
+  .row
+    .col-12{:class=>"delete-text"}
+      %div=t("listings.deleting_a_listing_cannot_be_undone")
+  
+  
+  .row    
+    .col-12.delete-buttons
+      .inline-button-container
+        %button{type:"submit",class: "button save-btn", id: "del-save-btn"}
+          = icon_tag("trash", ["icon-part"])
+          .text-part= t("listings.edit_links.delete_listing")
+      .inline-button-container
+        %a{:href => '#', :class => "cancel-button del-cancel-btn", :id=> "close_x1"}
+          .content
+            = t("admin.communities.listings.form.cancel")

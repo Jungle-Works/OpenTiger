@@ -1,0 +1,24 @@
+<div class="column-container" id="<%=column_id %>">
+  <div class="row">
+      <div class="col-9">
+            <%=  render partial:"admin/manage_landing_page/forms/title",  locals: {form_data: form_data, label: "lp-#{column_id}-title"} %>
+            <%=  render partial:"admin/manage_landing_page/forms/multi_column_section_button",  locals: {form_data: form_data, column_id: column_id} %>
+            <%=  render partial:"admin/manage_landing_page/forms/description",  locals: {form_data: form_data, label: "lp-#{column_id}-description"} %>
+            <%=  render partial:"admin/manage_landing_page/forms/icon_selection",  locals: {form_data: form_data, column_id: column_id }%>
+        
+      </div>
+      <div class="col-3">
+
+        <a href="#" class="column-field-option-remove ">
+            <%= icon_tag("cross", ["icon-fix"]) %>
+        </a>
+        <a href="#" class="column-fields-action-up admin-sort-button">
+            <%= icon_tag("directup", ["icon-fix"]) %>
+        </a>
+        <a href="#" class="column-fields-action-down admin-sort-button">
+            <%= icon_tag("directdown", ["icon-fix"]) %>
+        </a>
+           
+      </div>
+  </div>          
+</div>

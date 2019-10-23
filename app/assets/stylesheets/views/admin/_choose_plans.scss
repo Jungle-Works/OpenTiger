@@ -1,0 +1,282 @@
+@import "mixins/all";
+
+
+.select-plans-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    height: 100vh;
+
+    .content {
+        position: relative;
+        width: 90%;
+        max-width: 1200px;
+        background: white;
+        text-align: center;
+        border-radius: 10px;
+        padding: 30px 15px;
+        margin: 30px auto;
+
+
+        .close-btn{
+            position: absolute;
+            cursor: pointer;
+            right: 25px ;
+            top: 17px;
+        }
+
+        .change-plan {
+            margin: auto;
+            // font-family: "ProximaNova-Bold";
+            font-size: 27px;
+            line-height: 1.88;
+            text-align: center;
+            letter-spacing: 0.6px;
+            color: #474747;
+        }
+        .setup-cost-text {
+            font-size: em(16);
+            margin-top: em(16);
+            .contact-hippo{
+                cursor: pointer;
+                color: #1394ff;
+            }
+        }
+
+    }
+}
+
+
+.plans-section {
+    display: flex;
+    flex-direction: column;
+
+    &.month-wise {
+        .plan-type {
+            opacity: 0;
+        }
+    }
+
+    &.year-wise {
+        .plan-type {
+
+            opacity: 0.7;
+
+            &.no-opacity {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.plan-detail {
+    position: relative;
+    transition: 0.5s;
+    text-align: center;
+    box-shadow: 0 0.11765rem 0.41176rem rgba(0, 0, 0, 0.2);
+    top: 0px;
+    flex: 1 1 0;
+    border-radius: 12px;
+    margin: 0px 15px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    background-color: #f2f7fc;
+
+    &:hover {
+        box-shadow: 0 15px 25px 0 rgba(0, 119, 255, 0.15);
+        background-color: #ffffff;
+        transform: .5s;
+        z-index: 9;
+        top: -10px;
+    }
+
+    .plan-icon {
+        img {
+            height: 46px;
+            width: 81px;
+        }
+
+        padding-top: 15px;
+        padding-left: 9px;
+    }
+
+    .plan-name {
+        font-size: 24px !important;
+        text-transform: capitalize;
+        padding: 13px 0px 16px 0px;
+        font-weight: 600;
+    }
+
+    .plan-price {
+        font-weight: 400;
+
+        .currency {
+            font-size: 20px !important;
+            text-transform: capitalize;
+            color: #474747;
+            font-weight: 600;
+        }
+
+        .amount {
+            font-size: 40px;
+            font-weight: bolder;
+        }
+
+        .frequency {
+            color: #9b9b9b;
+            font-size: 16px;
+            font-weight: 600;
+
+        }
+    }
+
+    .plan-type {
+        letter-spacing: 1.2px;
+        font-size: 14px;
+        margin-bottom: 1rem;
+    }
+
+
+    .plan-description {
+        ul {
+            list-style-type: none;
+            color: #474747;
+            text-align: left;
+            display: inline-block;
+            min-height: 180px;
+            // margin-top: 15px;
+            line-height: 1.7;
+            font-size: 15px;
+
+            li {
+                position: relative;
+
+                p {
+                    margin-bottom: 5px;
+                }
+            }
+
+            .desc-img {
+                left: -30px;
+                position: absolute;
+                height: 20px;
+                top: 4px;
+                width: 28px;
+            }
+        }
+    }
+
+    .choose-plan-btn {
+        display: inline-block;
+        background: #ffffff;
+        font-size: 16px !important;
+        border: none !important;
+        color: #1394ff;
+        max-width: 150px;
+        padding: 7px;
+        border-radius: 7px;
+        width: 80%;
+        font-weight: 600;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 15px 25px 0 rgba(0, 119, 255, 0.15);
+            background: #0077ff !important;
+            color: #fff;
+        }
+    }
+
+
+}
+
+
+.line {
+    width: 60px;
+    height: 1px;
+    border: solid 2px #1394ff;
+    margin: 16px auto 0px auto;
+}
+
+.plan-types {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0px 20px 0px;
+
+    >div {
+        &.selected {
+            background: #1394ff !important;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        background: #faf7f7 !important;
+        color: #9b9b9b !important;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 9px 40px;
+        cursor: pointer;
+        border-radius: 20px;
+        display: inline-block;
+    }
+}
+
+
+#confirm-plan-dialog {
+    display: none;
+    max-width: 400px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    padding: 25px 0 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+
+    .footer {
+        padding: 7px 25px 0;
+        display: flex;
+        justify-content: flex-end;
+        border-top: 1px solid #d8d8d8;
+
+        button {
+            font-size: 15px;
+        }
+
+        .cancel-btn {
+            background-color: grey;
+            margin-right: 10px;
+        }
+    }
+
+    .body {
+        margin-bottom: 25px;
+        padding: 0px 25px;
+    }
+}
+
+@include media(desktop){
+    .plans-section{
+        flex-direction: row;
+    }
+}
+
+.pricing-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0px 20px 0px;
+    font-size: em(18);
+    .money-back{
+        color: #9b9b9b;
+    }
+}

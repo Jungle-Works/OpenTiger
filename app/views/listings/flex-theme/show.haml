@@ -1,0 +1,277 @@
+- content_for :javascript do
+  initialize_listing_view('#{I18n.locale}');
+
+- content_for :extra_javascript do
+  :javascript
+    window.ST.listing();
+
+- content_for :title, raw(@listing.title)
+- content_for :meta_author, PersonViewUtils.person_display_name(@listing.author, @current_community)
+- content_for :meta_description, StringUtils.first_words(@listing.description, 15)
+- content_for :meta_image, @listing.listing_images.first.image.url(:medium) if !@listing.listing_images.empty?
+- dimensions = @listing.listing_images.first.get_dimensions_for_style(:medium) if !@listing.listing_images.empty?
+- content_for :meta_image_width, dimensions[:width].to_s if !@listing.listing_images.empty?
+- content_for :meta_image_height, dimensions[:height].to_s if !@listing.listing_images.empty?
+
+- content_for :title_header do
+  %h1
+    %span#listing-title.listing-title= @listing.title
+
+= render partial: 'layouts/flex_product_details_design' , locals: MarketplaceHelper.style_customizations_map(@current_community)
+
+%script{type: "text/template", class: "template", id: "image-frame-template"}
+  .listing-image-frame
+    #listing-image-link.listing-image-frame-content
+      .listing-image-vertical-centering{:class => "${aspectRatioClass}" }
+        %img{:src => "${url}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}"}
+
+%script{type: "text/template", class: "template", id: "image-thumbnail-template"}
+  .listing-image-thumbnail-container
+    %img.listing-image-thumbnail{src: "${url}"}
+    .fade
+
+= render partial: 'layouts/onboarding_popup_wrapper'
+
+.row
+  .col-8.listing-details-container
+    .row
+      .col-12
+        - with_image_frame(@listing) do |reason, listing_images|
+          - if reason == :images_ok
+            .flex-image-carousel{onclick: "window.ST.closeCarouselOnClick(event)"}
+              .flex-carousel-1
+                .flex-carousel-2
+                  %button.close_datepicker-btn{type: "button", onclick: "window.ST.hideFlexImageCarousel()" }
+                    %span.close_datepicker-span
+                      %span.close_datepicker-text
+                        = t("listings.show.close")
+                      %i.icon-remove
+                  .flex-carousel-3
+                    = render 'listings/flex-theme/flex_image_carousel' 
+                    = render partial: 'layouts/flex_image_carousel_design' , locals: MarketplaceHelper.style_customizations_map(@current_community)
+            
+            - if @listing.listing_images.length == 1
+              %a{onclick: "window.ST.showFlexImageCarousel(0)"}
+                .listing-image-preview-flex
+                  .listing-image-preview
+                    %img{:src => "#{@listing.listing_images.first.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}"}
+
+            - if @listing.listing_images.length >= 2 && @listing.listing_images.length < 5
+              = render partial: "listings/flex-theme/two_photos", locals: MarketplaceHelper.style_customizations_map(@current_community)
+            
+            - if @listing.listing_images.length >= 5
+              = render partial: "listings/flex-theme/five_photos", locals: MarketplaceHelper.style_customizations_map(@current_community)
+
+          - else
+            .listing-image-text-container
+              .listing-image-frame
+                .listing-image-frame-content
+                  .listing-image-vertical-centering
+                    .listing-no-image
+                      - if reason == :images_processing
+                        = t("listings.show.processing_uploaded_image")
+                      - elsif reason == :description
+                        = t("listings.show.no_image")
+                      - else
+                        = t("listings.show.no_description")
+
+    %button.view-all-photos{onclick: "window.ST.showFlexImageCarousel(0)"}
+      %span
+        = t("listings.show.view_photos")
+.flex-listing-details-and-actions.row
+  .row
+    .col-12
+      .thumbnail-author-avatar
+        = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
+  .listing-all-details.col-8#listing-all-details
+    %aside.col-4
+      .row
+        .col-12
+          .amount-and-listing-title
+            - if @listing.price
+              .listing-price
+                %span.listing-price-amount
+                  = MoneyViewUtils.to_humanized(@listing.price)
+                - with_quantity_text(@current_community, @listing) do |text|
+                  %span.listing-price-quantity
+                    = text
+            .listing-title-category-flex
+              %h1{ class: "listing-title-heading"}
+                %span{class: 'listing-title-text'}
+                  = raw(@listing.title)
+              .listing-category-host
+                - if @listing.category
+                  %span.category-text{style: "display:flex"}
+                    = @listing.category.display_name(I18n.locale)
+                    %span.profile-contact-seperator
+                      = "•"
+                %span.hosted-by{style: "display:flex"}
+                  = t("listings.show.hosted_by")
+                  %span.hostname-text
+                    = PersonViewUtils.person_display_name(@listing.author, @current_community)
+                - if @listing.author != @current_user && @current_community.allow_free_conversations?
+                  %span.listing-author-contact-flex
+                    %span.profile-contact-seperator
+                      = "•"
+                    %a#listing-contact{href: contact_to_listing_path(:listing_id => @listing.id.to_s), :class => "listing-author-contact-link"}
+                      .content
+                        = t("listings.show.contact")
+      - if @current_community.show_listing_publishing_date?
+        .row
+          .col-12
+            .icon-with-text-container
+              = icon_tag("calendar", ["icon-part"])
+              .text-part
+                %b
+                  = t("listings.show.listing_created_at")
+                  = l @listing.created_at, :format => :short_date
+
+      - if !@current_community.private?
+        .row
+          .col-12
+            .listing-social
+              .listing-fb-like-button
+                = facebook_like(current_user?(@listing.author))
+              .listing-tweet-button
+                - twitter_params =  {count: "horizontal", via: (@current_community.twitter_handle), text: @listing.title }.compact
+                = link_to("", "https://twitter.com/share", :class => "twitter-share-button", "data" => twitter_params)
+                - content_for :extra_javascript do
+                  :javascript
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+      - if @listing_presenter.received_testimonials.size > 0
+        .listing-author-activity
+          .col-12
+            %i.listing-author-activity-icon{:class => icon_class("testimonial")}
+            .listing-author-activity-item
+              .listing-author-activity-value
+                - if @listing_presenter.received_testimonials.size > 0
+                  = @listing_presenter.feedback_positive_percentage.to_s + "%"
+                  = t("people.show.positive")
+                  = "(#{@listing_presenter.received_positive_testimonials.size}/#{@listing_presenter.received_testimonials.size})"
+                - else
+                  = t("listings.show.no_reviews")
+              .listing-author-activity-description
+                = t("listings.show.feedback")
+              
+      - if @listing.description && !@listing.description.blank?
+        .row
+          .col-12
+            .listing-description-flex.listing-description-content
+              %h2{class: "flex-headings"}
+                %span{class: "about-listing-text"}
+                  = t("listings.show.about_listing")
+              = markdown(@listing.description)
+              - if( @listing_presenter.youtube_link_ids.present?)
+                - @listing_presenter.youtube_link_ids.each do |youtube_id|
+                  .listing-description-youtube-wrapper
+                    %iframe.listing-description-youtube-iframe{ title: t("listings.show.youtube_video_player"), width: 640, height:390, src: "//www.youtube.com/embed/#{ youtube_id }", frameborder: 0, allowfullscreen: true}
+
+      - @listing.custom_field_values.each do |custom_field_value|
+        .row
+          .col-12.custom_field_value_flex
+            - custom_field_value.with_type do |question_type|
+              = render :partial => "listings/custom_field_partials/#{question_type}", :locals => { :custom_field_value => custom_field_value }
+
+
+      - if @listing.origin_loc && @listing.origin_loc.address != ""
+        .row
+          .col-12
+            #googlemap
+              %h2{class: "flex-headings"}
+                %span{class: "listing-location-text"}
+                  = t("listings.show.location")
+              = render :partial => "listings/googlemap", :locals => { :listing => @listing}
+              = render :partial => "listings/origin", :locals => { :origin_loc => @listing.origin_loc }
+      .row-with-divider
+        .col-12
+          %h2.flex-headings
+            %span{class: "your-host"}
+              = t("listings.show.your_host")
+          .listing-author
+            .listing-author-avatar
+              = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
+            .listing-author-details
+              -# %span.listing-author-name
+              -#   = "Hello, I'm"
+              %span.listing-author-name-text
+                = link_to PersonViewUtils.person_display_name(@listing.author, @current_community), @listing.author, :id => "listing-author-link", :class => "listing-author-name-link", :title => "#{PersonViewUtils.person_display_name(@listing.author, @current_community)}"
+              .profile-about-me
+                - if @listing.author.description && !@listing.author.description.blank?
+                  = markdown(@listing.author.description)
+                - elsif current_user?(@listing.author)
+                  %a{href: person_settings_path(@listing.author)}
+                    .icon-with-text-container
+                      .ss-chat.icon-part
+                      .ss.text-part= t("people.show.add_description")
+
+              - if @listing.author != @current_user && @current_community.allow_free_conversations?
+                .listing-author-profile-contact
+                  = link_to t("listings.show.view_profile"), person_path(@listing.author.username)
+                  -# %a.listing-suthor-profile{href: origin + "www.google.com"}
+                    %span.listing-author-view-profile
+                      = t("view_profile")
+                  
+                  .listing-author-contact
+                    %span.profile-contact-seperator
+                      = "•"
+                    %a#listing-contact{href: contact_to_listing_path(:listing_id => @listing.id.to_s), :class => "listing-author-contact-link"}
+                      .content
+                        = t("listings.show.contact")
+
+      - unless (@listing.closed? && !current_user?(@listing.author)) || !@current_community.listing_comments_in_use
+        .view-item
+          #comments.discussion.overflow-allowed
+            %h2
+              = icon_tag("chat_bubble", ["icon-with_text"])
+              .text-with-icon
+                = t("listings.show.comments")
+                %span#comment_count= "(#{@listing.comments_count})"
+            #follow-links.follow-links
+              = render :partial => "listings/follow_links"
+            #comment-list
+              = render :partial => "listings/comment", :collection => @listing.comments
+            #comment-form
+              = render :partial => "listings/comment_form"
+      
+    
+  .book-or-listing-actions.col-4#book-or-listing-actions
+    .row-with-divider
+      .col-12
+        #listing-message-links.listing-message-links-flex
+          .datepicker-popup-content#datepicker-popup-content
+            - if @listing_presenter.is_author
+              = render :partial => "listings/listing_actions"
+            - else
+              %button.close_datepicker-btn{type: "button", onclick: "window.ST.hidePopupForDatePicker()" }
+                %span.close_datepicker-span
+                  %span.close_datepicker-text
+                    = "Close"
+                  %i.icon-remove
+              %h1.booking-listing
+                %span 
+                  =@dynamic_translations[@listing.action_button_tr_key]
+                  %span
+                    = @listing.title
+              = render :partial => "listings/listing_actions"
+            - content_for :extra_javascript do
+              :javascript
+                window.ST.switchListingActionsNode("listing-view-admin-links", "listing-all-details", "datepicker-popup-content");
+                window.ST.switchListingActionsNodeOnLoad("listing-view-admin-links", "listing-all-details", "datepicker-popup-content");
+            
+  - if !@listing_presenter.is_author
+    .booking-panel
+      .booking-panel-link
+        - if @listing.price
+          .price-of-listing
+            %span.listing-price-amount-flex
+              = MoneyViewUtils.to_humanized(@listing.price)
+            - with_quantity_text(@current_community, @listing) do |text|
+              %span.listing-price-quantity-flex
+                = text
+        %button.perform-listing-actions-btn{type: "button", onclick: "window.ST.showPopupForDatePicker()" }
+          %span#request-to-book
+            = @dynamic_translations[@listing.action_button_tr_key]
+
+
+

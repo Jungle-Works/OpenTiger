@@ -1,0 +1,73 @@
+.lp-file-input{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    visibility: hidden;
+}
+
+.lp-fileupload-preview-image{
+    max-height: 100%;
+    max-width: 100%;
+}
+.lp-upload-image-placeholder{
+    width: 8.5em;
+    height: 8.5em;
+    border-radius: 10px;
+    border: #e1e1e1 dashed 0.1875em;
+    background-color: #FAFAFA;
+    margin-right: 0.75em;
+    padding: 0.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.75em;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+        border-color: #bbbbbb;
+    }
+
+    .fileupload-preview-remove-image{
+        &.show{
+            display: block;
+        }
+    }
+}
+
+#lp-fileupload-btn{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    visibility: hidden;
+}
+
+.new-section-field{
+    margin-top: 1em;
+    .new-section-form-column{
+        margin-right: lines(0.5);
+        display: inline-block;
+    }
+}
+
+.edit-lp-section-buttons{
+    .inline-button-container{
+        button{
+            display: inline-block;
+            &.hidden{
+                display: none;
+            }
+        }
+     &:last-child{
+        float: right;
+        }
+    }
+}
+
+
+.form-group .color-picker-wrapper{
+    display: flex;
+    .lp-color-picker{
+        margin-left: 10px;
+    }
+}

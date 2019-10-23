@@ -1,0 +1,49 @@
+- content_for :title_header do
+  %h1
+    = t("layouts.admin.admin")
+    = "-"
+    = t("admin.communities.content_pages.content_pages")
+
+= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@presenter.community) }
+
+%link{rel: "stylesheet", href: "//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.css"}
+%script{src: "//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.js"}
+
+.left-navi-section
+  .content-page-heading
+    .row
+      %h4
+        = t("admin.communities.content_pages.add_content_pages")
+  %form{id: "content-page-form", onsubmit: "ST.content_pages.updateContentPage(event,'#{@current_community.id}','#{@content_page.id}')"}
+    .row
+      .title-and-url
+        .page-title
+          %label="Title"
+          %input{name: "title", type: :text, id:"content_page_title", value: @content_page.title}
+        .page-url
+          %label="Url"
+          .content-url
+            .domain-start
+              .domain-page-text
+                = content_page_url
+            .domain-end
+              %input{name: "url", type: :text, id:"content_page_url", value:  @content_page.end_point}
+    .row
+      .col-12
+        %textarea{name: "content_desc", id: "content-editor-space"}
+    .row
+      %div{:class=> "content-btns"}
+        %button{class: "save-content-btn",type: 'submit',id: "save-content"}
+          = t("custom.save")
+        .cancel-content-btn
+          = link_to( t("custom.cancel"), admin_content_page_path(@current_community), class: "button")
+      
+
+
+
+- content_for :extra_javascript do
+  :javascript
+    $(document).ready(function() {
+      ST.content_pages.initContentForm();
+      ST.content_pages.initEditor(`#{@content}`);
+    });

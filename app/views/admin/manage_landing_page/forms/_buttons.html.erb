@@ -1,0 +1,19 @@
+<div class="edit-lp-section-buttons">
+
+    <div class="inline-button-container">
+
+        <button id="save-btn">Save</button>
+    </div>
+    <div class="inline-button-container">
+        <a id="cancel-btn" href="<%= admin_manage_landing_page_index_path %>" class="cancel-button"> 
+        <span class="content">
+        Cancel
+        </span>
+        </a>
+    </div>
+    <div class="inline-button-container">
+        <button id="preview-btn" type="button" onclick="window['ST']['landingPage']['previewLandingPage'](<%= @section_data.to_json %>,'<%= @form_type %>')"> Preview</button>
+        <button id="window-btn" type="button" class="hidden" onclick="window['ST']['landingPage']['openPreviewWindow'](<%= @section_data.to_json %>)">Click to see Preview</button>
+    </div>
+
+</div>

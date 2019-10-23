@@ -1,0 +1,13 @@
+.five-photos#five-photos
+  .first-image.for-hover-effect{ data: {index: 0}, onclick: "window.ST.showFlexImageCarousel(0)", onmouseover: "window.ST.blurRestImages(0)", onmouseout: "window.ST.removeBlurEffect()"}
+    %img{:src => "#{@listing.listing_images.first.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.first.id}"}
+  .sec-th-img
+    .sec-img.for-hover-effect{data: {index: 1},onclick: "window.ST.showFlexImageCarousel(1)", onmouseover: "window.ST.blurRestImages(1)", onmouseout: "window.ST.removeBlurEffect()"}
+      %img{:src => "#{@listing.listing_images.second.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.second.id}"}
+    .th-img.for-hover-effect{data: {index: 2},onclick: "window.ST.showFlexImageCarousel(2)", onmouseover: "window.ST.blurRestImages(2)", onmouseout: "window.ST.removeBlurEffect()"}
+      %img{:src => "#{@listing.listing_images.third.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.third.id}"}
+  .fo-fi-img
+    .fo-img.for-hover-effect{data: {index: 3},onclick: "window.ST.showFlexImageCarousel(3)", onmouseover: "window.ST.blurRestImages(3)", onmouseout: "window.ST.removeBlurEffect()"}
+      %img{:src => "#{@listing.listing_images.fourth.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.fourth.id}"}
+    .fi-img.for-hover-effect{data: {index: 4},onclick: "window.ST.showFlexImageCarousel(4)", onmouseover: "window.ST.blurRestImages(4)", onmouseout: "window.ST.removeBlurEffect()"}
+      %img{:src => "#{@listing.listing_images.fifth.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.fifth.id}"}

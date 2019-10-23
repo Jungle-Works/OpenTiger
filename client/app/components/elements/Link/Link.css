@@ -1,0 +1,16 @@
+.link {
+  transition: all 100ms ease-in;
+
+  &:hover {
+    filter: brightness(80%);
+  }
+}
+
+.logoBorder{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  transition: .1s all ease-in-out;
+  border-bottom: 0 solid;
+}

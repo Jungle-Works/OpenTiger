@@ -1,0 +1,147 @@
+ko: 
+  web: 
+    admin: 
+      onboarding: 
+        guide: 
+          cover_photo: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            description: "슬로건과 설명은 신규 방문자가 자신의 시장을 이해하는 데 도움이됩니다. 방문자가 사이트에 도착했을 때 가장 먼저 알아 차릴 수 있기 때문에 컴팩트하지만 설명이 쉽습니다."
+            info_image_alt: "슬로건과 설명을 보여주는 홈페이지 스크린 샷."
+            add_your_own: "슬로건과 설명을 추가하십시오."
+            advice: 
+              content1: "%{link}を使用するか、または無料で使用できる見栄えのよい画像を探す場所については%{link}をチェックしてください。"
+              content2: "注意：写真のサイズは%{width}x%{height}ピクセルに変更されます。高さが高い画像の上部と下部は切り取られます。"
+              link_images: "이미 만들어진 이미지 중 하나입니다."
+              link: "우리 가이드"
+              alt_images: "놀라운 표지 사진 6 장을 빠르게 사용할 수있는 장소와 장소를 찾으십시오."
+              alt: "멋진 표지 사진, 로고, 파비콘, 프로필, 사진 목록을 얻는 방법"
+          filter: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              display_on_homepage: "이 필드를 기반으로 홈 페이지에 필터 표시"
+            info_image_alt: "슬로건과 설명을 보여주는 홈페이지 스크린 샷."
+            add_fields_and_filters: "필드 및 필터 추가"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              not_too_many_link: "너무 많이 추가하지 마십시오."
+          invitation: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              preview_link: "마지막 미리보기"
+              preview_link_alt: "미리보기 확인"
+            info_image_alt: "슬로건과 설명을 보여주는 홈페이지 스크린 샷."
+            invite_users: "사용자 초대"
+            advice: "친구를 먼저 초대하고 그들로부터 의견을받습니다."
+          listing: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            description: "슬로건과 설명은 신규 방문자가 자신의 시장을 이해하는 데 도움이됩니다. 방문자가 사이트에 도착했을 때 가장 먼저 알아 차릴 수 있기 때문에 컴팩트하지만 설명이 쉽습니다."
+            info_image_alt: "슬로건과 설명을 보여주는 홈페이지 스크린 샷."
+            post_your_first_listing: "첫 번째 목록 게시"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              close_listing: "목록 닫기"
+          next_step: 
+            slogan_and_description: "슬로건과 설명을 추가하십시오."
+            cover_photo: "표지 사진 업로드"
+            filter: "필드 및 필터 추가"
+            paypal: "지불을 수락하십시오"
+            listing: "업체 정보 게시"
+            invitation: "사용자 초대"
+            skip_this_step_for_now: "당장이 단계를 건너 뜁니다."
+          payments: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            description_p1: "아래에 표시된대로 시장을 활성화하고 운영하기 위해 취해야 할 몇 가지 중요한 단계가 있습니다."
+            not_sure_link: "어느 것을 골라야할지 모르십니까?"
+            description_p2: "당신이 끝나면, 시장은 첫 번째 방문자를받을 준비가되었습니다!"
+            info_image_alt: "슬로건과 설명을 보여주는 홈페이지 스크린 샷."
+            disable_payments: "지불을 비활성화하십시오."
+            setup_payments: "지불 설정"
+            cta_separator: O
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              disable_payments_link: "이 기사"
+              disable_payments_alt: "지불을 비활성화하거나 시장에 무료 목록을 추가하는 방법"
+              content_paypal_stripe: "%{stripe_paypal_link}.からの支払いを無効にする方法についてもっと読むか、%{stripe_paypal_link}.についてもっと読んでください。"
+              stripe_paypal_link: "온라인 지불, 회선 및 페이팔."
+            i_dont_want: "オンライン決済システムを使用したくない、%{link}."
+            disable_it: "사용 안함"
+          slogan_and_description: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            description: "슬로건과 설명은 신규 방문자가 자신의 시장을 이해하는 데 도움이됩니다. 방문자가 사이트에 도착했을 때 가장 먼저 알아 차릴 수 있기 때문에 컴팩트하지만 설명이 쉽습니다."
+            info_image_alt: "슬로건과 설명을 보여주는 홈페이지 스크린 샷."
+            add_your_own: "슬로건과 설명을 추가하십시오."
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              food_from_locals_slogan: "\"지방 주민에게서 음식을 사 줘라\""
+              guitar_lessons_slogan: "\"전문 기타 수업\""
+              food_from_locals_description: "\"FoodMarket은 현지 업체에서 직접 제품을 주문하는 가장 쉬운 방법입니다.\""
+              guitar_lessons_description: "\"GuitarPro는 음악 교사를 비교할 수있는 좋은 장소입니다.\""
+          status_page: 
+            title: "멋진, 당신은 그것을 만들었다!"
+            title_done: "모든 것이 완료되었습니다!"
+            description_p1: "아래에 표시된대로 시장을 활성화하고 운영하기 위해 취해야 할 몇 가지 중요한 단계가 있습니다."
+            description_p2: "당신이 끝나면, 시장은 첫 번째 방문자를받을 준비가되었습니다!"
+            congratulation_p1: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              knowledge_base_link: "도움말 센터"
+              knowledge_base_alt: "도움말 센터"
+            congratulation_p2: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              marketplace_guide_link: "온라인 시장 비즈니스 구축을위한 실질적인 가이드"
+              marketplace_guide_alt: "마켓 플레이스 아카데미를 키우다."
+            congratulation_p3: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              contact_support_link: "지원팀에 문의"
+              contact_support_title: "지원"
+            create_your_marketplace: "너의 시장을 만들어라."
+            slogan_and_description: "슬로건과 설명을 추가하십시오."
+            cover_photo: "표지 사진 업로드"
+            filter: "필드 및 필터 추가"
+            paypal: "지불을 수락하십시오"
+            listing: "업체 정보 게시"
+            invitation: "사용자 초대"
+          back_to_todo: "할일 목록으로 돌아 가기."
+        topbar: 
+          progress_label: "시장의 진보"
+          next_step: "시대"
+          slogan_and_description: "슬로건과 설명을 추가하십시오."
+          cover_photo: "표지 사진 업로드"
+          filter: "필드 및 필터 추가"
+          paypal: "지불을 수락하십시오"
+          listing: "업체 정보 게시"
+          invitation: "사용자 초대"
+  admin: 
+    onboarding: 
+      popup: 
+        slogan_and_description: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          button: "다음에 할 일보기"
+        cover_photo: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          button: "다음에 할 일보기"
+        filter: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          button: "다음에 할 일보기"
+        payment: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          body_stripe: "다음으로 온라인 지불 시장을 설정하십시오. 판매자가 지불을 수락 할 수 있도록 PayPal 또는 Stripe 계정을 연결해야합니다. 또는 현재 온라인 지불을 사용 중지 할 수 있습니다."
+          button: "다음에 할 일보기"
+        listing: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          button: "다음에 할 일보기"
+        invitation: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          button: "다음에 할 일보기"
+        all_done: 
+          title: "멋진, 당신은 그것을 만들었다!"
+          body: "멋진, 당신은 그것을했다! 귀하의 시장은 현재 운영 중입니다. 그러나 이것은 시작에 불과합니다. 우리는 여행의 모든 ​​단계에서 당신을 도울 것입니다."
+          button: "다음에 할 일보기"
+        button_later: "나는 나중에 감사 할거야."

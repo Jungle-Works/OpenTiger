@@ -1,0 +1,154 @@
+<% content_for :title_header do %>
+
+<h1><%= t("layouts.admin.admin") + "-" + t("admin.landing_page.landing_page")%></h1>
+
+<% end %>
+
+
+<%= render :partial => "admin/left_hand_navigation", :locals => { :links => admin_links_for(@current_community)} %>
+
+
+<div class="left-navi-section">
+  <div class="row">
+ 
+    <div class="col-12">
+      <h2> <%=t("admin.landing_page.landing_page") %></h2>
+      <p><%= t("admin.landing_page.landing_page_description") %></p>
+      
+      <% if true %>
+      <form>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group checkbox-container">
+          <% if @is_enable %>
+          <input type ="checkbox" checked id="enable-landing-page" onchange="window['ST']['landingPage']  ['enableDisableLandingPage'](event)">
+          <% else %>
+          <input type ="checkbox" id="enable-landing-page" onchange="window['ST']['landingPage']  ['enableDisableLandingPage'](event)">
+          <% end %>
+          <label for="enable-landing-page">Enable landing page for all users.</label>
+          </div>
+        </div>
+        <div class="col-6 text-right">
+          <button id="preview-btn" type="button" style="float:right;" onclick="window['ST']['landingPage']['updatePreview']('')"> Preview</button>
+          
+        </div>
+      </div>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            
+            <td>Name</td>
+            <td>Id</td>
+            <td>Action</td>
+          </tr>
+          </thead>
+          <tbody>
+            <% @landing_page_data["composition"].each_with_index do |sections,index| %>
+            <% modifier_class = (index == 0 || index == (@landing_page_data["composition"].length-1)) ? "row" : "lp-section-row"%>
+            <tr class="<%= modifier_class %>" data-section-id="<%=sections["section"]["id"] %>">
+              <td>
+                <% section_data = sections["section"]%>
+                <% if section_data["title"].present?%>
+                  <%= section_data["title"].truncate(30)%>
+                <% elsif section_data["kind"] == "hero"%>
+                  Main Section
+                <% elsif section_data["kind"] == "video"%>
+                  Video
+                <% elsif section_data["kind"] == "footer"%>
+                  Footer
+                <% else %>
+  
+                <% end %>
+                
+              </td>
+              <td>
+                <%= sections["section"]["id"] %>
+              </td>
+             
+              <td>
+                
+                  <% if index == 0 || index == (@landing_page_data["composition"].length-1)%>
+                    
+                    <% if  sections["section"]["kind"] =="hero"%>
+                    <a class="lp-section-up" onclick="window['ST']['landingPage']['edit']('<%= edit_admin_manage_landing_page_path({ :id => sections['section']['id']}) %>',
+                     '<%= sections['section']['id']%>')"><%=  icon_tag("edit", ["icon-fix"])%> </a>     
+                    <% else %>
+                    <a class="lp-section-up" onclick="window['ST']['landingPage']['editFooter']('<%=admin_footer_edit_path %>')"><%=  icon_tag("edit", ["icon-fix"])%> </a>    
+                    <% end %>
+
+                    <a href="#" class="lp-sort-button lp-action-up">             
+                    <%=  icon_tag("directup", ["icon-fix disabled"]) %>
+                    </a>
+                    <a href="#" class="lp-sort-button lp-action-down">             
+                    <%=  icon_tag("directdown", ["icon-fix disabled"])%>
+                    </a>
+                            
+                    <a href="#"> <%=  icon_tag("cross", ["icon-fix disabled"])%> </a>
+                    
+                  <% else %>
+                    <a class="lp-section-up" onclick="window['ST']['landingPage']['edit']('<%= edit_admin_manage_landing_page_path({ :id => sections['section']['id']}) %>', '<%= sections['section']['id']%>')">
+                    <%=  icon_tag("edit", ["icon-fix"]) %>
+                    </a>
+                      <a href="#" class="lp-sort-button lp-action-up">             
+                    <%=  icon_tag("directup", ["icon-fix"]) %>
+                    </a>
+                    <a href="#" class="lp-sort-button lp-action-down">             
+                    <%=  icon_tag("directdown", ["icon-fix"])%>
+                    </a>
+                    <a href="#" onclick="window['ST']['landingPage']['deleteSection'](event,<%= sections.to_json %>)"> <%=  icon_tag("cross", ["icon-fix"])%> </a>
+
+                  <% end %>
+                </a>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+      </table>
+
+      <div class="new-section-field">
+      <div class="new-section-form-column">
+        Add new Section:
+      </div>
+      <div class="new-section-form-column">
+          
+        <select name="new-section" onchange="window['ST']['landingPage']['addSection'](this,'<%= new_admin_manage_landing_page_path %>')">
+            <option selected value="">Select section Type</option>
+          <% getSectionTypes.each_with_index do |section,index|%>
+          <option value='<%=raw section.to_json%>'><%=section["name"]%></option>
+          <% end %>
+        </select>
+      </div>
+      </div>
+      <%else%>
+      <h4><%= t("admin.landing_page.enable_landing_page", billing_section_link: admin_community_plans_path).html_safe%></h4>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<% content_for :ajax_update do %>
+  <div id="landing-page-saving-enable-disable" class="ajax-update-notice">
+    <span class="ajax-update-icon <%= icon_class("loading") %> icon-fix"><span>
+    <span class="aja-update-text">Saving</span>
+  </div>
+  <div id="landing-page-saved-enable-disable" class="ajax-update-success">
+    <span class="ajax-update-icon <%= icon_class("check") %> icon-fix"><span>
+    <span class="aja-update-text">Success</span>
+  </div>
+  <div id="landing-page-error-enable-disable" class="ajax-update-error">
+    <span class="ajax-update-icon <%= icon_class("check") %> icon-fix"><span>
+    <span class="aja-update-text">Success</span>
+  </div>
+<% end %>
+<%= render :partial => "layouts/ajax_update_notification" %>
+
+
+
+
+
+<% content_for :javascript do %>
+window.ST.landingPage.intialize(<%= raw @landing_page_data.to_json %>)
+window.ST.landingPage.initList()
+<% end %>

@@ -1,0 +1,147 @@
+ja: 
+  web: 
+    admin: 
+      onboarding: 
+        guide: 
+          cover_photo: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            description: "スローガンと説明は、新しい訪問者があなたの市場が何であるかについて理解するのを助けます。彼らはあなたのサイトに着いたとき訪問者が気づく最初のものですので、彼らはコンパクトだが説明的にするようにしてください。"
+            info_image_alt: "スローガンと説明を示すホームページのスクリーンショット。"
+            add_your_own: "スローガンと説明を追加"
+            advice: 
+              content1: "%{link}を使用するか、または無料で使用できる見栄えのよい画像を探す場所については%{link}をチェックしてください。"
+              content2: "注意：写真のサイズは%{width}x%{height}ピクセルに変更されます。高さが高い画像の上部と下部は切り取られます。"
+              link_images: "私たちの既製画像の一つ"
+              link: "私たちのガイド"
+              alt_images: "6枚の素晴らしいカバー写真をすぐに使用できる場所と場所を探す場所"
+              alt: "見栄えの良いカバー写真、ロゴ、favicon、プロフィール、写真の一覧を取得する方法"
+          filter: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              display_on_homepage: "このフィールドに基づいてホームページにフィルタを表示する"
+            info_image_alt: "スローガンと説明を示すホームページのスクリーンショット。"
+            add_fields_and_filters: "フィールドとフィルタを追加する"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              not_too_many_link: "追加しすぎてはいけません"
+          invitation: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            description: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              preview_link: "最後のプレビュー"
+              preview_link_alt: "プレビューを確認する"
+            info_image_alt: "スローガンと説明を示すホームページのスクリーンショット。"
+            invite_users: "ユーザーを招待する"
+            advice: "まず友達を招待して、友達からのフィードバックを集めましょう。"
+          listing: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            description: "スローガンと説明は、新しい訪問者があなたの市場が何であるかについて理解するのを助けます。彼らはあなたのサイトに着いたとき訪問者が気づく最初のものですので、彼らはコンパクトだが説明的にするようにしてください。"
+            info_image_alt: "スローガンと説明を示すホームページのスクリーンショット。"
+            post_your_first_listing: "あなたの最初のリストを投稿する"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              close_listing: "リストを閉じる"
+          next_step: 
+            slogan_and_description: "スローガンと説明を追加"
+            cover_photo: "カバー写真をアップロードする"
+            filter: "フィールドとフィルタを追加する"
+            paypal: "支払いを受け入れる"
+            listing: "リスティングを投稿する"
+            invitation: "ユーザーを招待する"
+            skip_this_step_for_now: "今のところこのステップをスキップする"
+          payments: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            description_p1: "あなたの市場を稼働させるには、以下にリストされているように、あなたがとらなければならないいくつかの重要なステップがあります。"
+            not_sure_link: "どれを選ぶべきかわからない？"
+            description_p2: "終了したら、あなたの市場は最初の訪問者を受け取る準備ができています！"
+            info_image_alt: "スローガンと説明を示すホームページのスクリーンショット。"
+            disable_payments: "支払いを無効にする"
+            setup_payments: "支払いを設定する"
+            cta_separator: "または"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              disable_payments_link: "この記事"
+              disable_payments_alt: "支払いを無効にしたり、無料リスティングをマーケットプレイスに追加する方法"
+              content_paypal_stripe: "%{stripe_paypal_link}.からの支払いを無効にする方法についてもっと読むか、%{stripe_paypal_link}.についてもっと読んでください。"
+              stripe_paypal_link: "オンライン支払い、ストライプとペイパル"
+            i_dont_want: "オンライン決済システムを使用したくない、%{link}."
+            disable_it: "無効にする"
+          slogan_and_description: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            description: "スローガンと説明は、新しい訪問者があなたの市場が何であるかについて理解するのを助けます。彼らはあなたのサイトに着いたとき訪問者が気づく最初のものですので、彼らはコンパクトだが説明的にするようにしてください。"
+            info_image_alt: "スローガンと説明を示すホームページのスクリーンショット。"
+            add_your_own: "スローガンと説明を追加"
+            advice: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              food_from_locals_slogan: "\"地元の人から食べ物を買う\""
+              guitar_lessons_slogan: "「プロからギターのレッスンを受ける」"
+              food_from_locals_description: "「FoodMarketは地元の売り手から直接商品を注文する最も簡単な方法です」"
+              guitar_lessons_description: "「GuitarProは音楽教師を比較するのに最適な場所です」"
+          status_page: 
+            title: "素晴らしい、あなたはそれを作りました！"
+            title_done: "全部できた！"
+            description_p1: "あなたの市場を稼働させるには、以下にリストされているように、あなたがとらなければならないいくつかの重要なステップがあります。"
+            description_p2: "終了したら、あなたの市場は最初の訪問者を受け取る準備ができています！"
+            congratulation_p1: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              knowledge_base_link: "ヘルプセンター"
+              knowledge_base_alt: "ヘルプセンター"
+            congratulation_p2: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              marketplace_guide_link: "オンラインマーケットプレイスビジネスを構築するための実用的なガイド"
+              marketplace_guide_alt: "マーケットプレイスアカデミーへのリンク"
+            congratulation_p3: 
+              content: "ご質問がありましたら、%{contact_support_link},までお気軽にお問い合わせください。"
+              contact_support_link: "サポートに連絡する"
+              contact_support_title: "サポート"
+            create_your_marketplace: "あなたのマーケットプレイスを作る"
+            slogan_and_description: "スローガンと説明を追加"
+            cover_photo: "カバー写真をアップロードする"
+            filter: "フィールドとフィルタを追加する"
+            paypal: "支払いを受け入れる"
+            listing: "リスティングを投稿する"
+            invitation: "ユーザーを招待する"
+          back_to_todo: "やることリストに戻る"
+        topbar: 
+          progress_label: "マーケットプレイスの進捗"
+          next_step: "次"
+          slogan_and_description: "スローガンと説明を追加"
+          cover_photo: "カバー写真をアップロードする"
+          filter: "フィールドとフィルタを追加する"
+          paypal: "支払いを受け入れる"
+          listing: "リスティングを投稿する"
+          invitation: "ユーザーを招待する"
+  admin: 
+    onboarding: 
+      popup: 
+        slogan_and_description: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          button: "次に何をするかを見る"
+        cover_photo: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          button: "次に何をするかを見る"
+        filter: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          button: "次に何をするかを見る"
+        payment: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          body_stripe: "次に、オンライン決済用にマーケットプレイスを設定します。あなたの売り手が支払いを受け入れることを可能にするために、あなたはあなたのPayPalまたはStripeアカウントを接続する必要があります。あるいは、今のところオンライン決済を無効にすることもできます。"
+          button: "次に何をするかを見る"
+        listing: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          button: "次に何をするかを見る"
+        invitation: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          button: "次に何をするかを見る"
+        all_done: 
+          title: "素晴らしい、あなたはそれを作りました！"
+          body: "素晴らしい、あなたはそれをやった！あなたの市場は現在稼働中です。しかし、これはほんの始まりにすぎません。私たちはあなたの旅のあらゆるステップであなたを助けるためにここにいます。"
+          button: "次に何をするかを見る"
+        button_later: "後でやるよ、ありがとう"

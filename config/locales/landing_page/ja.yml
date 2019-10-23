@@ -1,0 +1,11 @@
+ja: 
+  admin: 
+    landing_page: 
+    landing_page: "ランディングページ"
+    landing_page_description: "ランディングページは、おそらくあなたの市場で最も重要なページです。それは訪問者が見る最初のページです - あなたの家の正面玄関のようなもの。あなたは彼らがあなたのサイトを探検するべきであることを新しい訪問者に納得させるためにわずか数秒しかありません。ページは魅力的である必要があり、あなたの価値提案は明確で魅力的であるべきです。"
+    landing_page_preview_description: "現在のランディングページを%{design_link}および%{design_link}と%{design_link}のセクションから変更します。"
+    custom_landing_page_price_description: "あなたがあなたの市場のために完全にカスタマイズされたランディングページを持ちたいならば、あなたは月額99ドルのアドオンとしてそれを購入することができます。"
+    landing_page_link_text: "カスタムランディングページについてもっと読む"
+    preview_link_text: "プレビュー"
+    basic_details_link_text: "基本的な詳細"
+    design_link_text: "設計"

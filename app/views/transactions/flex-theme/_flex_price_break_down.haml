@@ -1,0 +1,159 @@
+%h3.booking-breakdown
+  %span
+    = "Booking breakdown"
+
+
+- currency = Money::Currency.new(@current_community.currency)
+-if show_delivery_address && params['unit_type'] == 'unit' && APP_CONFIG.delivery_address_option_ids.include?(@current_community.id)
+  .initiate-transaction-totals
+    .delivery-address-details
+      %span
+        = "Address:"
+      %br
+        %span{ class: "address-value"}
+          = @job_delivery_address
+
+
+
+.initiate-transaction-totals
+
+  - if booking
+    .initiate-transaction-per-unit-wrapper
+      %span.initiate-transaction-per-unit-label
+        - if unit_type == :day
+          = t("transactions.initiate.price_per_day")
+        - elsif unit_type == :night
+          = t("transactions.initiate.price_per_night")
+        - elsif unit_type == :hour
+          = t("transactions.initiate.price_per_hour")
+        - else
+          = t("transactions.initiate.price_per_unit")
+      %span.initiate-transaction-per-unit-value
+        = MoneyViewUtils.to_humanized(listing_price)
+
+    .initiate-transaction-booking-wrapper
+      - if per_hour
+        %span.initiate-transaction-booking-label
+          = t('transactions.initiate.booked_hours_label', count: duration)
+        %span.initiate-transaction-booking-value
+          = l start_time.to_date, format: :long_with_abbr_day_name
+          = '-'
+          = t("transactions.initiate.start_end_time",
+            start_time: l(start_time, format: :hours_only),
+            end_time: l(end_time, format: :hours_only))
+          = t("transactions.initiate.duration_in_hours", count: duration)
+      - else
+        %span.initiate-transaction-booking-label
+          - if unit_type == :day
+            = use_new_translation("transactions.initiate.booked_days_label", count: duration).or_fallback_to("transactions.initiate.booked_days")
+          - else
+            = use_new_translation("transactions.initiate.booked_nights_label", count: duration).or_fallback_to("transactions.initiate.booked_nights")
+        %span.initiate-transaction-booking-value
+          = l start_on, format: :long_with_abbr_day_name
+          = "-"
+          - if unit_type == :day
+            - if @current_community.user_id == "181822"
+              = l end_on, format: :long_with_abbr_day_name
+              = "(#{pluralize(duration, t("listing_conversations.preauthorize.day"), t("listing_conversations.preauthorize.days"))})"
+            - else
+              = l (end_on - 1.day), format: :long_with_abbr_day_name
+              = "(#{pluralize(duration, t("listing_conversations.preauthorize.day"), t("listing_conversations.preauthorize.days"))})"
+          - else
+            = l end_on, format: :long_with_abbr_day_name
+            = "(#{pluralize(duration, t("listing_conversations.preauthorize.night"), t("listing_conversations.preauthorize.nights"))})"
+
+  - elsif quantity.present? && localized_unit_type.present?
+    .initiate-transaction-per-unit-wrapper
+      %span.initiate-transaction-per-unit-label
+        = t("transactions.price_per_quantity", unit_type: localized_unit_type)
+      %span.initiate-transaction-per-unit-value
+        = MoneyViewUtils.to_humanized(listing_price)
+    - if quantity > 1
+      .initiate-transaction-quantity-wrapper
+        %span.initiate-transaction-quantity-label
+          = localized_selector_label || t("transactions.initiate.quantity")
+        %span.initiate-transaction-quantity-value
+          = quantity
+  - if @transaction.present?
+    - @transaction.transaction_checkout_fields.each do |transaction_checkout_field|
+      - if transaction_checkout_field.field_type == "TextField"
+        .initiate-transaction-sum-wrapper
+          %span.initiate-transaction-sum-label
+            = transaction_checkout_field.title
+          %span.initiate-transaction-sum-value
+            = transaction_checkout_field.value
+            
+      - elsif transaction_checkout_field.field_type == "FileUpload"
+        .initiate-transaction-sum-wrapper
+          = link_to( transaction_checkout_field.title, transaction_checkout_field.value)
+          
+      - elsif transaction_checkout_field.field_type == "DropdownField"
+        - transaction_checkout_field.transaction_checkout_field_selections.each do |dropdown_selection|
+          .initiate-transaction-sum-wrapper
+            %span.initiate-transaction-sum-label
+              = transaction_checkout_field.title
+            %span.initiate-transaction-sum-label
+              = dropdown_selection.label
+            %span.initiate-transaction-sum-value
+              = currency.symbol + dropdown_selection.value.to_s
+  - if subtotal.present?
+    .initiate-transaction-sum-wrapper
+      %span.initiate-transaction-sum-label
+        = t("transactions.initiate.subtotal")
+      %span.initiate-transaction-sum-value
+        = MoneyViewUtils.to_humanized(subtotal)
+
+  .initiate-transaction-sum-wrapper.additional_value{style: "display: none"}
+    %span.initiate-transaction-sum-label
+      = "Additional Price:"
+    %span.additional-price
+
+  - if params['unit_type'] == 'unit' && APP_CONFIG.delivery_address_option_ids.include?(@current_community.id)
+    .initiate-transaction-sum-wrapper.initiate-transaction-delivery-charge-wrapper{style: "display: none"}
+      %span.initiate-transaction-sum-label.delivery-charge-label
+        = "Delivery Charge:"
+      %span.initiate-transaction-sum-value.delivery-charge-value
+    -if show_delivery_charge
+      .delivery-charge-details
+        %span
+          = "Delivery Charge:"
+        %span{ class: "charge-value",style: "float:right"}
+          = currency.symbol + @charge.round(2).to_s
+
+
+  - if shipping_price.present?
+    .initiate-transaction-shipping-price-wrapper
+      %span.initiate-transaction-shipping-price-label
+        = t("transactions.initiate.shipping-price")
+      %span.initiate-transaction-shipping-price-value
+        = MoneyViewUtils.to_humanized(shipping_price)
+
+  
+
+
+  - if is_author
+    .initiate-transaction-sum-wrapper
+      %span.initiate-transaction-sum-label
+        = t("transactions.total_to_pay")
+      %span.initiate-transaction-sum-value
+        = MoneyViewUtils.to_humanized(total)
+
+    - if fee.present? && fee > 0
+      .initiate-transaction-sum-wrapper
+        %span.initiate-transaction-sum-label
+          = t("conversations.accept.service_fee_label")
+        %span.initiate-transaction-sum-value
+          = "-#{MoneyViewUtils.to_humanized(fee)}"
+
+  - if total.present?
+    %input#total-temp-price{:type=>"hidden", :value=> total}
+    .initiate-transaction-total-wrapper
+      %span.initiate-transaction-total-label
+        - if total_label.present?
+          = total_label
+        - else
+          = t("transactions.total")
+      %span.initiate-transaction-total-value
+        = MoneyViewUtils.to_humanized(is_author ? seller_gets : total)
+      %span.total_value{style: "display: none"}
+        = is_author ? seller_gets : total

@@ -1,0 +1,19 @@
+zh: 
+  emails: 
+    welcome_email_marketplace_creator: 
+      welcome_email_subject_for_marketplace_creator: "欢迎来到yelo。"
+      welcome_to_marketplace_creator: "Yeloへようこそ%{name}!"
+      journey_begins: "成为市场企业家的旅程才刚刚开始！在接下来的14天内，您可以尝试使用Yelo并创建自己的在线市场。"
+      marketplace_information: "这是您的市场信息。"
+      your_email_address: " - 您帐户的电子邮件地址："
+      your_marketplace_address: " - 市场定位："
+      share_your_marketplace_address: "这是您在市场中的公开地址以及您需要与访问者分享的内容。"
+      your_marketplace_admin_panel: " - 您市场的管理面板："
+      follow_suggested_steps: "这是您可以作为所有者更改市场的地方。按照建议的步骤设置您的市场。"
+      not_alone: "你并不孤单。"
+      support_team: "请发送电子邮件至Yeloのサポートチームがあなたのためにここにいます！最も一般的な質問への回答と%{knowledge_base_link}をチェックしてください。 contact@yelo.red 或回复此电子邮件，与您的团队联系。"
+      helping_you: "帮助你在路上。"
+      drip_emails_academy: "市場ビジネスを構築する方法についてもっとアドバイスが必要ですか？心配しないで、私たちはあなたを助けるためにここにいます！あなたはすでに私たちの%{marketplace_academy_link}?をチェックアウトしたことがありますか？さらに、Yeloを最大限に活用するのに役立つ一連の電子メールを送信します。あなたはすぐにあなたの受信トレイに最初の人が着地することを期待することができます。"
+      marketplace_academy_link_text: "市场学院"
+      cheers: "干杯，来自"
+      sharetribe_team: "yelo团队"

@@ -1,0 +1,11 @@
+zh: 
+  admin: 
+    landing_page: 
+    landing_page: "着陆页"
+    landing_page_description: "您的目标网页可能是您所在市场中最重要的页面。这是访客看到的第一页。例如，它就像房子的前门。只需几秒钟就可以让新访问者知道他们需要浏览网站。该页面应具有吸引力，价值主张必须清晰，引人入胜。"
+    landing_page_preview_description: "現在のランディングページを%{design_link}および%{design_link}と%{design_link}のセクションから変更します。"
+    custom_landing_page_price_description: "如果您想要根据您的市场量身定制完全自定义的目标网页，您可以每月99美元的价格购买。"
+    landing_page_link_text: "详细了解自定义目标网页。"
+    preview_link_text: "以前的观点"
+    basic_details_link_text: "基本细节"
+    design_link_text: "设计"

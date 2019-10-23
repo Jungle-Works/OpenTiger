@@ -1,0 +1,48 @@
+<div class="plan-expiration-container">
+    <div class="plan-expiration-content">
+
+        <% if show_close_btn %>
+        <div class="close-btn" onclick="ST.communityPlan.closePlanExpiration()">
+            <%= icon_tag("cross")%>
+        </div>
+        <% end %>
+        <div class="expiration-logo">
+            <%= image_tag("rentals.gif", class: "logo-img", width: "200") %>
+
+            <!-- <img class="gif" loop="infinite" src="assets/gif/Final.gif"> -->
+        </div>
+        <% if @current_community.check_if_plan_has_expired(@current_billing_plan["expiry_datetime"].to_date, @current_plan_data["plan_code"]) == 'stop' %>
+        <div class="free-trial-section">
+            <span class="line-1">Your free trial has expired.</span>
+            <span class="line-2">Please pick a plan</span>
+        </div>
+
+        <div class="dont-worry-section">
+            <div class="line-1">Don’t worry, nothing has been lost and you can easily</div>
+            <div class="line-2">re-open your account by picking a plan below.</div>
+        </div>
+
+        <% elsif %>
+        <div class="free-trial-section">
+            <span class="line-1">
+              Your free trial is about to expire in
+              <% if  @current_community.check_days_left_for_plan_expiry(@current_billing_plan) > 1 %>
+               <%= @current_community.check_days_left_for_plan_expiry(@current_billing_plan)%> days
+              <% else %>
+              <%= 'a day' %> 
+              <%end%>
+            </span>
+        </div>
+        <div class="dont-worry-section">
+        Choose a plan for a hassle free experience.
+        </div>
+        <% end %>
+        <div class="choose-plan">
+            <% billingPath = admin_community_plans_path.to_s %>
+            <button onclick="ST['communityPlan']['redirectToBilling']('<%=billingPath%>')" id="plan-expiration-btn" type="button">Choose Plan</button>
+        </div>
+
+
+
+    </div>
+</div>

@@ -1,0 +1,5 @@
+.two-photos#two-photos
+  .first-image.for-hover-effect{data: {index: 0}, onclick: "window.ST.showFlexImageCarousel(0)", onmouseover: "window.ST.blurRestImages(0)", onmouseout: "window.ST.removeBlurEffect()"}
+    %img{:src => "#{@listing.listing_images.first.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.first.id}"}
+  .second-img.for-hover-effect{data: {index: 1}, onclick: "window.ST.showFlexImageCarousel(1)" , onmouseover: "window.ST.blurRestImages(1)", onmouseout: "window.ST.removeBlurEffect()"}
+    %img{:src => "#{@listing.listing_images.second.image.url(:medium)}", :alt => @listing.title, :class => "listing-image ${aspectRatioClass}", id: "listing_image_#{@listing.listing_images.second.id}"}

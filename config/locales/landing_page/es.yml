@@ -1,0 +1,11 @@
+es: 
+  admin: 
+    landing_page: 
+    landing_page: "Página de aterrizaje"
+    landing_page_description: "Las páginas de destino son probablemente las páginas más importantes de su mercado. Esa es la primera página que ve un visitante, como la puerta de entrada de su casa. Solo tiene unos segundos para convencer a los nuevos visitantes de que deben explorar su sitio. Las páginas deben ser atractivas, y su propuesta de valor debe ser clara y atractiva."
+    landing_page_preview_description: "現在のランディングページを%{design_link}および%{design_link}と%{design_link}のセクションから変更します。"
+    custom_landing_page_price_description: "Si desea tener una página de destino completamente personalizada para su mercado, puede comprarla como un complemento de $ 99 por mes."
+    landing_page_link_text: "Lea más sobre las páginas de destino personalizadas"
+    preview_link_text: "Vista previa"
+    basic_details_link_text: "Detalles basicos"
+    design_link_text: "Diseño"

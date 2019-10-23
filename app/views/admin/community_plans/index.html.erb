@@ -1,0 +1,45 @@
+<% content_for :title_header do %>
+<h1><%=  t("layouts.admin.admin") + "-" + t("admin.communities.community_plans.billing_information") %></h1>
+<% end %>
+
+<%= render partial: "admin/left_hand_navigation", locals: { links: admin_links_for(@current_community)} %>
+
+<div class="left-navi-section">
+    <h2> <%= t("admin.communities.community_plans.billing_information", community_name: @current_community.name(I18n.locale)) %>
+    </h2>
+    <div class="plans-container">
+        <div class="selected-plan-detail-wrapper">
+            <div class="selected-plan-detail">
+                <div class="plan-name">
+                    <div class="heading">Plan</div>
+                    <div class="value"><%= @current_billing_plan["name"] %></div>
+                </div>
+                <div class="plan-billing-date">
+                    <div class="heading">
+                        <% if @current_plan_data["plan_code"] == 'trial' %>
+                        Expiry Date
+                        <% elsif %>
+                        Next Billing Date
+                        <%end%>
+                    </div>
+                    <div class="value">
+                        <% if @current_plan_data["plan_code"] == 'free'%>
+                            -
+                        <% elsif %>
+                           <%= @current_billing_plan["expiry_datetime"].to_date.strftime("%b %d, %Y")%>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+            <div class="change-plan">
+                <button onclick="ST['communityPlan']['changePlan'](<%= @current_billing_plan["plan_id"] %>)">Change Plan</button>
+            </div>
+        </div>
+        <div class="add-card-wrapper">
+            <%= render partial: "admin/community_plans/add_card", locals: {card: @card ? @card["data"][0] : nil} %>
+        </div>
+
+    </div>
+</div>
+
+<%= render partial: "admin/community_plans/choose_plans", locals: {show_close_btn: @plan_expired == 'stop' ? false : true} %>

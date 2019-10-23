@@ -1,0 +1,13 @@
+
+<div class="form-group">
+    <label for=""><%= input_name %></label>
+    <div class="color-picker-wrapper">
+    <%= render partial: "layouts/info_text", locals: { text: "Set the color" } %>
+    <input class="lp-color-picker" name="<%= label%>-picker" id="<%= label%>-picker" value="<%= Maybe(input_value).or_else("#0074F9")%>" type="color">
+    </div>
+    <input name="<%= label%>" id="<%= label%>" value="<%= input_value%>" type="text">
+</div>
+
+<% content_for :javascript do %>
+    window.ST.landingPage.colorpickerListener("<%= label%>-picker","<%= label%>");
+<%end%>

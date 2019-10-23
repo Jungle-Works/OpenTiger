@@ -1,0 +1,72 @@
+<%= render :partial => "listings/form/javascripts", :locals => { listing_id: @listing.id || "false", minimum_price_cents: @listing_presenter.commission[:minimum_price_cents], run_js_immediately: run_js_immediately, shape: shape} %>
+<%= render :partial => "listings/flex-theme/flex_theme_css"%>
+
+<div class="listing-form-wrapper">
+    <span class="mobile-back-btn" href="#" onclick="ST['backToCategorySelection']()"><%= t("listings.new.back_to_category") %></span>
+    
+    <div class="form-sidenav">
+        <span class="back-btn" href="#" onclick="ST['backToCategorySelection']()"><%= t("listings.new.back_to_category") %></span>
+        <div class="links-group">
+          <% sidebar_links.each_with_index do |link,index|%>
+          <% class_modifier=((index == 0) ? "selected-link" : (add_form ? "disabled" : ""))%>
+          <a href="#" class="form-sidenav-link <%= class_modifier%>" id="form-link-<%=index%>" 
+          onclick='ST["selectForm"](event,<%= index%>,<%= raw sidebar_links.to_json%>)'>
+              <%= link[:text]%>
+          </a>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="listing-form-panel">
+      <%= form_for @listing_presenter.listing_form_object, :html => {:multipart => true} do |form| %>
+
+        <% sidebar_links.each_with_index do |link,index|%>
+       
+        <div class="form-section <%= (index == 0) ? "": "hidden"%>" id="form-panel-<%=index%>">
+        
+        <% case link[:kind] %>
+            <% when "description" %>
+              <%= render :partial=>"listings/flex-theme/description_form", :locals => { :form => form , :index=> index, :sidebar_links=> sidebar_links}%>
+            <% when "price" %>
+              <%= render :partial=>"listings/flex-theme/pricing_form", :locals => { :form => form, :index=> index,:sidebar_links=> sidebar_links,
+              :run_js_immediately => run_js_immediately }%>
+            <% when "custom" %>
+              <%= render :partial=>"listings/flex-theme/custom_fields_form", :locals => { :form => form, :index=> index,:sidebar_links=> sidebar_links,
+              :run_js_immediately => run_js_immediately }%>
+            <% when "location" %>
+              <%= render :partial=>"listings/flex-theme/location_form", :locals => { :form => form, :index=> index,:sidebar_links=> sidebar_links,
+              :run_js_immediately => run_js_immediately }%>
+            <% when "photos" %>
+              <%= render :partial=>"listings/flex-theme/images_form", :locals => { :form => form, :index=> index,:sidebar_links=> sidebar_links,
+              :run_js_immediately => run_js_immediately }%>
+            <% when "availability" %>
+              <%= render :partial=>"listings/flex-theme/availability_form", :locals => { :form => form, :index=> index,:sidebar_links=> sidebar_links,
+              :run_js_immediately => run_js_immediately }%>
+           
+        <% end %>
+        </div>
+
+        <%= hidden_field_tag 'listing_ordered_images' %>
+
+        <% end %>
+
+     <% end %>
+
+        <%= render :partial => "listings/help_texts", :collection => ["help_valid_until"], :as => :field %>
+        <%= render "layouts/markdown_help", run_js_immediately: run_js_immediately %>
+    </div>
+
+
+</div>
+
+<% if run_js_immediately%>
+   <script>
+     $(".main-category-section").hide();
+   </script>
+<% else %>
+  <% content_for :extra_javascript do%>
+   <script>
+     $(".main-category-section").hide();
+   </script>
+  <% end %>
+<% end %>

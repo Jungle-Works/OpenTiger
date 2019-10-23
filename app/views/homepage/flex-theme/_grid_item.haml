@@ -1,0 +1,49 @@
+- if request.xhr?
+  - initialize_i18n(@current_community)
+- frontpage_fragment_cache("grid_item", listing) do
+  .card
+    %div
+      -# Listing image
+      = render :partial => "layouts/grid_item_listing_image", :locals => {:listing => listing, :modifier_class => "homepage-listings"}
+
+      .card-info
+        .card-price
+          .card-pricevalue  
+            - if listing.price
+              %span{:title => listing.price}
+                = listing.price.currency.symbol
+                = listing.price
+                
+            - else
+              %span.fluid-thumbnail-grid-image-type{:class => ""}
+              = shape_name(listing)
+
+          .card-perunit
+            - if listing.price
+              - price_unit = price_quantity_slash_unit(listing)
+              - if !price_unit.blank?
+                - price_text = " " + price_unit
+                %span.fluid-thumbnail-grid-image-quantity{:title => price_text}
+                  = price_text
+        .card-main-info
+          .card-title
+            =listing.title
+          - if (@current_community.id != 1546)
+            .card-review-info
+              %div
+                - rating = listing.star ? listing.star.round : 0
+                -if rating > 0
+                  - (1..rating).each do |star|
+                    = image_tag "goldStar.svg", :class => "rating-star"
+                  - if (5-rating) > 0
+                    - (1..(5-rating)).each do |star|
+                      = image_tag "greyStar.svg", :class => "rating-star"
+                -elsif (@current_community.id != 212)
+                  = t("custom.no_ratings")
+            %div{:class=> "distance-wrapper"}   
+              - distance = Maybe(listing.distance).or_else(nil)
+              - if(show_distance && distance.present?)
+                - dist = format_distance(distance)
+                = t("homepage.list_item.distance_away", distance: dist, distance_unit: listing.distance_unit)
+           
+   

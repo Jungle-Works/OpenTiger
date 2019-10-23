@@ -1,0 +1,41 @@
+<div class="themes-popup">
+
+<div id="theme-carousel-wrapper">
+      <%= render partial: "admin/themes/theme_carousel"%>
+</div>
+
+<%= render partial: "admin/themes/choose_themes"%>
+
+<div class="content">
+     <div class="title">
+        Select Themes
+         <div class="close-btn" onclick="ST.adminThemes.closeThemesPopup()">
+            <%= icon_tag("cross")%>
+        </div>
+        <div class="underline"></div>
+     </div>
+
+    <div class="body">
+    
+   
+      <div class="row themes-wrapper">
+
+
+      <!-- theme card -->
+      <% @all_themes.each_with_index do |theme,index|%>
+        <div class="col-4">
+          <%= render partial: "admin/themes/theme_card", locals: {theme_detail: theme}%>
+        </div>
+      <% end %>
+      </div>
+
+    
+    </div>
+
+    <div class="footer">
+    <button onclick="ST.adminThemes.closeThemesPopup()" class="">Skip</button>
+
+    </div>
+</div>
+
+</div>

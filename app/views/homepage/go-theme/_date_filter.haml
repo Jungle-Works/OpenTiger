@@ -1,0 +1,9 @@
+
+
+.toggle-container.home-toolbar-toggle-container
+  .toggle.with-borders{data: {toggle: '#home-toolbar-x-menu'}}
+    .toggle-header-container{id: "choose-dates"}
+      %input{type: "text", style: "display:none", id: "selected-date-range", name: "selected_range" }
+        .toggle-header
+        = t("Dates")
+        -# = icon_tag("dropdown", ["icon-dropdown"])

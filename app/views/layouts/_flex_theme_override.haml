@@ -1,0 +1,81 @@
+:scss
+  @import "mixins/all";
+  
+  /* flex theme changes*/
+  .custom-checkbox:hover label:before{
+   border: 2px solid ##{color1};
+  }
+  .custom-checkbox input:checked + label:before{
+      background-color: ##{color1};
+      border: 2px solid ##{color1};
+  }
+  .custom-radio-buttons input:checked + label:after,
+    input:not(:checked) + label:after{
+
+      background: ##{color1}
+  }
+  .cust-stripe-cancel-link{
+    background-color: ##{color1};
+  }
+ 
+  .Logo:hover .logo-border{
+    border-bottom: 4px solid ##{color1};
+  }
+ 
+  .AddNewThemeListingButton:hover .logo-border{
+    border-bottom: 4px solid ##{color1};
+  }
+ 
+  .AvatarDropdown:hover .logo-border{
+    border-bottom: 4px solid ##{color1};
+  }
+  .LoginLinks a:hover span.logo-border{
+    border-bottom: 4px solid ##{color1};
+  }
+  #topbar-container{
+   position: sticky;
+   top: 0px;
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+   z-index: 100;
+  }
+ 
+  input[name=start_on_datepicker] , input[name=end_on_datepicker]{
+   border-bottom-color: ##{ color1 };
+    
+  }
+  .listing-price-amount{
+    color: ##{ color1 };
+  }
+
+  .home-map{
+  position: sticky;
+  position: -webkit-sticky;
+  // top: 10px;
+  z-index: 10;
+ 
+  @media (tablet) {
+    top: 60px;
+    // padding: 0px 24px 0px 0px;
+  }
+  @media (min-width: 1201px) {
+    top: 80px;
+    // padding: 0px 24px 0px 0px;
+  }
+
+  }
+
+  .home-map > .map{
+    @include media(tablet) {
+      min-height: 400px;
+      height: calc(100vh - 60px);
+    }
+    @media (min-width: 1201px){
+      height: calc(100vh - 80px);
+  
+    }
+  }
+  body, .no-tribe-title, h1, h2, h3, h4, h5, h6,.home-share-type-link,
+  .browsing-list-item-share-type-link,.share-type-link {
+      @include sofia-pro;
+  }
+  
