@@ -131,7 +131,7 @@ group :development do
   gem 'listen', '~> 3.1.5'
   gem 'annotate', '~> 2.7.1'
   gem 'zeus', '~> 0.15.13', require: false
-  gem 'better_errors', '~> 2.1.1'
+  gem 'better_errors', '~> 2.8.0'
   gem 'web-console', '~> 3.5.1'
   gem 'awesome_print', '~> 1.7.0'
   gem 'binding_of_caller'
